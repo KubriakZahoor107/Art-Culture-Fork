@@ -1,0 +1,196 @@
+@use '/src/styles/components/UserProfile/userProfile.module.scss';
+@import '/src/styles/utilities/variables.scss';
+
+.productList {
+
+	.productCardTitle {
+		margin: $responsiveSmallPadding 0 0 0;
+		font-size: calc(16px - (4 * ((1440px - 100vw) / (1440 - 375))));
+		font-weight: 600;
+	}
+
+	.productCardSubTitle {
+		margin: 0;
+		font-size: calc(16px - (4 * ((1440px - 100vw) / (1440 - 375))));
+		font-weight: 400 !important;
+		text-transform: none !important;
+	}
+
+	.productCardSubTitle:last-of-type {
+		margin: 0 0 auto 0;
+	}
+
+	.products {
+		margin: $responsiveMediumPadding 0 0 0;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		grid-template-rows: auto;
+		gap: $responsiveSmallPadding;
+
+		.productCard {
+			display: flex;
+			flex-direction: column;
+			align-items: start;
+			// width: 100%;
+			background-color: #fff;
+			padding: $responsiveSmallPadding;
+			border: 1px solid #ddd;
+			border-radius: 10px;
+			box-sizing: border-box;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+			&:hover {
+				box-shadow: 0 4px 20px $turquoise;
+			}
+
+			.productImage {
+				width: 100%;
+				aspect-ratio: 1 / 1;
+				object-fit: cover;
+				border-radius: 10px;
+				cursor: pointer;
+			}
+		}
+	}
+}
+
+.paintingsDelEditWrapper {
+	/* Обертка для кнопок редактирования и удаления */
+	margin: $responsiveMediumPadding 0 0 0;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.paintingsDeleteButton {
+	/* Стили для кнопки редактирования */
+	padding: 0 $staticButtonLeftAndRightPadding;
+	height: calc(51px - (11 * ((1440px - 100vw) / (1440 - 375))));
+	min-height: 40px;
+	max-height: 51px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid $red;
+	border-radius: calc(34px - (4 * ((1440px - 100vw) / (1440 - 375))));
+	background-color: #fff;
+	color: $red;
+	cursor: pointer;
+}
+
+/* Modal Styles */
+
+.modalTitleWrapper {
+	/* Обертка для заголовка модального окна */
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	width: 100%;
+}
+
+.modalTitle {
+	/* Заголовок модального окна */
+	margin: 0;
+	font-size: calc(28px - (4 * ((1440px - 100vw) / (1440 - 375))));
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+.closeButton {
+	position: absolute;
+	top: $responsiveSmallPadding;
+	right: $responsiveSmallPadding;
+	display: flex;
+	padding: 0;
+	width: 30px;
+	height: 30px;
+	background: none;
+	border: none;
+	font-size: 51px;
+	line-height: 30px;
+	font-weight: 900;
+	cursor: pointer;
+}
+
+.modalImages {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	align-items: center;
+	overflow-y: auto;
+}
+
+.modalImage {
+	max-width: 95%;
+	max-height: 76dvh;
+	margin: 0 0 $responsiveSmallPadding 0;
+	object-fit: contain;
+	border-radius: 10px;
+}
+
+@media (min-width: 1920px) {
+	.productList {
+		.products {
+			grid-template-columns: repeat(4, 1fr);
+		}
+	}
+}
+
+@media (min-width: 1441px) {
+	.productList {
+
+		.productCardTitle {
+			margin: $staticPcSmallPadding 0 0 0;
+			font-size: 16px;
+		}
+
+		.productCardSubTitle {
+			font-size: 16px;
+		}
+
+		.products {
+			margin: $staticPcMediumPadding 0 0 0;
+			gap: $staticPcSmallPadding;
+
+			.productCard {
+				padding: $staticPcSmallPadding;
+			}
+		}
+	}
+
+	.paintingsDeleteButton {
+		/* Стили для кнопки редактирования */
+		padding: 0 $staticButtonLeftAndRightPadding;
+		border-radius: 34px;
+	}
+
+	/* Modal Styles */
+
+	.modalContent {
+		padding: $responsiveBigPadding $responsiveLeftAndRightPadding;
+	}
+
+	.modalTitle {
+		/* Заголовок модального окна */
+		font-size: 28px;
+	}
+
+	.closeButton {
+		top: $staticPcSmallPadding;
+		right: $staticPcSmallPadding;
+	}
+
+	.modalImage {
+		margin: 0 0 $staticPcSmallPadding 0;
+	}
+}
+
+@media (max-width: 1439px) {
+	.productList {
+		.products {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+}

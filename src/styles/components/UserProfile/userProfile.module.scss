@@ -1,0 +1,470 @@
+@import "../../utilities/variables.scss";
+
+.profile {
+  /* Основной контейнер профиля */
+  display: flex;
+  flex-direction: column;
+  padding: $responsiveTopPadding $responsiveLeftAndRightPadding 0 0;
+  width: 100%;
+  // min-height: calc(100dvh - 234px);
+  // height: 100%;
+  background: white;
+  color: black;
+  font-family: $default-font;
+
+  input {
+    // поле ввода имени пользователя
+    width: 100%;
+    max-width: none;
+    height: 1en;
+    margin: 0 0 0 $responsiveMediumPadding;
+    padding: 0;
+    font-size: calc(16px - (4 * ((1440px - 100vw) / (1440 - 375))));
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+
+  // textarea {
+  //   // поле ввода имени пользователя
+  //   text-rendering: auto;
+  //   color: fieldtext;
+  //   letter-spacing: normal;
+  //   word-spacing: normal;
+  //   line-height: normal;
+  //   text-transform: none;
+  //   text-indent: 0px;
+  //   text-shadow: none;
+  //   display: inline-block;
+  //   text-align: start;
+  //   appearance: auto;
+  //   -webkit-rtl-ordering: logical;
+  //   cursor: text;
+  //   overflow-wrap: break-word;
+  //   background-color: field;
+  //   column-count: initial !important;
+  //   border-width: 1px;
+  //   border-style: solid;
+  //   border-color: #ddd;
+  //   border-image: initial;
+  //   border-radius: 5px;
+  //   white-space: pre-wrap;
+  //   width: 100%;
+  //   max-width: none;
+  //   min-height: calc(calc(16px - (4 * ((1440px - 100vw) / (1440 - 375)))) * 3);
+  //   max-height: calc(calc(16px - (4 * ((1440px - 100vw) / (1440 - 375)))) * 7);
+  //   height: 100%;
+  //   margin: 0 0 0 $responsiveMediumPadding;
+  //   padding: 0;
+  //   font-size: calc(16px - (4 * ((1440px - 100vw) / (1440 - 375))));
+  //   font-family: $default-font;
+  //   resize: none;
+  // }
+
+  .submitButton {
+    // кнопка подтверждения изменений
+    width: fit-content;
+    max-width: none;
+    margin: $responsiveMediumPadding auto 0 auto;
+    padding: 0 $staticButtonLeftAndRightPadding;
+    height: calc(51px - (11 * ((1440px - 100vw) / (1440 - 375))));
+    min-height: 40px;
+    max-height: 51px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: calc(34px - (4 * ((1440px - 100vw) / (1440 - 375))));
+    font-size: calc(16px - (4 * ((1440px - 100vw) / (1440 - 375))));
+    font-weight: 500;
+    background-color: #3a8374;
+    cursor: pointer;
+  }
+}
+
+.modalTitleWrapper {
+  /* Обертка для заголовка модального окна */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.modalTitle {
+  /* Заголовок модального окна */
+  margin: 0;
+  font-size: calc(28px - (4 * ((1440px - 100vw) / (1440 - 375))));
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.profileDetails {
+  /* Контейнер для деталей профиля */
+  margin: $responsiveMediumPadding 0 0 0;
+  width: 100%;
+}
+
+.profileInformationContainer {
+  /* Контейнер для информации о пользователе */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+}
+
+// .profileAvatar {
+//   display: flex;
+//   gap: 10px;
+// }
+
+.profileImage {
+  margin: $responsiveSmallPadding 0 0 0;
+  object-fit: contain;
+  object-position: center center;
+  border-radius: 10px;
+  width: 100%;
+  height: auto;
+  max-width: 300px;
+  max-height: 300px;
+}
+
+.museumLogo {
+  margin: $responsiveSmallPadding 0 0 0;
+  object-fit: contain;
+  object-position: center center;
+  border-radius: 10px;
+  width: 100%;
+  height: auto;
+  max-width: 300px;
+  max-height: 300px;
+}
+
+.addressDetails {
+  margin: $responsiveSmallPadding 0 0 0;
+}
+
+.profileTextWrapper {
+  /* Обертка для текста профиля */
+  // margin: 0 0 0 $responsiveLeftAndRightPadding;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+
+  p {
+    margin: $responsiveSmallPadding 0 0 0;
+    font-size: calc(16px - (4 * ((1440px - 100vw) / (1440 - 375))));
+    font-weight: 500;
+
+    &:first-of-type {
+      margin: 0;
+    }
+
+    &.ErrorMessage {
+      /* Стиль для сообщения об ошибке */
+      margin: $responsiveBigPadding 0 0 0;
+      color: $red;
+      font-size: calc(16px - (4 * ((1440px - 100vw) / (1440 - 375))));
+    }
+  }
+
+  strong {
+    font-weight: 500;
+    font-size: calc(16px - (4 * ((1440px - 100vw) / (1440 - 375))));
+    color: grey;
+  }
+}
+
+.editButtonWrapper {
+  /* Обертка для кнопки редактирования */
+  margin: $responsiveMediumPadding 0 0 0;
+  display: block;
+}
+
+.profileField {
+  /* Общий контейнер для полей информации */
+  margin: $responsiveMediumPadding 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+}
+
+.profileLabel {
+  /* Стиль для меток информации */
+  font-weight: 900;
+}
+
+.profileEdit {
+  /* Стиль для кнопки редактирования */
+  background: rgb(207, 207, 207);
+  color: #000;
+  border-radius: calc(34px - (4 * ((1440px - 100vw) / (1440 - 375))));
+  font-size: calc(16px - (4 * ((1440px - 100vw) / (1440 - 375))));
+  padding: 0 $staticButtonLeftAndRightPadding;
+  cursor: pointer;
+}
+
+.profileEdit:hover {
+  background: $turquoise;
+  color: #fff;
+  border: none;
+}
+
+.profileEdit:not(:hover) {
+  transition: 0.4s ease;
+}
+
+.modal {
+  // модальное окно
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+  .editButton {
+    padding: 0;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: none;
+    cursor: pointer;
+  }
+
+  p {
+    // метка имени пользователя
+    font-size: calc(16px - (4 * ((1440px - 100vw) / (1440 - 375))));
+    font-weight: 700;
+  }
+}
+
+.editProfileForm {
+  // форма редактирования профиля
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 100%;
+  height: 100%;
+}
+
+.profileModalNameWrapper {
+  // обертка для имени пользователя
+  margin: $responsiveMediumPadding 0 0 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  white-space: nowrap;
+}
+
+.profileModalBioWrapper {
+  // обертка для имени пользователя
+  margin: $responsiveMediumPadding 0 0 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  white-space: nowrap;
+}
+
+.profileModalImageDownloadWrapper {
+  // обертка для загрузки аватара
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  white-space: nowrap;
+
+  .profileLabel {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    font-size: calc(16px - (4 * ((1440px - 100vw) / (1440 - 375))));
+    font-weight: 700;
+    margin: $responsiveMediumPadding 0 0 0;
+  }
+
+  input {
+    // поле для загрузки аватара
+    margin: 0;
+  }
+}
+
+.profileModalLogoUploadWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  white-space: nowrap;
+
+  .profileLabel {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    font-size: calc(16px - (4 * ((1440px - 100vw) / (1440 - 375))));
+    font-weight: 700;
+    margin: $responsiveMediumPadding 0 0 0;
+  }
+
+  input {
+    // поле для загрузки аватара
+    margin: 0;
+  }
+}
+
+.closeButtonWrapper {
+  // обертка для кнопки закрытия модального окна
+  top: 10px;
+  right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.close {
+  //кнопка закрытия модального окна
+  position: absolute;
+  top: $responsiveSmallPadding;
+  right: $responsiveSmallPadding;
+  display: flex;
+  margin: 0 0 0 auto;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  background: none;
+  border: none;
+  font-size: 51px;
+  line-height: 30px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+@media (min-width: 1441px) {
+  .profile {
+    /* Основной контейнер профиля */
+    padding: $staticPcTopPadding $responsiveLeftAndRightPadding 0 0;
+
+    input {
+      // поле ввода имени пользователя
+      font-size: 16px;
+    }
+
+    textarea {
+      // поле ввода имени пользователя
+      margin: 0 0 0 $staticPcMediumPadding;
+      font-size: 16px;
+    }
+
+    .submitButton {
+      // кнопка подтверждения изменений
+      margin: $staticPcMediumPadding 0 0 auto;
+      border-radius: 34px;
+      font-size: 16px;
+    }
+  }
+
+  .modalTitle {
+    /* Заголовок модального окна */
+    font-size: 28px;
+  }
+
+  .profileAction {
+    /* Стиль для каждой кнопки действия */
+    margin: $staticPcMediumPadding 0 0 0;
+    font-size: 16px;
+  }
+
+  .profileAction {
+    /* Стиль для каждой кнопки действия */
+    margin: $staticPcMediumPadding 0 0 0;
+    font-size: 16px;
+
+    &:last-child {
+      /* Стиль для последней кнопки действия */
+      margin: $staticPcBigPadding 0 0 0;
+    }
+  }
+
+  .profileDetails {
+    /* Контейнер для деталей профиля */
+    margin: $staticPcMediumPadding 0 0 0;
+  }
+
+  .profileTextWrapper {
+    /* Обертка для текста профиля */
+
+    p {
+      margin: $staticPcSmallPadding 0 0 0;
+      font-size: 16px;
+
+      &.ErrorMessage {
+        /* Стиль для сообщения об ошибке */
+        margin: $staticPcBigPadding 0 0 0;
+        font-size: 16px;
+      }
+    }
+
+    strong {
+      font-size: 16px;
+    }
+  }
+
+  .profileField {
+    /* Общий контейнер для полей информации */
+    margin: $staticPcMediumPadding 0;
+  }
+
+  .profileEdit {
+    /* Стиль для кнопки редактирования */
+    border-radius: 34px;
+    font-size: 16px;
+  }
+
+  .modal {
+    // модальное окно
+
+    p {
+      // метка имени пользователя
+      font-size: 16px;
+    }
+  }
+
+  .profileModalNameWrapper {
+    // обертка для имени пользователя
+    margin: $staticPcMediumPadding 0 0 0;
+  }
+
+  .profileModalBioWrapper {
+    // обертка для имени пользователя
+    margin: $staticPcMediumPadding 0 0 0;
+  }
+
+  .profileModalImageDownloadWrapper {
+
+    // обертка для загрузки аватара
+    .profileLabel {
+      font-size: 16px;
+      margin: $staticPcMediumPadding 0 0 0;
+    }
+  }
+}

@@ -1,0 +1,21 @@
+.button.button-default {
+	/* Стиль для кнопки редактирования */
+	padding: 0 $staticButtonLeftAndRightPadding;
+	height: calc(51px - (11 * ((1440px - 100vw) / (1440 - 375))));
+	min-height: 40px;
+	max-height: 51px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid #000;
+	border-radius: calc(34px - (4 * ((1440px - 100vw) / (1440 - 375))));
+	background-color: #fff;
+	cursor: pointer;
+}
+
+@media (min-width: 1441px) {
+    .button.button-default {
+        padding: 0 $staticButtonLeftAndRightPadding;
+        border-radius: 34px;
+    }
+}

@@ -1,0 +1,347 @@
+/* PageMasonryGallery.module.scss */
+
+@import "../../../utilities/variables.scss";
+
+.galleryContainer {
+  margin: 0;
+  padding: calc(87px - (43 * ((1440px - 100vw) / (1440 - 375))))
+    $responsiveLeftAndRightPadding 0;
+  overflow: hidden; // Prevent horizontal scroll due to translation
+}
+
+.galleryTitleWrapper {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.galleryTitle {
+  font-family: $default-font;
+  font-size: calc(28px - (10 * ((1440px - 100vw) / (1440 - 375))));
+  font-weight: 600;
+  color: rgb(0, 0, 0);
+  text-transform: uppercase;
+}
+
+/* Masonry Gallery Styles */
+.justifiedGallery {
+  display: flex;
+  flex-direction: row; // Arrange columns side by side horizontally
+  justify-content: center; // Align columns to the left
+  // align-items: center; // Align items to the top
+  margin: calc(46px - (29 * ((1440px - 100vw) / (1440 - 375)))) 0 0;
+  width: 100%;
+  height: 70vh; // Full viewport height for vertical columns
+  position: relative;
+}
+
+.slider {
+  display: flex;
+  flex-direction: row; // Arrange columns side by side horizontally
+  width: 200%; // Double the width for duplication
+  animation: scroll infinite linear;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px; // Gap between columns
+}
+
+.item {
+  display: block;
+  margin-bottom: 20px; // Gap between items in a column
+  width: 250px; // Should match scaledWidth
+  height: auto; // Let height adjust based on image
+  cursor: pointer;
+}
+
+.item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+/* More Arts Button Styles */
+.moreArtsButtonWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.moreArtsButton {
+  margin: $responsiveMediumPadding $responsiveLeftAndRightPadding 0 0;
+
+  border: none;
+  background: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+}
+
+.moreArtsButtonText {
+  font-size: calc(19px - (7 * ((1440px - 100vw) / (1440 - 375))));
+  font-weight: 500;
+}
+
+.buttonArrow {
+  margin: 0 0 0 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+/* Responsive Styles */
+@media screen and (min-width: 1441px) {
+  .galleryContainer {
+    margin: 0;
+    padding: 87px $responsiveLeftAndRightPadding 0;
+  }
+
+  .justifiedGallery {
+    margin: 46px 0 0;
+    flex-direction: row; // Ensure columns are in a row
+  }
+
+  .galleryTitle {
+    font-size: 28px;
+  }
+
+  .moreArtsButton {
+    margin: $responsiveMediumPadding $responsiveLeftAndRightPadding 0 0;
+  }
+
+  .moreArtsButtonText {
+    font-size: 19px;
+  }
+}
+
+@media screen and (max-width: 569px) {
+  .moreArtsButtonWrapper {
+    justify-content: center; // Center the button on small screens
+  }
+}
+
+/* Modal Window Styles */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  overflow: hidden;
+  overscroll-behavior: contain;
+}
+
+.modalContent {
+  position: relative;
+  background-color: #fff;
+  padding: 20px 20px 50px 20px;
+  width: calc(1920px - (166 * ((1440px - 100vw) / (1440 - 375))));
+  //height: 100dvh;
+  overflow-y: hidden;
+  border-radius: 8px;
+  display: flex;
+}
+
+.productInfoContainer {
+  width: calc(700px - (166 * ((1440px - 100vw) / (1440 - 375))));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .productHeaderWrapper {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+
+    .productModalTitle {
+      font-size: 24px;
+      color: $dark;
+      display: flex;
+      flex-direction: row;
+    }
+
+    .productModalAuthorName {
+      font-size: 20px;
+      display: flex;
+      flex-direction: row; // Corrected from 'rows' to 'row'
+    }
+  }
+
+  .productModalMainInfoAbout {
+    flex-direction: column;
+    display: flex;
+
+    .productModelAboutTitle {
+      font-size: 30px;
+    }
+
+    .productModelDescrWrapper {
+      display: flex;
+      .productModelDescrTitle {
+        font-size: 24px;
+        color: $dark;
+        margin-top: 20px;
+      }
+      .productModelDescr {
+        margin: 0 10px 0 0;
+        width: calc(489px - (1 * ((1440px - 100vw) / (1440 - 375))));
+      }
+    }
+
+    .productModelSpecsWrapper {
+      display: flex;
+
+      .productModelSpecsTitle {
+        font-size: 24px;
+        color: $dark;
+        margin-top: 20px;
+      }
+      .productModelSpecs {
+        margin: 0 10px 0 0;
+        width: calc(489px - (1 * ((1440px - 100vw) / (1440 - 375))));
+      }
+    }
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: calc(44px + 6 * (100vw / 1440));
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.modalImages {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  //height: 100dvh;
+  //margin: 0 auto;
+  //width: 100%;
+  //padding: calc(20 / 1440 * 100vw);
+}
+
+.modalImage {
+  height: 320px;
+  object-fit: cover;
+  width: calc(500px - (166 * ((1440px - 100vw) / (1440 - 375))));
+  margin: 10px;
+  padding: 0px 10px;
+}
+
+.zoomControls {
+  position: absolute;
+  bottom: 10px;
+  right: 0px;
+  left: 0px;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+}
+
+.zoomButton {
+  width: 30px;
+  height: 30px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: none;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 1);
+  }
+}
+
+.zoomIndicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.zoomIndicator span {
+  font-size: 14px;
+  color: #fff;
+  margin-bottom: 5px;
+}
+
+.zoomBar {
+  width: 80px;
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.zoomProgress {
+  height: 100%;
+  background-color: #fff;
+  transition: width 0.3s ease-in-out;
+}
+
+.carouselNav {
+  position: absolute;
+  bottom: 37%;
+  left: 35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  pointer-events: none; // Allows clicks to pass through when buttons are not hovered
+}
+
+.carouselButton {
+  background-color: rgba(255, 255, 255, 0.7);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: all; // Enables clicking
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 1);
+  }
+}
+
+.carouselButton:disabled {
+  background-color: rgba(255, 255, 255, 0.4);
+  cursor: not-allowed;
+}

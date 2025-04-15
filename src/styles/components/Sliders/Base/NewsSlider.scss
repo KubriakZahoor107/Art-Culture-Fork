@@ -1,0 +1,256 @@
+@import '/src/styles/utilities/variables.scss';
+
+.NewsSliderContainer {
+	// Контейнер слайдера
+	display: flex;
+	margin: $responsiveBigPadding $responsiveLeftAndRightPadding 0 $responsiveLeftAndRightPadding;
+}
+
+.NewsSliderWrapper {
+	// Обёртка слайдера
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.NewsSliderTopInnerWrapper {
+	// Верхняя часть слайдера
+	display: flex;
+	justify-content: space-between;
+	padding: 0 0 $responsiveMediumPadding 0;
+}
+
+.NewsSliderTitleWrapper {
+	// Обёртка заголовка
+	display: flex;
+	align-items: center;
+}
+
+.NewsSliderBottomInnerWrapper {
+	// Нижняя часть слайдера
+	display: flex;
+	width: 100%;
+	height: calc(561px - (90 * ((1440px - 100vw) / (1440 - 375))));
+
+	@at-root {
+		:root {
+			--swiper-navigation-size: calc(42px - (7 * ((1440px - 100vw) / (1440 - 375))));
+		}
+	}
+
+	.swiper-wrapper {
+		position: relative;
+		margin: 0 0 0 calc(-1 * $responsiveSmallPadding);
+		width: 100%;
+		height: 100%;
+		z-index: 1;
+		display: flex;
+		transition-property: transform;
+		transition-timing-function: var(--swiper-wrapper-transition-timing-function,
+				initial);
+		box-sizing: content-box;
+	}
+
+	.swiper-slide {
+		flex-shrink: 0;
+		width: auto;
+		height: 100%;
+		position: relative;
+		transition-property: transform;
+		display: block;
+	}
+
+	.swiper-button-prev,
+	.swiper-button-next {
+		position: absolute;
+		top: calc(calc(539px - (75 * ((1440px - 100vw) / (1440 - 375)))) - calc(var(--swiper-navigation-size) / 2));
+		width: var(--swiper-navigation-size);
+		height: var(--swiper-navigation-size);
+		z-index: 11;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: #000000;
+		border-radius: 50%;
+		color: white;
+	}
+
+	.swiper-button-prev,
+	.swiper-rtl .swiper-button-next {
+		left: calc(50% - calc(var(--swiper-navigation-size) * 1.14) - calc(34.5px - (5.5 * ((1440px - 100vw) / (1440 - 375)))));
+		right: auto;
+	}
+
+	.swiper-button-next,
+	.swiper-rtl .swiper-button-prev {
+		right: calc(50% - calc(var(--swiper-navigation-size) * 1.14) - calc(34.5px - (5.5 * ((1440px - 100vw) / (1440 - 375)))));
+		left: auto;
+	}
+
+	/* Navigation font start */
+	.swiper-button-prev,
+	.swiper-button-next {
+		&:after {
+			font-family: swiper-icons;
+			font-size: 10px;
+			font-weight: 900;
+			text-transform: none !important;
+			letter-spacing: 0;
+			font-variant: initial;
+			line-height: 1;
+		}
+	}
+
+	.swiper-button-next,
+	.swiper-rtl .swiper-button-prev {
+		right: calc(50% - calc(var(--swiper-navigation-size) * 1.24) - calc(34.5px - (5.5 * ((1440px - 100vw) / (1440 - 375)))));
+		left: auto;
+	}
+
+	/* Common Styles */
+	.swiper-pagination-fraction,
+	.swiper-pagination-custom,
+	.swiper-horizontal>.swiper-pagination-bullets,
+	.swiper-pagination-bullets.swiper-pagination-horizontal {
+		top: calc(calc(539px - (75 * ((1440px - 100vw) / (1440 - 375)))) - calc(var(--swiper-navigation-size) / 1.4));
+		left: 0;
+		width: 100%;
+	}
+
+	/* Fraction */
+	.swiper-pagination-fraction {
+		color: black;
+	}
+}
+
+.NewsSliderCardContainer {
+	// Обёртка карточки слайдера
+	width: calc(282px - (32 * ((1440px - 100vw) / (1440 - 375))));
+	min-width: 250px;
+	max-width: 282px;
+	height: auto;
+	margin: 0 $responsiveSmallPadding;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	position: relative;
+}
+
+.NewsSliderCardLink {
+	// Ссылка на карточку
+	cursor: pointer;
+}
+
+.NewsSliderCardImgWrapper {
+	// Внутренняя обёртка карточки
+	position: relative;
+	display: flex;
+	width: calc(282px - (32 * ((1440px - 100vw) / (1440 - 375))));
+	min-width: 250px;
+	max-width: 282px;
+	height: calc(282px - (32 * ((1440px - 100vw) / (1440 - 375))));
+	min-height: 250px;
+	max-height: 282px;
+}
+
+.NewsSliderCardImg {
+	// Изображение карточки
+	// aspect-ratio: 630 / 330; // например, соотношение сторон 21:11
+	object-fit: cover;
+	object-position: center;
+	width: 100%;
+	height: 100%;
+	border-radius: 3px;
+}
+
+.NewsSliderCardTitleWrapper {
+	// Обёртка заголовка карточки
+	display: flex;
+	margin: $responsiveSmallPadding 0 0 0;
+}
+
+.NewsSliderCardTitle {
+	// Заголовок карточки
+	color: #000000;
+	font-family: $default-font;
+	font-weight: 500;
+	font-size: calc(22px - (4 * ((1440px - 100vw) / (1440 - 375))));
+	text-transform: uppercase;
+}
+
+.NewsSliderCardDescriptionWrapper {
+	// Обёртка описания карточки
+	color: #000000;
+	margin: $responsiveSmallPadding 0 0 0;
+	height: calc(calc(16px - (2 * ((1440px - 100vw) / (1440 - 375)))) * 8); // Делаем ограничение вывода текста построчечно
+	overflow: hidden;
+}
+
+.NewsSliderCardDescription {
+	// Описание карточки
+	color: #000000;
+	font-family: $default-font;
+	font-weight: 400;
+	font-size: calc(16px - (2 * ((1440px - 100vw) / (1440 - 375))));
+}
+
+@media screen and (min-width: 1441px) {
+	.NewsSliderContainer {
+		// Контейнер слайдера
+		margin: $staticPcBigPadding $responsiveLeftAndRightPadding 0 $responsiveLeftAndRightPadding;
+	}
+
+	.NewsSliderTopInnerWrapper {
+		// Верхняя часть слайдера
+		padding: 0 0 $staticPcMediumPadding 0;
+	}
+
+	.NewsSliderBottomInnerWrapper {
+		// Нижняя часть слайдера
+		height: 561px;
+
+		.swiper-wrapper {
+			margin: 0 0 0 calc(-1 * $staticPcSmallPadding);
+		}
+
+		.swiper-button-prev,
+		.swiper-button-next {
+			top: calc(539px - calc(var(--swiper-navigation-size) / 2));
+		}
+
+		.swiper-pagination-fraction,
+		.swiper-pagination-custom,
+		.swiper-horizontal>.swiper-pagination-bullets,
+		.swiper-pagination-bullets.swiper-pagination-horizontal {
+			// bottom: calc(calc(14px - (2 * ((1440px - 100vw) / (1440 - 375)))) * 2.5);
+			top: calc(539px - calc(var(--swiper-navigation-size) / 1.4));
+		}
+	}
+
+	.NewsSliderCardContainer {
+		// Обёртка карточки слайдера
+		margin: 0 $staticPcSmallPadding;
+	}
+
+	.NewsSliderCardTitleWrapper {
+		// Обёртка заголовка карточки
+		margin: $staticPcSmallPadding 0 0 0;
+	}
+
+	.NewsSliderCardTitle {
+		// Заголовок карточки
+		font-size: 22px;
+	}
+
+	.NewsSliderCardDescriptionWrapper {
+		// Обёртка описания карточки
+		margin: $staticPcSmallPadding 0 0 0;
+		height: calc(16px * 8); // Делаем ограничение вывода текста построчечно
+	}
+
+	.NewsSliderCardDescription {
+		// Описание карточки
+		font-size: 16px;
+	}
+}

@@ -1,0 +1,236 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "mysql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+model User {
+  id                 Int                 @id @default(autoincrement())
+  email              String              @unique
+  password           String
+  role               Role                @default(USER)
+  images             String?
+  title              String?
+  bio                String?
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+  country            String?
+  house_number       String?
+  lat                Float?
+  lon                Float?
+  postcode           String?
+  state              String?
+  street             String?
+  city               String?
+  artTerms           ArtTerm[]
+  createdExhibitions Exhibition[]        @relation("UserCreatedExhibitions")
+  exhibitionArtists  ExhibitionArtist[]
+  posts              Post[]
+  products           Product[]
+  museum_logo_image  museum_logo_images? @relation("UserMuseumLogo")
+  museumExhibition   Exhibition[]        @relation("MuseumExhibition")
+  museumProducts     Product[]           @relation("MuseumProducts") // New relation
+  likesReceived      Like[]              @relation("LikesReceived")
+  likesGiven         Like[]              @relation("LikesGiven")
+
+  @@map("user")
+}
+
+model Post {
+  id           Int        @id @default(autoincrement())
+  title_en     String     @db.VarChar(250)
+  title_uk     String     @db.VarChar(250)
+  content_en   String     @db.VarChar(5000)
+  content_uk   String     @db.VarChar(5000)
+  authorId     Int        @map("author_id")
+  creatorId    Int?       @map("creator_id")
+  museumId     Int?       @map("museum_id")
+  exhibitionId Int?       @map("exhibition_id")
+  images       String?
+  createdAt    DateTime   @default(now()) @map("created_at")
+  updatedAt    DateTime   @updatedAt @map("updated_at")
+  author       User       @relation(fields: [authorId], references: [id])
+  likes        Like[]
+  status       PostStatus @default(PENDING)
+
+  @@index([authorId], map: "Post_author_id_fkey")
+}
+
+enum PostStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model Product {
+  id             Int                 @id @default(autoincrement())
+  title_en       String              @db.VarChar(100)
+  title_uk       String              @db.VarChar(100)
+  description_en String              @db.VarChar(1000)
+  description_uk String              @db.VarChar(1000)
+  specs_en       String?             @db.VarChar(500)
+  specs_uk       String?             @db.VarChar(500)
+  size           String?             @db.VarChar(100)
+  style_en       String?             @db.VarChar(100)
+  style_uk       String?             @db.VarChar(100)
+  technique_en   String?             @db.VarChar(100)
+  technique_uk   String?             @db.VarChar(100)
+  dateofcreation String?             @db.VarChar(100)
+  createdAt      DateTime            @default(now())
+  updatedAt      DateTime            @updatedAt
+  authorId       Int
+  museumId       Int?
+  artTerms       ArtTerm[]
+  author         User                @relation(fields: [authorId], references: [id])
+  museum         User?               @relation("MuseumProducts", fields: [museumId], references: [id])
+  images         ProductImage[]      @relation("ProductImages")
+  exhibitions    ExhibitionProduct[]
+  likes          Like[]
+  status         ProductStatus       @default(PENDING)
+
+  @@index([museumId], map: "Product_museumId_fkey")
+  @@index([authorId], map: "Product_authorId_fkey")
+}
+
+enum ProductStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model ProductImage {
+  id        Int     @id @default(autoincrement())
+  imageUrl  String
+  productId Int
+  product   Product @relation("ProductImages", fields: [productId], references: [id])
+
+  @@index([productId], map: "ProductImage_productId_fkey")
+}
+
+model Exhibition {
+  id             Int      @id @default(autoincrement())
+  startDate      DateTime
+  endDate        DateTime
+  time           String?  @db.VarChar(200)
+  createdById    Int
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  description_en String?  @db.VarChar(500)
+  description_uk String?  @db.VarChar(500)
+  location_en    String?  @db.VarChar(500)
+  location_uk    String?  @db.VarChar(500)
+  title_en       String?  @db.VarChar(150)
+  title_uk       String?  @db.VarChar(150)
+  address        String?
+  role           String?
+  email          String?
+  title          String?
+  bio            String?
+
+  latitude          Float?
+  longitude         Float?
+  endTime           String?             @db.VarChar(200)
+  createdBy         User                @relation("UserCreatedExhibitions", fields: [createdById], references: [id])
+  exhibitionArtists ExhibitionArtist[]
+  images            ExhibitionImage[]   @relation("ExhibitionsImages")
+  museumId          Int?
+  museum            User?               @relation("MuseumExhibition", fields: [museumId], references: [id])
+  products          ExhibitionProduct[]
+  likes             Like[]
+
+  @@index([createdById], map: "Exhibition_createdById_fkey")
+  @@index([museumId], map: "Exhibition_museumId_fkey")
+}
+
+model ExhibitionProduct {
+  exhibition   Exhibition @relation(fields: [exhibitionId], references: [id])
+  product      Product    @relation(fields: [productId], references: [id])
+  exhibitionId Int
+  productId    Int
+
+  @@id([exhibitionId, productId])
+  @@index([productId], map: "ExhibitionProduct_productId_fkey")
+}
+
+model ExhibitionImage {
+  id           Int        @id @default(autoincrement())
+  imageUrl     String
+  exhibitionId Int
+  exhibition   Exhibition @relation("ExhibitionsImages", fields: [exhibitionId], references: [id], onDelete: Cascade)
+
+  @@index([exhibitionId], map: "ExhibitionImage_exhibitionId_fkey")
+}
+
+model ExhibitionArtist {
+  exhibitionId Int
+  artistId     Int
+  artist       User       @relation(fields: [artistId], references: [id])
+  exhibition   Exhibition @relation(fields: [exhibitionId], references: [id])
+
+  @@id([exhibitionId, artistId])
+  @@index([artistId], map: "ExhibitionArtist_artistId_fkey")
+}
+
+model ArtTerm {
+  id                   Int      @id @default(autoincrement())
+  title_en             String   @db.VarChar(100)
+  title_uk             String   @db.VarChar(100)
+  description_en       String   @db.VarChar(350)
+  description_uk       String   @db.VarChar(350)
+  content_en           String   @db.Text
+  content_uk           String   @db.Text
+  authorId             Int      @map("author_id")
+  highlightedProductId Int      @map("highlighted_product_id")
+  createdAt            DateTime @default(now()) @map("created_at")
+  updatedAt            DateTime @updatedAt @map("updated_at")
+  author               User     @relation(fields: [authorId], references: [id])
+  highlightedProduct   Product  @relation(fields: [highlightedProductId], references: [id])
+
+  @@index([authorId], map: "ArtTerm_author_id_fkey")
+  @@index([highlightedProductId], map: "ArtTerm_highlighted_product_id_fkey")
+}
+
+model museum_logo_images {
+  id       Int    @id @default(autoincrement())
+  imageUrl String
+  userId   Int    @unique
+  user     User   @relation("UserMuseumLogo", fields: [userId], references: [id])
+
+  @@index([userId], map: "Museum_logo_images_userId_fkey")
+}
+
+model Like {
+  id           Int      @id @default(autoincrement())
+  userId       Int
+  postId       Int?
+  productId    Int?
+  exhibitionId Int?
+  likedUserId  Int?
+  createdAt    DateTime @default(now())
+
+  user       User        @relation("LikesGiven", fields: [userId], references: [id])
+  post       Post?       @relation(fields: [postId], references: [id])
+  product    Product?    @relation(fields: [productId], references: [id])
+  exhibition Exhibition? @relation(fields: [exhibitionId], references: [id])
+  likedUser  User?       @relation("LikesReceived", fields: [likedUserId], references: [id])
+
+  @@index([userId])
+  @@index([postId])
+  @@index([productId])
+  @@index([exhibitionId])
+  @@index([likedUserId])
+}
+
+enum Role {
+  USER
+  ADMIN
+  MUSEUM
+  CREATOR
+  EDITOR
+  AUTHOR
+  EXHIBITION
+}

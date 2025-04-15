@@ -1,0 +1,91 @@
+@import "/src/styles/utilities/variables.scss";
+
+.searchWrapper {
+  // Обертка для секции поиска в бургер-меню
+  display: flex;
+  margin: calc(215px - (3 * ((1440px - 100vw) / (1440 - 375)))) 0 0 0;
+  height: 100vh;
+  width: 100%;
+  flex-direction: column;
+  position: relative;
+  .searchInputWrapper {
+    width: 90%;
+    height: 5%;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    font-family: $default-font;
+    color: $dark;
+    font-size: calc(18px - (2 * ((1440px - 100vw) / (1440 - 375))));
+    border: 1px solid #c5c5c5;
+    border-radius: 6px;
+    padding: $responsiveMediumPadding;
+  }
+  .filterControls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem 0;
+    & h2 {
+      font-size: 20px;
+    }
+    label {
+      font-family: $default-font;
+      font-size: 20px;
+      color: $dark;
+
+      input {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+}
+
+.resultsWrapper {
+  width: 90%;
+  margin: calc(50px - 25 * (1440px - 100vw) / 871) auto;
+  //position: absolute;
+  top: 5%;
+  left: 50%;
+  //transform: translateX(-50%);
+  max-height: 90vh;
+  //overflow-y: auto;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 20;
+  overflow-x: hidden;
+}
+
+.itemContainer {
+  display: flex;
+  flex-direction: column;
+  & h2 {
+    margin: $responsiveSmallPadding 0;
+  }
+  .itemWrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 587px);
+    grid-template-rows: repeat(3, auto);
+    grid-auto-flow: dense;
+    gap: 1rem;
+    .itemInfo {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      & img {
+        width: 150px;
+      }
+      .itemInfoTitle {
+        margin: 0 0 0 $responsiveBigPadding;
+        & p {
+          font-family: $default-font;
+          color: $dark;
+          font-size: 23px;
+        }
+      }
+    }
+    .itemInfo:nth-last-child(1) {
+      margin: 0 0 $responsiveSmallPadding 0;
+    }
+  }
+}

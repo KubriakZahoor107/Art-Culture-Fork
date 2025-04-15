@@ -1,0 +1,332 @@
+@use '/src/styles/components/UserProfile/userProfile.module.scss';
+@import '/src/styles/utilities/variables.scss';
+
+.exhibitionsContainer {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	font-family: $default-font;
+	margin: $responsiveMediumPadding 0 $responsiveMediumPadding $responsiveLeftAndRightPadding;
+
+	h2 {
+		font-weight: 600;
+		font-size: calc(28px - (10 * ((1440px - 100vw) / (1440 - 375))));
+		text-transform: uppercase;
+	}
+
+	h3,
+	h4 {
+		margin: $responsiveSmallPadding 0 0 0;
+		font-size: calc(14px - (4 * ((1440px - 100vw) / (1440 - 375))));
+		color: $secondary-color;
+
+		p {
+			font-size: calc(16px - (4 * ((1440px - 100vw) / (1440 - 375))));
+			font-weight: 400 !important;
+			text-transform: none !important;
+			color: black;
+		}
+	}
+
+	.pagination {
+		margin: $responsiveMediumPadding 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+
+		p {
+			font-size: calc(16px - (4 * ((1440px - 100vw) / (1440 - 375))));
+			margin: auto $responsiveMediumPadding;
+		}
+
+		button {
+			padding: 0 $staticButtonLeftAndRightPadding;
+			height: 40px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background-color: #fff;
+			font-size: calc(28px - (10 * ((1440px - 100vw) / (1440 - 375))));
+			font-weight: 900;
+			cursor: pointer;
+		}
+	}
+
+	span {
+		font-size: calc(16px - (4 * ((1440px - 100vw) / (1440 - 375))));
+		margin: 0 $responsiveMediumPadding;
+	}
+}
+
+.exhibitionList {
+	margin: $responsiveMediumPadding 0 0 0;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: auto;
+	gap: $responsiveSmallPadding;
+}
+
+.exhibitionCard {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: start;
+	// width: 100%;
+	background-color: #fff;
+	padding: $responsiveSmallPadding;
+	border: 1px solid #ddd;
+	border-radius: 10px;
+	box-sizing: border-box;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+	&:hover {
+		box-shadow: 0 4px 20px $turquoise;
+	}
+}
+
+.exhibitionImage {
+	width: 100%;
+	aspect-ratio: 1 / 1;
+	object-fit: cover;
+	border-radius: 10px;
+}
+
+.detailsButton {
+	margin-top: 10px;
+	padding: 8px 12px;
+	background-color: #007bff;
+	color: #fff;
+	border: none;
+}
+
+.exhibitionDelEditWrapper {
+	/* Обертка для кнопок редактирования и удаления */
+	margin: auto 0 0 0;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.exhibitionDeleteButton {
+	/* Стили для кнопки редактирования */
+	margin: $responsiveMediumPadding 0 0 $responsiveMediumPadding;
+	padding: 0 $staticButtonLeftAndRightPadding;
+	height: calc(51px - (11 * ((1440px - 100vw) / (1440 - 375))));
+	min-height: 40px;
+	max-height: 51px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid $red;
+	border-radius: calc(34px - (4 * ((1440px - 100vw) / (1440 - 375))));
+	background-color: #fff;
+	color: $red;
+	cursor: pointer;
+}
+
+/* Modal Styles */
+.modalContent {
+	position: relative;
+	margin: auto auto;
+	background-color: #fff;
+	padding: $responsiveBigPadding $responsiveLeftAndRightPadding;
+	border-radius: 10px;
+	width: 90%;
+	height: auto;
+	max-height: 90%;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+
+	.modalFormWrapper {
+		// width: 100%;
+		// padding: 0 $responsiveMediumPadding 0 0;
+		// overflow-y: auto;
+	}
+
+	form {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.checkArtistWrapper {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+.checkArtistItem {
+	margin: $responsiveSmallPadding 0 0 0;
+	width: fit-content;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	input {
+		margin: 0 !important;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: fit-content;
+	}
+
+	label {
+		font-size: calc(16px - (4 * ((1440px - 100vw) / (1440 - 375))));
+		font-weight: 500;
+		margin: 0 0 0 $responsiveSmallPadding;
+	}
+}
+
+.checkboxLabel {
+	cursor: pointer;
+}
+
+.formOption,
+.artistOption {
+	color: #000000;
+
+	.key,
+	.value {
+		color: #000000;
+	}
+}
+
+.formTextarea {
+	height: 100px;
+	resize: vertical;
+}
+
+.submitButton {
+	padding: 0 $staticButtonLeftAndRightPadding;
+	height: calc(51px - (11 * ((1440px - 100vw) / (1440 - 375))));
+	min-height: 40px;
+	max-height: 51px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid #000;
+	border-radius: calc(34px - (4 * ((1440px - 100vw) / (1440 - 375))));
+	background-color: #fff;
+	cursor: pointer;
+}
+
+.closeButton {
+	position: absolute;
+	top: $responsiveSmallPadding;
+	right: $responsiveSmallPadding;
+	display: flex;
+	padding: 0;
+	width: 30px;
+	height: 30px;
+	background: none;
+	border: none;
+	font-size: 51px;
+	line-height: 30px;
+	font-weight: 900;
+	cursor: pointer;
+}
+
+@media (min-width: 1920px) {
+	.exhibitionsContainer {
+		.exhibitionList {
+			grid-template-columns: repeat(4, 1fr);
+		}
+	}
+}
+
+@media (min-width: 1441px) {
+	.exhibitionsContainer {
+		margin: $staticPcMediumPadding 0 $staticPcMediumPadding $responsiveLeftAndRightPadding;
+
+		h2 {
+			font-size: 28px;
+		}
+
+		h3,
+		h4 {
+			margin: $staticPcSmallPadding 0 0 0;
+			font-size: 14px;
+
+			p {
+				font-size: 16px;
+			}
+		}
+
+		.pagination {
+			margin: $staticPcMediumPadding 0;
+
+			p {
+				font-size: 16px;
+				margin: auto $staticPcMediumPadding;
+			}
+
+			button {
+				padding: 0 $staticButtonLeftAndRightPadding;
+				font-size: 28px;
+			}
+		}
+
+		span {
+			font-size: 16px;
+			margin: 0 $staticPcMediumPadding;
+		}
+	}
+
+	.exhibitionList {
+		margin: $staticPcMediumPadding 0 0 0;
+		gap: $staticPcSmallPadding;
+	}
+
+	.exhibitionCard {
+		padding: $staticPcSmallPadding;
+	}
+
+	.exhibitionDeleteButton {
+		/* Стили для кнопки редактирования */
+		margin: $staticPcMediumPadding 0 0 $staticPcMediumPadding;
+		padding: 0 $staticButtonLeftAndRightPadding;
+		border-radius: 34px;
+	}
+
+	/* Modal Styles */
+
+	.modalContent {
+		padding: $staticPcBigPadding $responsiveLeftAndRightPadding;
+	}
+
+	.checkArtistItem {
+		margin: $staticPcSmallPadding 0 0 0;
+
+
+		label {
+			font-size: 16px;
+			margin: 0 0 0 $staticPcSmallPadding;
+		}
+	}
+
+	.submitButton {
+		padding: 0 $staticButtonLeftAndRightPadding;
+		border-radius: 34px;
+	}
+
+	.closeButton {
+		top: $staticPcSmallPadding;
+		right: $staticPcSmallPadding;
+	}
+}
+
+@media (max-width: 1439px) {
+	.exhibitionsContainer {
+		.exhibitionList {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+}

@@ -1,0 +1,515 @@
+@import '/src/styles/utilities/variables.scss';
+
+.footer {
+	// стили для тега footer
+	margin: $responsiveMediumPadding 0 0 0;
+	padding: 37px $responsiveLeftAndRightPadding;
+	display: flex;
+	height: 234px;
+	background: #000;
+	color: white;
+}
+
+.footerWrapper {
+	// стили для обёртки всего footer
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.footerLeftWrapper {
+	// стили для левой части footer
+	display: flex;
+	justify-content: space-between;
+	align-items: start;
+}
+
+.footerLogoWrapper {
+	// стили для обёртки логотипа
+	margin: 0 calc(56 / 1440 * 100vw) 0 0;
+	position: relative;
+	display: flex;
+	align-items: end;
+	cursor: pointer;
+}
+
+.footerLogoImg {
+	// стили для изображения логотипа
+	width: calc(122.47 / 1440 * 100vw);
+	height: calc(68.43 / 1440 * 100vw);
+	min-width: 48.39px;
+	min-height: 27.03px;
+	max-width: 122.47px;
+	max-height: 68.43px;
+}
+
+.footerLogoTitleWrapper {
+	// стили для обёртки текста логотипа
+	margin: 0 0 calc(-3 / 1440 * 100vw) 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: end;
+	align-items: start;
+	position: relative;
+	width: auto;
+}
+
+.footerLogoFirstWord {
+	// стили для первого слова в логотипе
+	margin: 0 0 0 calc(-12 / 1440 * 100vw);
+	font-family: $chiller-font;
+	font-size: calc(0px + 156 * (100vw / 1440));
+	line-height: 0.53; //Важная строка!!!
+	display: inline-block; /* Необходимо для применения transform */
+	transform: scaleX(1.1); /* Масштабирование по горизонтали */
+	user-select: none;
+}
+
+.footerLogoFirstWord::before {
+	content: "";
+	position: absolute;
+	top: calc(38 / 1440 * 100vw);
+	left: calc(123 / 1440 * 100vw);
+	width: calc(9 / 1440 * 100vw);
+	height: calc(7 / 1440 * 100vw);
+	min-width: 3.9px;
+	min-height: 2.77px;
+	max-width: 9px;
+	max-height: 7px;
+	background: url(/Img/logoPoint.svg);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: 100% 100%;
+}
+
+.footerLogoSecondWord {
+	// стили для второго слова в логотипе
+	margin: 0 0 calc(-1 / 1440 * 100vw) calc(-13 / 1440 * 100vw);
+	display: flex;
+	font-family: $CormorantSCRegular;
+	font-size: calc(0px + 15.25 * (100vw / 1440));
+	text-transform: uppercase;
+	letter-spacing: calc(0px + 3.3 * (100vw / 1440));
+	user-select: none;
+}
+
+.footerLogoThirdWord {
+	// стили для третьего слова в логотипе
+	margin: 0 0 0 calc(-13 / 1440 * 100vw);
+	font-family: $CormorantSCRegular;
+	font-size: calc(0px + 22 * (100vw / 1440));
+	text-transform: uppercase;
+	letter-spacing: calc(0px + 4 * (100vw / 1440));
+	user-select: none;
+}
+
+.footerMenuWrapper {
+	// стили для обёртки меню
+	margin: 0 0 0 calc(56px - (56 * ((1440px - 100vw) / (1440 - 800))));
+	display: flex;
+	flex-wrap: wrap; // позволяет элементам переноситься на новую строку при нехватке места
+	width: calc(460px - (460 * ((1440px - 100vw) / (1440 - 800))));
+	min-width: 210px;
+}
+
+.footerMenuUl {
+	// стили для списка меню
+	display: flex;
+	flex-wrap: wrap; // позволяет элементам переноситься на новую строку при нехватке места
+	width: 100%; // чтобы список занимал всю ширину обёртки
+}
+
+.footerMenuLi {
+	// стили для элемента списка меню
+	display: flex;
+	flex: 0 0 50%; // каждый элемент списка занимает 50% ширины контейнера, что даёт два элемента в строке
+	justify-content: start;
+	align-items: start;
+	height: 32px;
+	box-sizing: border-box; // для учета отступов и границ в общей ширине и высоте
+}
+
+.footerMenuLink {
+	// стили для ссылки в меню
+	font-family: $default-font;
+	font-size: calc(16px - (2 * ((1440px - 100vw) / (1440 - 375))));
+	color: white;
+	cursor: pointer;
+	display: block; // чтобы ссылки занимали всю ширину элемента спискаw
+	white-space: nowrap;
+}
+
+.footerSeparatorWrapper {
+	// стили для обёртки разделителя
+	margin: 0 calc(85px - (65 * ((1440px - 100vw) / (1440 - 800)))) 0 0;
+	display: flex;
+}
+
+.footerSeparatorImg {
+	// стили для изображения разделителя
+	width: 1px;
+	height: 124px;
+	object-fit: cover;
+	object-position: center;
+}
+
+.footerRightWrapper {
+	// стили для правой части footer
+	width: calc(490px - (150 * ((1440px - 100vw) / (1440 - 800))));
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.footerTopInner {
+	// стили для верхней части правого блока
+	display: flex;
+	justify-content: space-between;
+}
+
+.footerSocialWrapper {
+	// стили для обёртки блока социальных сетей
+	margin: 0 10px 0 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 116px;
+}
+
+.footerFollowUsWrapper {
+	// стили для обёртки текста "follow us"
+	display: flex;
+}
+
+.footerFollowUsTitle {
+	// стили для текста "follow us"
+	font-family: $default-font;
+	font-size: calc(22px - (4 * ((1440px - 100vw) / (1440 - 375))));
+	text-transform: uppercase;	
+	user-select: none;
+}
+
+.footerSociaButtonslWrapper {
+	// стили для обёртки кнопок социальных сетей
+	margin: 16px 0 0 0;
+	display: flex;
+	justify-content: space-between;
+}
+
+.footerSocialButton {
+	width: 32px;
+	height: 32px;
+	background-color: black;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+.footerFacebookButton {
+	// стили для кнопки Facebook
+}
+
+.footerFacebookButtonImg {
+	// стили для изображения кнопки Facebook
+}
+
+.footerInstagramButton {
+	// стили для кнопки Instagram
+}
+
+.footerInstagramButtonImg {
+	// стили для изображения кнопки Instagram
+}
+
+.footerTwitterButton {
+	// стили для кнопки Twitter
+}
+
+.footerTwitterButtonImg {
+	// стили для изображения кнопки Twitter
+}
+
+.footerContactsWrapper {
+	// стили для обёртки блока контактов
+	margin: 0 0 0 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.footerContactsTitleWrapper {
+	// стили для обёртки заголовка контактов
+	display: flex;
+	user-select: none;
+}
+
+.footerContactsTitle {
+	// стили для заголовка "Контакти"
+	font-family: $default-font;
+	font-size: calc(16px - (2 * ((1440px - 100vw) / (1440 - 375))));
+}
+
+.footerContactsLinkWrapper {
+	// стили для обёртки ссылки на контакты
+	display: flex;
+}
+
+.footerContactsLink {
+	// стили для ссылки на контакты
+}
+
+.footerContactsLinkImg {
+	// стили для изображения ссылки на контакты
+    object-fit: contain;
+    object-position: center;
+    width: 185px;
+    height: 45px;
+}
+
+.footerBottomInner {
+	// стили для нижней части правого блока
+	margin: 0 0 20px 0;
+	display: flex;
+	justify-content: space-between;
+	color: white;
+	text-decoration: none;
+}
+
+.footerLegalWrapper {
+	// стили для обёртки блока юридической информации
+	display: flex;
+}
+
+.footerLegalLink, .footerPolicyLink, .footerCopyrightLink {
+	// стили для ссылки на юридическую информацию
+	font-family: $default-font;
+	font-size: calc(16px - (4 * ((1440px - 100vw) / (1440 - 375))));
+	color: white;
+	text-decoration: none;
+}
+
+.footerLegalLinkText {
+	// стили для текста ссылки на юридическую информацию
+}
+
+.footerPolicyWrapper {
+	// стили для обёртки блока политики конфиденциальности
+}
+
+.footerPolicyLink {
+	// стили для ссылки на политику конфиденциальности
+}
+
+.footerPolicyLinkText {
+	// стили для текста ссылки на политику конфиденциальности
+}
+
+.footerCopyrightWrapper {
+	// стили для обёртки блока авторских прав
+}
+
+.footerCopyrightLink {
+	// стили для ссылки на информацию об авторских правах
+}
+
+.footerCopyrightLinkText {
+	// стили для текста ссылки на информацию об авторских правах
+}
+
+@media (min-width: 1441px) {
+	.footer {
+		// стили для тега footer
+		margin: $staticPcMediumPadding 0 0 0;
+	}
+
+	.footerLogoWrapper {
+		// стили для обёртки логотипа
+		margin: 0 56px 0 0;
+	}
+	
+	.footerLogoImg {
+		// стили для изображения логотипа
+		width: 122.47px;
+		height: 68.43px;
+	}
+	
+	.footerLogoTitleWrapper {
+		// стили для обёртки текста логотипа
+		margin: 0 0 -3px 0;
+	}
+	
+	.footerLogoFirstWord {
+		// стили для первого слова в логотипе
+		margin: 0 0 0 -12px;
+		font-size: 156px;
+	}
+	
+	.footerLogoFirstWord::before {
+		content: "";
+		position: absolute;
+		top: 38px;
+		left: 123px;
+		width: 9px;
+		height: 7px;
+	}
+	
+	.footerLogoSecondWord {
+		// стили для второго слова в логотипе
+		margin: 0 0 -1px -13px;
+		font-size: 15.25px;
+		letter-spacing: 3.3px;
+	}
+	
+	.footerLogoThirdWord {
+		// стили для третьего слова в логотипе
+		margin: 0 0 0 -13px;
+		font-size: 22px;
+		letter-spacing: 4px;
+	}
+	
+	.footerMenuWrapper {
+		// стили для обёртки меню
+		width: calc(460px - (150 * ((1440px - 100vw) / (1440 - 800))));
+	}
+	
+	.footerMenuLink {
+		// стили для ссылки в меню
+		font-size: 16px;
+	}
+	
+	.footerSeparatorWrapper {
+		// стили для обёртки разделителя
+		margin: 0 calc(85px - (65 * ((1440px - 100vw) / (1440 - 800)))) 0 0;
+	}
+	
+	.footerRightWrapper {
+		// стили для правой части footer
+		width: calc(490px - (150 * ((1440px - 100vw) / (1440 - 800))));
+	}
+	
+	.footerFollowUsTitle {
+		// стили для текста "follow us"
+		font-size: 22px;
+	}
+	
+	.footerContactsTitle {
+		// стили для заголовка "Контакти"
+		font-size: 16px;
+	}
+	
+	.footerLegalLink, .footerPolicyLink, .footerCopyrightLink {
+		// стили для ссылки на юридическую информацию
+		font-size: 16px;
+	}
+}
+
+@media (max-width: 799px) {
+	.footer {
+		// стили для тега footer
+		padding: 23px $responsiveLeftAndRightPadding 30px;
+		height: 348px;
+	}
+
+	.footerLogoWrapper {
+		// стили для обёртки логотипа
+		margin: 0;
+		width: 36.36%;
+	}
+
+	.footerSeparatorWrapper {
+		// стили для обёртки разделителя
+		display: none;
+	}
+
+	.footerWrapper {
+		// стили для обёртки всего footer
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+
+	.footerMenuWrapper {
+		// стили для обёртки меню
+		margin: 0 0 0 10px;
+		width: 60.89%;
+		min-width: 204px;
+	}
+	
+	.footerMenuLi {
+		// стили для элемента списка 
+		height: 26.6px;
+	}
+
+	.footerRightWrapper {
+		// стили для правой части footer
+		width: 100%;
+	}
+
+	.footerBottomInner {
+		// стили для нижней части правого блока
+		margin: 42px 0 0 0;
+		justify-content: space-around;
+	}
+}
+
+@media (max-width: 569px) {
+	.footer {
+		// стили для тега footer
+		margin: $staticMobileMediumPadding 0 0 0;
+	}	
+	.footerLogoTitleWrapper {
+		// стили для обёртки текста логотипа
+			margin: 0 0 -1.185px 0;
+	}
+	
+	.footerLogoFirstWord {
+		// стили для первого слова в логотипе
+			margin: 0 0 0 -4.742px;
+			font-size: 61.641px;
+	}
+	
+	.footerLogoFirstWord::before {
+		content: "";
+		top: 15px;
+		left: 48px;
+	}
+	
+	.footerLogoSecondWord {
+		// стили для второго слова в логотипе
+			margin: 0 0 -0.069px -5.137px;
+			font-size: 6.026px;
+			letter-spacing: 1.304px;
+	}
+	
+	.footerLogoThirdWord {
+		// стили для третьего слова в логотипе
+			margin: 0 0 0 -5.137px;
+			font-size: 8.693px;
+			letter-spacing: 1.581px;
+	}
+}
+
+@media (max-width: 374px) {
+	.footerMenuWrapper {
+		// стили для обёртки меню
+		margin: 0 0 0 15px;
+		width: 60.89%;
+		min-width: 180px;
+	}
+
+	.footerRightWrapper {
+		// стили для правой части footer
+		width: 100%;
+	}
+
+	.footerContactsLinkImg {
+		// стили для изображения ссылки на контакты
+		object-fit: contain;
+		width: 150px;
+	}
+
+	.footerBottomInner {
+		// стили для нижней части правого блока
+		margin: 42px 0 0 0;
+		justify-content: space-around;
+	}
+}

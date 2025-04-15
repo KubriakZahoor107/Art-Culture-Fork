@@ -1,0 +1,1008 @@
+@use "/src/styles/base/headerHover.scss";
+@import "/src/styles/utilities/variables.scss";
+
+body {
+  font-family: $CenturyGothic, $CormorantSCRegular, $chiller-font, $default-font;
+  overflow-x: hidden; // отключаем горизонтальный скролл
+}
+.mainHeader {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: calc(0px + 177 * (100vw / 1440));
+  min-height: 70px;
+  max-height: 177px;
+  background-color: #000000;
+  z-index: 599;
+}
+.mainHeaderWrapper {
+  margin: 0 $responsiveLeftAndRightPadding;
+  padding: calc(39 / 1440 * 100vw) 0 calc(29 / 1440 * 100vw);
+  height: 100%;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+.mainHeaderLogo {
+  margin: calc(-9 / 1440 * 100vw) calc(22.5 / 1440 * 100vw) 0 0;
+  display: flex;
+  width: auto;
+  cursor: pointer;
+}
+.logo {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+
+  &__img {
+    width: calc(122.47 / 1440 * 100vw);
+    height: calc(68.43 / 1440 * 100vw);
+    min-width: 48.39px;
+    min-height: 27.03px;
+    max-width: 122.47px;
+    max-height: 68.43px;
+  }
+
+  &__titleWrapper {
+    position: relative;
+    margin: 0 0 calc(-3 / 1440 * 100vw) 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: start;
+    width: auto;
+  }
+
+  &__firstWord {
+    margin: 0 0 0 calc(-12 / 1440 * 100vw);
+    font-family: $chiller-font;
+    font-size: calc(0px + 156 * (100vw / 1440));
+    line-height: 0.53; //Важная строка!!!
+    display: inline-block; /* Необходимо для применения transform */
+    transform: scaleX(1.1); /* Масштабирование по горизонтали */
+    user-select: none;
+  }
+
+  &__firstWord::before {
+    content: "";
+    position: absolute;
+    top: calc(38 / 1440 * 100vw);
+    left: calc(123 / 1440 * 100vw);
+    width: calc(9 / 1440 * 100vw);
+    height: calc(7 / 1440 * 100vw);
+    min-width: 3.9px;
+    min-height: 2.77px;
+    max-width: 9px;
+    max-height: 7px;
+    background: url(/Img/logoPoint.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 100% 100%;
+  }
+
+  &__secondWord {
+    margin: 0 0 calc(-1 / 1440 * 100vw) calc(-13 / 1440 * 100vw);
+    display: flex;
+    font-family: $CormorantSCRegular;
+    font-size: calc(0px + 15.25 * (100vw / 1440));
+    text-transform: uppercase;
+    letter-spacing: calc(0px + 3.3 * (100vw / 1440));
+    user-select: none;
+  }
+
+  &__thirdWord {
+    margin: 0 0 0 calc(-13 / 1440 * 100vw);
+    font-family: $CormorantSCRegular;
+    font-size: calc(0px + 22 * (100vw / 1440));
+    text-transform: uppercase;
+    letter-spacing: calc(0px + 4 * (100vw / 1440));
+    user-select: none;
+  }
+}
+.white {
+  color: #ffffff;
+}
+.titleContainer {
+  margin: calc(17 / 1440 * 100vw) 22.5px 0 22.5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 600px;
+}
+.titleWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.headerLanguageSwitchContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.headerLanguageSwitchButton {
+  margin: 0 10px 10px 0;
+  display: flex;
+  justify-content: start;
+  width: calc(103px - (30 * ((1440px - 100vw) / (1440 - 1024))));
+  border: none;
+  cursor: pointer;
+  background: #000000;
+
+  &__title {
+    font-size: calc(0px + 18 * (100vw / 1440));
+    color: #fff;
+    white-space: nowrap;
+  }
+}
+
+.headerLanguageSwitchButton:hover {
+  color: #3a8374;
+}
+
+.dropdownMenu {
+  margin: 0 0 0 -8px;
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: black;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.dropdownMenu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 10px;
+  border: 1px solid #3a8374;
+  box-shadow: #3a8374 0 0 10px;
+}
+
+.dropdownMenu li {
+  padding: 8px 0 8px 8px;
+  font-size: calc(0px + 18 * (100vw / 1440));
+  cursor: pointer;
+  color: #fff;
+  border-radius: 10px;
+}
+
+.dropdownMenu li:hover {
+  color: #3a8374;
+  transition: 0.4s ease;
+}
+
+.dropdownMenu li:not(:hover) {
+  transition: 0.4s ease;
+}
+
+.circleButton {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background: #000000;
+}
+.headerTitle {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  font-size: calc(10px + 14 * (100vw / 1440));
+  text-transform: uppercase;
+  text-align: center;
+  user-select: none;
+}
+.mainMenu {
+  display: flex;
+
+  &__ul {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+  }
+
+  &__li {
+    display: flex;
+  }
+
+  &__link {
+    position: relative;
+    display: inline-block;
+    transition: box-shadow 0.3s ease;
+    font-size: calc(0px + 18 * (100vw / 1440));
+  }
+
+  &__link::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: calc(-29 / 1440 * 100vw);
+    width: 0;
+    height: 3px;
+    background: linear-gradient(
+      to right,
+      rgba(216, 57, 52, 0),
+      rgb(255, 255, 255),
+      rgba(216, 57, 52, 0)
+    );
+    transition:
+      width 0.4s ease,
+      left 0.4s ease;
+  }
+
+  &__link:hover::after {
+    width: 100%;
+    left: 0;
+  }
+
+  &__link:hover {
+    color: #ffffff;
+    transition: 0.4s;
+    cursor: pointer;
+  }
+
+  &__link:not(:hover) {
+    color: #fff;
+    transition: 1s;
+  }
+}
+.socialContainer {
+  margin: 0 0 -7px 22.5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.socialUpperWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.socialLikeAndShareInner {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  &__likeButton {
+    position: relative;
+    display: flex;
+  }
+
+  &__likeButton::after {
+    content: "Like";
+    position: absolute;
+    top: 6px;
+    left: 38px;
+    font-size: 18px;
+    user-select: none;
+    color: $dark;
+  }
+
+  &__shareButton {
+    position: relative;
+    display: flex;
+  }
+
+  &__shareButton::before {
+    content: "Share";
+    position: absolute;
+    top: 6px;
+    right: 38px;
+    font-size: 18px;
+    user-select: none;
+    color: $dark;
+  }
+}
+.socialLikeAndShareInner.dark {
+  .socialLikeAndShareInner__likeButton::after {
+    color: #fff;
+  }
+
+  .socialLikeAndShareInner__shareButton::before {
+    color: #fff;
+  }
+}
+.burgerButtonWrapper {
+  margin: 0 0 0 28px;
+}
+.burgerButton {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: calc(151 / 1440 * 100vw);
+  height: calc(51 / 1440 * 100vw);
+  min-width: 94.75px;
+  min-height: 40px;
+  max-width: 151px;
+  max-height: 51px;
+  border-radius: 51px;
+  color: #fff;
+  border: none;
+  background-color: #3a8374;
+  cursor: pointer;
+
+  &__img {
+    margin: 0 calc(6 / 1440 * 100vw) 0 0;
+    width: calc(32 / 1440 * 100vw);
+    height: calc(32 / 1440 * 100vw);
+    min-width: 20px;
+    min-height: 20px;
+    max-width: 32px;
+    max-height: 32px;
+  }
+
+  &__title {
+    margin: 0 0 0 calc(6 / 1440 * 100vw);
+    font-size: calc(12px + 6 * (100vw / 1440));
+  }
+}
+.socialDownWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 -5px 0 0; //Важный параметр! Меняется вместе с параметром свойства .socialDownWrapperButton{margin:0:5px;}
+
+  &__followUsTitle {
+    margin: 0 20px -1px 0;
+    width: auto;
+    font-size: 16px;
+    text-transform: uppercase;
+    user-select: none;
+    white-space: nowrap;
+  }
+  &__separator {
+    margin: 0 25px 0 24px;
+    display: flex;
+    width: 1px;
+    height: 32px;
+    background-color: #fff;
+  }
+}
+.socialDownWrapperButton {
+  margin: 0 5px;
+}
+.staticHeader {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: calc(100 / 1440 * 100vw);
+  min-height: 50px;
+  max-height: 100px;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+  z-index: 998;
+}
+.staticHeader.visible {
+  transform: translateY(0);
+}
+.staticHeaderWrapper {
+  margin: 0 $responsiveLeftAndRightPadding;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.staticHeaderLogo {
+  margin: 0 calc(22.5 / 1440 * 100vw) calc(15 / 1440 * 100vw) 0;
+  cursor: pointer;
+}
+.staticHeaderLogoTitle {
+  font-family: $chiller-font;
+  font-size: calc(0px + 165 * (100vw / 1440));
+  line-height: 0.53; //Важная строка!!!
+  display: inline-block; /* Необходимо для применения transform */
+  transform: scaleX(1.1); /* Масштабирование по горизонтали */
+  user-select: none;
+}
+.staticHeaderLogoTitle::before {
+  content: "";
+  position: absolute;
+  top: calc(41 / 1440 * 100vw);
+  left: calc(128 / 1440 * 100vw);
+  width: calc(9 / 1440 * 100vw);
+  height: calc(7 / 1440 * 100vw);
+  min-width: 3.9px;
+  min-height: 2.77px;
+  max-width: 9px;
+  max-height: 7px;
+  background: url(/Img/logoPoint.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 100% 100%;
+}
+.staticHeaderTitleContainer {
+  margin: 0 calc(22.5 / 1440 * 100vw);
+  display: flex;
+  align-items: center;
+
+  &__likeButton {
+    margin: 0 31px 0 0;
+    display: flex;
+  }
+
+  &__shareButton {
+    margin: 0 0 0 31px;
+    display: flex;
+  }
+}
+.staticHeaderTitle {
+  display: flex;
+  justify-content: center;
+  font-size: calc(12px + 12 * (100vw / 1440));
+  text-transform: uppercase;
+  text-align: center;
+  user-select: none;
+}
+.staticHeaderLoginContainer {
+  display: flex;
+  align-items: center;
+  margin: 0 0 0 calc(22.5 / 1440 * 100vw);
+
+  &__separator {
+    margin: 0 19px 0 17px;
+  }
+}
+.black {
+  color: #000000;
+}
+
+@media (min-width: 1441px) {
+  .mainHeaderWrapper {
+    padding: 39px 0 29px 0;
+  }
+  .mainHeaderLogo {
+    margin: -9px 22.5px 0 0;
+  }
+  .logo {
+    &__titleWrapper {
+      margin: 0 0 -3px 0;
+    }
+
+    &__firstWord {
+      margin: 0 0 0 -12px;
+      font-size: 156px;
+    }
+
+    &__firstWord::before {
+      content: "";
+      top: 38px;
+      left: 123px;
+    }
+
+    &__secondWord {
+      margin: 0 0 -1px -13px;
+      font-size: 15.25px;
+      letter-spacing: 3.3px;
+    }
+
+    &__thirdWord {
+      margin: 0 0 0 -13px;
+      font-size: 22px;
+      letter-spacing: 4px;
+    }
+  }
+  .titleContainer {
+    margin: 17px calc(22.5 / 1440 * 100vw) 0 calc(22.5 / 1440 * 100vw);
+  }
+
+  .headerTitle {
+    font-size: 24px;
+  }
+
+  .headerLanguageSwitchButton {
+    width: 103px;
+
+    &__title {
+      font-size: 18px;
+    }
+  }
+
+  .dropdownMenu li {
+    font-size: 18px;
+  }
+
+  .mainMenu__link {
+  }
+  .burgerButton {
+    &__img {
+      margin: 0 6px 0 0;
+    }
+
+    &__title {
+      margin: 0 0 0 6px;
+    }
+  }
+  .staticHeaderLogo {
+    margin: 0 calc(22.5 / 1440 * 100vw) 15px 0;
+  }
+  .staticHeaderLogoTitle {
+    font-size: 165px;
+  }
+  .staticHeaderLogoTitle::before {
+    content: "";
+    position: absolute;
+    top: 41px;
+    left: 128px;
+    width: 9px;
+    height: 7px;
+  }
+
+  .mainMenu {
+    &__link {
+      font-size: 18px;
+    }
+
+    &__link::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -29px;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(
+        to right,
+        rgba(216, 57, 52, 0),
+        rgb(255, 255, 255),
+        rgba(216, 57, 52, 0)
+      );
+      transition:
+        width 0.4s ease,
+        left 0.4s ease;
+    }
+  }
+}
+
+@media (max-width: 1279px) {
+  .socialLikeAndShareInner.large-hidden {
+    .socialLikeAndShareInner__likeButton::after {
+      display: none;
+    }
+
+    .socialLikeAndShareInner__shareButton::before {
+      display: none;
+    }
+  }
+  .socialDownWrapper {
+    &__followUsTitle {
+      display: none;
+    }
+  }
+  .socialDownWrapper__facebookButton {
+    margin: 0 5px 0 0;
+  }
+}
+
+@media (max-width: 1023px) {
+  .mainHeaderWrapper {
+    padding: 0;
+  }
+  .mainHeaderLogo {
+    margin: auto calc(22.5 / 1440 * 100vw) auto 0;
+    display: flex;
+    justify-content: center;
+    width: auto;
+  }
+  .headerLanguageSwitchContainer {
+    display: none;
+  }
+  .titleContainer {
+    margin: 0 calc(22.5 / 1440 * 100vw);
+    justify-content: center;
+  }
+  .mainMenuContainer {
+    display: none;
+  }
+  .socialContainer {
+    margin: 0 0 0 calc(22.5 / 1440 * 100vw);
+    justify-content: center;
+  }
+  .socialLikeAndShareInner {
+    &__likeButton {
+      margin: 0 10px 0 0;
+    }
+  }
+  .socialDownWrapper {
+    display: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .staticHeaderLogoTitle {
+    font-size: 82.61px;
+  }
+  .staticHeaderLogoTitle::before {
+    content: "";
+    position: absolute;
+    top: 21px;
+    left: 65px;
+  }
+}
+
+@media (max-width: 759px) {
+  .titleWrapper {
+    margin: 0 auto;
+    width: 70%;
+  }
+  .staticHeaderTitleContainer {
+    width: 40%;
+    &__likeButton {
+      margin: 0;
+      display: flex;
+    }
+
+    &__shareButton {
+      margin: 0;
+      display: flex;
+    }
+  }
+}
+
+@media (max-width: 579px) {
+  .titleContainer {
+    display: none;
+  }
+  .socialContainer {
+    width: 100%;
+  }
+  .socialLikeAndShareInner {
+    justify-content: space-around;
+
+    &__likeButton {
+      margin: 0;
+    }
+  }
+  .burgerButtonWrapper {
+    margin: 0 0 0 calc(22.5 / 1440 * 100vw);
+  }
+  .staticHeaderTitleContainer {
+    justify-content: space-around;
+    width: 100%;
+  }
+  .staticHeaderTitle {
+    display: none;
+  }
+  .staticHeaderLoginContainer {
+    display: flex;
+
+    &__separator {
+      display: none;
+    }
+    &__loginButton {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 569px) {
+  .logo {
+    &__titleWrapper {
+      margin: 0 0 -1.185px 0;
+    }
+
+    &__firstWord {
+      margin: 0 0 0 -4.742px;
+      font-size: 61.641px;
+    }
+
+    &__firstWord::before {
+      content: "";
+      top: 15px;
+      left: 48px;
+    }
+
+    &__secondWord {
+      margin: 0 0 -0.069px -5.137px;
+      font-size: 6.026px;
+      letter-spacing: 1.304px;
+    }
+
+    &__thirdWord {
+      margin: 0 0 0 -5.137px;
+      font-size: 8.693px;
+      letter-spacing: 1.581px;
+    }
+  }
+
+  .socialLikeAndShareInner {
+    &__likeButton::after {
+      display: none;
+    }
+
+    &__shareButton::before {
+      display: none;
+    }
+  }
+}
+
+/* ------------------ burger ------------------ */
+
+.burgerMenu {
+  // Основной класс для контейнера бургер-меню
+  margin: 0;
+  padding: calc(55px - (26 * ((1440px - 100vw) / (1440 - 375))))
+    calc(70px - (49 * ((1440px - 100vw) / (1440 - 375))))
+    calc(31px - (14 * ((1440px - 100vw) / (1440 - 375))))
+    calc(70px - (49 * ((1440px - 100vw) / (1440 - 375))));
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: calc(560px - (230 * ((1440px - 100vw) / (1440 - 375))));
+  min-width: 320px;
+  max-width: 560px;
+  height: 100dvh;
+  background: black;
+  z-index: 1000;
+  overflow-y: auto; // Включаем вертикальную прокрутку для содержимого
+}
+
+.burgerMenuWrapper {
+  // Обертка для всего содержимого бургер-меню
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+
+.burgerMenuBackdrop {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+}
+
+.burgerMenuSearchWhithButtonsWrapper {
+  // Обертка для секции с кнопками и поиском
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .headerLanguageSwitchButton {
+    margin: 0;
+    display: flex;
+    justify-content: start;
+    width: calc(102px - (20 * ((1440px - 100vw) / (1440 - 375))));
+    border: none;
+    cursor: pointer;
+    background: #000000;
+
+    &__title {
+      font-size: calc(18px - (4 * ((1440px - 100vw) / (1440 - 375))));
+      color: #fff;
+      white-space: nowrap;
+    }
+  }
+
+  .headerLanguageSwitchContainer {
+    position: relative;
+    display: inline-block;
+    margin: 0 0 0 auto;
+  }
+
+  .headerLanguageSwitchButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: calc(102px - (20 * ((1440px - 100vw) / (1440 - 375))));
+  }
+
+  .dropdownMenu {
+    margin: 8px 0 0 -8px;
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: black;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    width: 100%;
+  }
+
+  .dropdownMenu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .dropdownMenu li {
+    padding: 8px 0 8px 8px;
+    font-size: calc(18px - (4 * ((1440px - 100vw) / (1440 - 375))));
+    cursor: pointer;
+    color: #fff;
+  }
+
+  .dropdownMenu li:hover {
+    background-color: #000000;
+    color: #3a8374;
+  }
+}
+
+.burgerMenuCloseButtonWrapper {
+  // Обертка для кнопки закрытия бургер-меню
+  display: flex;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.burgerMenuCloseButtonImg {
+  // Изображение для кнопки закрытия бургер-меню
+  display: flex;
+}
+
+.burgerMenuLanguageSwitch {
+  // Класс для переключателя языка в бургер-меню (модификатор для headerLanguageSwitchContainer)
+  display: flex;
+}
+
+.burgerMenuLanguageSwitchButton {
+  // Кнопка переключателя языка в бургер-меню (модификатор для headerLanguageSwitchButton)
+  display: flex;
+  align-items: center;
+  margin: 0 0 0 auto;
+  width: calc(102px - (20 * ((1440px - 100vw) / (1440 - 375))));
+  z-index: 1111;
+}
+
+.burgerMenuLanguageSwitchButtonTitle {
+  // Текст переключателя языка в бургер-меню (модификатор для headerLanguageSwitchButton__title)
+  font-size: calc(18px - (4 * ((1440px - 100vw) / (1440 - 375))));
+}
+
+.burgerMenuDropdown {
+  // Выпадающее меню для переключателя языка в бургер-меню (модификатор для dropdownMenu)
+}
+
+.burgerMenuLoginButton {
+  // Кнопка для входа в систему в бургер-меню (модификатор для socialDownWrapper__loginButton)
+  display: flex;
+  margin: 0 0 0 calc(24px - (8 * ((1440px - 100vw) / (1440 - 375))));
+  width: 32px;
+  height: 32px;
+}
+
+.burgerMenuSearchWrapper {
+  // Обертка для секции поиска в бургер-меню
+  display: flex;
+  margin: calc(35px - (3 * ((1440px - 100vw) / (1440 - 375)))) 0 0 0;
+  height: 51px;
+  width: 100%;
+}
+
+.burgerMenuSearchInput {
+  // Поле ввода для поиска в бургер-меню
+  width: 100%;
+  height: 100%;
+}
+
+.burgerMenuFooterWrapper {
+  margin: calc(92px - (64 * ((1440px - 100vw) / (1440 - 375)))) 0 auto 0;
+  display: flex;
+
+  .footerMenuWrapper {
+    // стили для обёртки меню
+    margin: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    // min-width: 210px;
+  }
+
+  .footerMenuUl {
+    // стили для списка меню
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 100%;
+  }
+
+  .footerMenuLi {
+    // стили для элемента списка меню
+    display: flex;
+    flex: none;
+    justify-content: start;
+    align-items: start;
+    width: 95%;
+    height: 32px;
+    box-sizing: border-box; // для учета отступов и границ в общей ширине и высоте
+  }
+
+  .footerMenuLi:hover {
+    width: 100%;
+    transition: 0.4s ease;
+  }
+
+  .footerMenuLi:not(:hover) {
+    transition: 0.4s ease;
+  }
+
+  .footerMenuLink {
+    // стили для ссылки в меню
+    display: flex;
+    justify-content: space-between;
+    font-family: $default-font;
+    font-size: calc(16px - (2 * ((1440px - 100vw) / (1440 - 375))));
+    color: white;
+    // cursor: pointer;
+    // display: block; // чтобы ссылки занимали всю ширину элемента спискаw
+    white-space: nowrap;
+    width: 100%;
+  }
+}
+
+.burgerMenuBottomWrapper {
+  // Обертка для нижней части бургер-меню
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.burgerMenuSocialTopWrapper {
+  // Обертка для верхней части секции социальных сетей в бургер-меню
+  display: flex;
+}
+
+.burgerMenuFollowUsTitle {
+  // Заголовок "следите за нами" в бургер-меню (модификатор для socialDownWrapper__followUsTitle)
+  margin: calc(9px - (-17 * ((1440px - 100vw) / (1440 - 375)))) 0 0 0;
+  display: flex;
+  color: #fff;
+  font-size: calc(22px - (4 * ((1440px - 100vw) / (1440 - 375))));
+  font-weight: medium;
+}
+
+.burgerMenuSocialMiddleWrapper {
+  // Обертка для средней части секции социальных сетей в бургер-меню
+  display: flex;
+  margin: calc(15px - (3 * ((1440px - 100vw) / (1440 - 375)))) 0 0 0;
+}
+
+.burgerMenuFacebookButton {
+  // Кнопка Facebook в бургер-меню (модификатор для socialDownWrapper__facebookButton)
+  display: flex;
+}
+
+.burgerMenuInstagramButton {
+  // Кнопка Instagram в бургер-меню (модификатор для socialDownWrapper__instagramButton)
+}
+
+.burgerMenuTwitterButton {
+  // Кнопка Twitter в бургер-меню (модификатор для socialDownWrapper__twitterButton)
+}
+
+.burgerMenuMailButton {
+  // Кнопка Mail в бургер-меню (модификатор для socialDownWrapper__mailButton)
+}
+
+.burgerMenuSocialBottomWrapper {
+  // Обертка для нижней части секции социальных сетей в бургер-меню
+  margin: calc(22px - (-2 * ((1440px - 100vw) / (1440 - 375)))) 0 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(218px - (57 * ((1440px - 100vw) / (1440 - 375))));
+  min-width: 161px;
+  height: calc(53px - (14 * ((1440px - 100vw) / (1440 - 375))));
+  min-height: 39px;
+  object-fit: contain;
+  object-position: center;
+}
+
+.burgerMenuPlayUkraine {
+  // Картинка PlayUkraine в бургер-меню (модификатор для footerContactsLinkImgPlayUkraine)
+}

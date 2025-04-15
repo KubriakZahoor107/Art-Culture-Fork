@@ -1,0 +1,444 @@
+@import "/src/styles/utilities/variables.scss";
+
+.mainPageNewsContainer {
+  // Стили для основного контейнераконтейнера
+  display: flex;
+  flex-direction: column;
+  margin: $responsiveMediumPadding 0 0 0;
+  padding: 0 calc($responsiveLeftAndRightPadding - calc(10 / 1440 * 100vw));
+  font-family: $default-font;
+}
+
+.mainPageNewsTitleWithButton {
+  // Стили для контейнера заголовка и кнопки
+  padding: 0 calc(10 / 1440 * 100vw);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mainPageNewsTitle {
+  // Стили для заголовка
+  text-decoration: underline;
+}
+
+.mobileButtonWrapper {
+  // Дополнительные стили для обертки кнопки на мобильных устройствах
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin: $responsiveSmallPadding 0 0 0;
+}
+
+.mainPageNewsButton {
+  // Стили для кнопки
+  padding: 0 $staticButtonLeftAndRightPadding;
+  height: calc(51px - (11 * ((1440px - 100vw) / (1440 - 375))));
+  min-height: 40px;
+  max-height: 51px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #000;
+  border-radius: calc(34px - (4 * ((1440px - 100vw) / (1440 - 375))));
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.mainPageNewsButtonTitle {
+  // Стили для текста кнопки
+  display: inline-block;
+  margin: 0 $staticButtonLeftAndRightPadding 0 0;
+  font-size: calc(16px - (4 * ((1440px - 100vw) / (1440 - 375))));
+  font-weight: 500;
+}
+
+.mainPageNewsButtonImg {
+  // Стили для изображения кнопки
+  margin: auto 0;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+}
+
+.mainPageNewsCardsWrapper {
+  // Стили для обертки карточек новостей
+  margin: $responsiveMediumPadding 0 0 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.mainPageNewsCard {
+  // Стили для карточки новостей
+  padding: 0 calc(10 / 1440 * 100vw);
+  width: 48.46%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cardInner {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cardImgWrapper {
+  // Стили для обертки изображения карточки
+  aspect-ratio: 630 / 330; // например, соотношение сторон 21:11
+  overflow: hidden;
+}
+
+.cardImg {
+  // Стили для изображения карточки
+  aspect-ratio: 630 / 330; // например, соотношение сторон 21:11
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 100%;
+}
+
+.cardTextWrapper {
+  // Стили для обертки текста карточки
+  margin: $responsiveMediumPadding 0 0 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardTitleWrapper {
+  // Стили для обертки заголовка карточки
+  display: block;
+  font-family: $default-font;
+  font-weight: 500;
+  font-size: calc(22px - (6 * ((1440px - 100vw) / (1440 - 375))));
+  height: calc(calc(22px - (6 * ((1440px - 100vw) / (1440 - 375)))) * 2); // Делаем ограничение вывода текста построчечно
+  overflow: hidden;
+  text-transform: uppercase;
+}
+
+.cardDescriptioneWrapper {
+  // Стили для обертки описания карточки
+  margin: $responsiveSmallPadding 0 0 0;
+  height: calc(calc(20px - (2 * ((1440px - 100vw) / (1440 - 375)))) * 3); // Делаем ограничение вывода текста построчечно
+  overflow: hidden;
+}
+
+.cardDescription {
+  // Стили для описания карточки
+  font-family: $default-font;
+  font-weight: 400;
+  line-height: calc(20px - (2 * ((1440px - 100vw) / (1440 - 375))));
+  font-size: calc(16px - (2 * ((1440px - 100vw) / (1440 - 375))));
+}
+
+.cardAddressWrapper {
+  // Стили для обертки описания карточки
+  margin: $responsiveSmallPadding 0 0 0;
+  height: calc(calc(20px - (2 * ((1440px - 100vw) / (1440 - 375)))) * 3); // Делаем ограничение вывода текста построчечно
+  overflow: hidden;
+}
+
+.cardAddress {
+  // Стили для описания карточки
+  font-family: $default-font;
+  font-weight: 400;
+  line-height: calc(20px - (2 * ((1440px - 100vw) / (1440 - 375))));
+  font-size: calc(16px - (2 * ((1440px - 100vw) / (1440 - 375))));
+}
+
+.cardExhibDurTimeWrapper {
+  // Стили для обертки описания карточки
+  margin: $responsiveSmallPadding 0 0 0;
+  height: calc(calc(20px - (2 * ((1440px - 100vw) / (1440 - 375)))) * 3); // Делаем ограничение вывода текста построчечно
+  overflow: hidden;
+}
+
+.cardExhibDurTime {
+  // Стили для описания карточки
+  font-family: $default-font;
+  font-weight: 400;
+  line-height: calc(20px - (2 * ((1440px - 100vw) / (1440 - 375))));
+  font-size: calc(16px - (2 * ((1440px - 100vw) / (1440 - 375))));
+}
+
+.cardClockAndDateWrapper {
+  // Стили для обертки даты и времени карточки
+  margin: $responsiveSmallPadding 0 0 0;
+  display: flex;
+  align-items: center;
+}
+
+.cardClockAndDateInner {
+  // Стили для обертки даты и времени карточки
+  display: flex;
+  align-items: center;
+  font-size: calc(16px - (2 * ((1440px - 100vw) / (1440 - 375))));
+}
+
+.cardClockImgWrapper {
+  // Стили для обертки изображения часов
+  display: flex;
+  width: 20px;
+  height: 20px;
+}
+
+.cardDateWrapper {
+  // Стили для обертки даты
+  margin: 0 0 0 $responsiveSmallPadding;
+  display: flex;
+}
+
+.cardTimeWrapper {
+  // Стили для обертки даты
+  margin: 0 0 0 $responsiveSmallPadding;
+  display: flex;
+}
+
+.cardReadMoreWrapper {
+  // Стили для обертки ссылки "Читати далi"
+  margin: 0 0 0 auto;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.cardReadMoreLink {
+  // Стили для ссылки "Читати далi"
+  cursor: pointer;
+  color: #d83934;
+  font-weight: 500;
+}
+
+@media (min-width: 1920px) {
+  .mainPageNewsContainer {
+    // Стили для основного контейнераконтейнера
+    // margin: 72px 0 0 0;
+  }
+
+  .mainPageNewsCard {
+    // Стили для карточки новостей
+    width: 32.81%;
+  }
+
+  .thirdCard {
+    // Дополнительные стили для второй карточки
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cardTitleWrapper {
+    // Стили для обертки заголовка карточки
+    // font-size: 22px;
+    height: calc(22px * 2 - 1px); // Делаем ограничение вывода текста построчечно
+  }
+
+  .cardDescriptioneWrapper {
+    // Стили для обертки описания карточки
+    height: calc(20px * 3); // Делаем ограничение вывода текста построчечно
+  }
+
+  .cardDescription {
+    // Стили для описания карточки
+    line-height: 20px;
+    // font-size: 16px;
+  }
+
+  .cardAddressWrapper {
+    // Стили для обертки описания карточки
+    height: calc(20px * 3); // Делаем ограничение вывода текста построчечно
+  }
+
+  .cardAddress {
+    // Стили для описания карточки
+    line-height: 20px;
+    // font-size: 16px;
+  }
+
+  .cardExhibDurTimeWrapper {
+    // Стили для обертки описания карточки
+    height: calc(20px * 3); // Делаем ограничение вывода текста построчечно
+  }
+
+  .cardExhibDurTime {
+    // Стили для описания карточки
+    line-height: 20px;
+    // font-size: 16px;
+  }
+}
+
+@media (min-width: 1441px) {
+  .mainPageNewsContainer {
+    // Стили для основного контейнераконтейнера
+    margin: $staticPcMediumPadding 0 0 0;
+  }
+
+  // .mainPageNewsTitle {
+  // Стили для заголовка
+  // font-size: 28px;
+  // }
+
+  .mainPageNewsButton {
+    // Стили для кнопки
+    border-radius: 34px;
+  }
+
+  .mainPageNewsButtonTitle {
+    // Стили для текста кнопки
+    margin: 0 12px 0 0;
+    // font-size: 16px;
+  }
+
+  .mainPageNewsCardsWrapper {
+    // Стили для обертки карточек новостей
+    margin: $staticPcMediumPadding 0 0 0;
+  }
+
+  .cardTextWrapper {
+    // Стили для обертки текста карточки
+    margin: $staticPcMediumPadding 0 0 0;
+  }
+
+  // .cardTitleWrapper {
+  // Стили для обертки заголовка карточки
+  // font-size: 22px;
+  // }
+
+  .cardDescriptioneWrapper {
+    // Стили для обертки описания карточки
+    margin: $staticPcSmallPadding 0 0 0;
+  }
+
+  // .cardDescription {
+  // Стили для описания карточки
+  // font-size: 16px;
+  // }
+
+  .cardClockAndDateInner {
+    // Стили для обертки даты и времени карточки
+    font-size: 16px;
+  }
+
+  .cardAddressWrapper {
+    // Стили для обертки описания карточки
+    margin: $staticPcSmallPadding 0 0 0;
+  }
+
+  // .cardAddress {
+  // Стили для описания карточки
+  // font-size: 16px;
+  // }
+
+  .cardExhibDurTimeWrapper {
+    // Стили для обертки описания карточки
+    margin: $staticPcSmallPadding 0 0 0;
+  }
+
+  // .cardExhibDurTime {
+  // Стили для описания карточки
+  // font-size: 16px;
+  // }
+
+  .cardDateWrapper {
+    // Стили для обертки даты
+    margin: 0 0 0 $staticPcSmallPadding;
+  }
+
+  .cardTimeWrapper {
+    // Стили для обертки даты
+    margin: 0 0 0 $staticPcSmallPadding;
+  }
+
+  .mobileButtonWrapper {
+    // Дополнительные стили для обертки кнопки на мобильных устройствах
+    margin: $staticPcSmallPadding 0 0 0;
+  }
+}
+
+@media (max-width: 799px) {
+  .mainPageNewsCardsWrapper {
+    // Стили для обертки карточек новостей
+    margin: 0;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mainPageNewsCard {
+    // Стили для карточки новостей
+    margin: $staticMobileBigPadding 0 0 0;
+    width: 100%;
+  }
+
+  .cardImg {
+    // Стили для изображения карточки
+    height: 100%;
+  }
+
+  .desktopButtonWrapper {
+    // Дополнительные стили для обертки кнопки на десктопе
+    display: none;
+  }
+
+  .mobileButtonWrapper {
+    // Дополнительные стили для обертки кнопки на мобильных устройствах
+    justify-content: center;
+  }
+}
+
+@media (max-width: 569px) {
+  .mainPageNewsContainer {
+    // Стили для основного контейнераконтейнера
+    margin: $staticMobileMediumPadding 0 0 0;
+  }
+
+  .cardTextWrapper {
+    // Стили для обертки текста карточки
+    margin: $staticMobileMediumPadding 0 0 0;
+  }
+
+  .cardClockAndDateInner {
+    // Стили для обертки даты и времени карточки
+    font-size: 14px;
+  }
+
+  .cardDescriptioneWrapper {
+    // Стили для обертки описания карточки
+    margin: $staticMobileSmallPadding 0 0 0;
+  }
+
+  .cardAddressWrapper {
+    // Стили для обертки описания карточки
+    margin: $staticMobileSmallPadding 0 0 0;
+  }
+
+  .cardClockAndDateWrapper {
+    // Стили для обертки даты и времени
+    margin: $staticMobileSmallPadding 0 0 0;
+    flex-direction: column;
+  }
+
+  .cardExhibDurTimeWrapper {
+    // Стили для обертки описания карточки
+    margin: $staticMobileSmallPadding 0 0 0;
+  }
+
+  .cardDateWrapper {
+    // Стили для обертки даты
+    margin: 0 0 0 $staticMobileSmallPadding;
+  }
+
+  .cardTimeWrapper {
+    // Стили для обертки даты
+    margin: 0 0 0 $staticMobileSmallPadding;
+  }
+
+  .cardReadMoreWrapper {
+    // Стили для обертки ссылки "Читати далi"
+    margin: $staticMobileSmallPadding 0 0 0;
+    justify-content: center;
+  }
+
+  .mobileButtonWrapper {
+    // Дополнительные стили для обертки кнопки на мобильных устройствах
+    margin: $staticMobileSmallPadding 0 0 0;
+  }
+}

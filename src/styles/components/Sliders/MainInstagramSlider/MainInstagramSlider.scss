@@ -1,0 +1,293 @@
+@import '/src/styles/utilities/variables.scss';
+
+.mainInstagramSliderContainer {
+    // Основной контейнер слайдера
+    display: flex;
+    margin: $responsiveBigPadding 8px 0 8px;
+    background: #000;
+    overflow: hidden;
+}
+
+.mainInstagramSliderWrapper {
+    // Оболочка слайдера
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.mainInstagramSliderTopInnerWrapper {
+    // Внутренний верхний контейнер слайдера
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $responsiveMediumPadding calc($responsiveLeftAndRightPadding - 8px);
+    width: 100%;
+}
+
+.mainInstagramSliderTitle {
+    // Заголовок слайдера
+    color: white;
+}
+
+.mainInstagramSliderFollowUsButton {
+    // Кнопка "Follow us"
+    padding: 0 $staticButtonLeftAndRightPadding;
+    height: calc(51px - (11 * ((1440px - 100vw) / (1440 - 375))));
+    min-height: 40px;
+    max-height: 51px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #000;
+    border-radius: calc(34px - (4 * ((1440px - 100vw) / (1440 - 375))));
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.mainInstagramSliderFollowUsButtonText {
+    // Текст кнопки "Follow us"
+    display: inline-block;
+    font-family: $default-font;
+    font-size: calc(16px - (2 * ((1440px - 100vw) / (1440 - 375))));
+    font-weight: 500;
+}
+
+.mainInstagramSliderMiddleInnerWrapper {
+    // Внутренний средний контейнер слайдера
+    display: flex;
+    width: 100%;
+    height: calc(620px - (171 * ((1440px - 100vw) / (1440 - 375))));
+
+    @at-root {
+        :root {
+            --swiper-navigation-size: calc(42px - (7 * ((1440px - 100vw) / (1440 - 375))));
+        }
+    }    
+
+    .swiper-slide {
+        width: auto;
+    }
+
+    .swiper-button-prev,
+    .swiper-button-next {
+        position: absolute;
+        top: calc(calc(541px - (154 * ((1440px - 100vw) / (1440 - 375)))) + var(--swiper-navigation-size));
+        width: var(--swiper-navigation-size);
+        height: var(--swiper-navigation-size);
+        z-index: 11;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #fff;
+        border-radius: 50%;
+        color: rgb(0, 0, 0);
+    }
+
+    .swiper-button-prev,
+    .swiper-rtl .swiper-button-next {
+        left: calc(50% - calc(var(--swiper-navigation-size) * 1.14) - calc(34.5px - (5.5 * ((1440px - 100vw) / (1440 - 375)))));
+        right: auto;
+    }
+
+    .swiper-button-next,
+    .swiper-rtl .swiper-button-prev {
+        right: calc(50% - calc(var(--swiper-navigation-size) * 1.14) - calc(34.5px - (5.5 * ((1440px - 100vw) / (1440 - 375)))));
+        left: auto;
+    }
+
+    /* Navigation font start */
+    .swiper-button-prev,
+    .swiper-button-next {
+        &:after {
+            font-family: swiper-icons;
+            font-size: 10px;
+            font-weight: 900;
+            text-transform: none !important;
+            letter-spacing: 0;
+            font-variant: initial;
+            line-height: 1;
+        }
+    }
+
+    .swiper-button-next,
+    .swiper-rtl .swiper-button-prev {
+        right: calc(50% - calc(var(--swiper-navigation-size) * 1.24) - calc(34.5px - (5.5 * ((1440px - 100vw) / (1440 - 375)))));
+        left: auto;
+    }
+
+    /* Common Styles */
+    .swiper-pagination-fraction,
+    .swiper-pagination-custom,
+    .swiper-horizontal>.swiper-pagination-bullets,
+    .swiper-pagination-bullets.swiper-pagination-horizontal {
+        top: calc(calc(541px - (154 * ((1440px - 100vw) / (1440 - 375)))) + calc(var(--swiper-navigation-size) * 0.75));
+        left: 0;
+        width: 100%;
+    }
+    /* Fraction */
+    .swiper-pagination-fraction {
+        color: white;
+    }
+}
+
+.mainInstagramSliderCardWrapper {
+    // Оболочка карточки слайдера
+    width: calc(438px - (134 * ((1440px - 100vw) / (1440 - 375))));
+    height: calc(541px - (154 * ((1440px - 100vw) / (1440 - 375))));
+    padding: 0 calc(19px - (11 * ((1440px - 100vw) / (1440 - 375))));
+    display: flex;
+    flex-direction: column;
+}
+
+.mainInstagramSliderCardTopInnerWrapper {
+    // Внутренний верхний контейнер карточки
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: $responsiveMediumPadding;
+    background: #1A1A1A;
+    border-radius: 6px 6px 0 0;
+}
+
+.mainInstagramSliderCardUserPhotoWrapper {
+    // Оболочка для фото пользователя
+    display: flex;
+    width: calc(50px - (18 * ((1440px - 100vw) / (1440 - 375))));
+    height: calc(50px - (18 * ((1440px - 100vw) / (1440 - 375))));
+}
+
+.mainInstagramSliderCardUserPhoto {
+    // Фото пользователя    
+    // aspect-ratio: 630 / 330; // например, соотношение сторон 21:11
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    height: 100%;
+}
+
+.mainInstagramSliderCardUserNameWrapper {
+    // Оболочка для имени пользователя
+    display: flex;
+    padding: 0 0 0 calc(12px - (5 * ((1440px - 100vw) / (1440 - 375))));
+    margin: 0 auto 0 0;
+}
+
+.mainInstagramSliderCardUserName {
+    // Имя пользователя
+    font-family: $default-font;
+    font-weight: normal;
+    font-size: calc(18px - (6 * ((1440px - 100vw) / (1440 - 375))));
+    color: #fff;
+}
+
+.mainInstagramSliderCardDate {
+    // Дата
+    font-family: $default-font;
+    font-weight: normal;
+    font-size: calc(18px - (6 * ((1440px - 100vw) / (1440 - 375))));
+    color: #A5A5A5;
+}
+
+.mainInstagramSliderCardMiddleInnerWrapper {
+    // Внутренний средний контейнер карточки
+    height: 100%;
+    display: flex;
+    background: #1A1A1A;
+}
+
+.mainInstagramSliderCardImg {
+    // Изображение карточки    
+    // aspect-ratio: 630 / 330; // например, соотношение сторон 21:11
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    height: 100%;
+}
+
+.mainInstagramSliderCardBottomInnerWrapper {
+    // Внутренний нижний контейнер карточки
+    display: flex;
+    align-items: end;
+    background: #1A1A1A;
+    border-radius: 0 0 6px 6px;
+    padding: $responsiveMediumPadding;
+}
+
+.mainInstagramSliderCardDescriptionWrapper {
+    // Оболочка для описания
+    display: block;
+	height: calc(calc(16px - (2 * ((1440px - 100vw) / (1440 - 375)))) * 4); // Делаем ограничение вывода текста построчечно
+	overflow: hidden;
+}
+
+.mainInstagramSliderCardDescription {
+    // Описание
+    display: inline-block;
+    font-family: $default-font;
+    font-weight: 300;
+    font-size: calc(16px - (2 * ((1440px - 100vw) / (1440 - 375))));
+    color: #fff;
+}
+
+.mainInstagramSliderBottomInnerWrapper {
+    // Внутренний нижний контейнер слайдера
+    display: flex;
+    justify-content: center;
+}
+
+.mainInstagramSliderButtonsWrapper {
+    // Оболочка для кнопок слайдера
+    display: flex;
+    flex-direction: row;
+}
+
+.mainInstagramSliderPreviousButton {
+    // Кнопка "предыдущий" слайдера
+    display: flex;
+}
+
+@media (min-width: 1441px) {
+    .mainInstagramSliderContainer {
+        // Основной контейнер слайдера
+        margin: $staticPcBigPadding 8px 0 8px;
+    }
+
+    .mainInstagramSliderTopInnerWrapper {
+        // Внутренний верхний контейнер слайдера
+        padding: $staticPcMediumPadding calc($responsiveLeftAndRightPadding - 8px);
+    }
+
+    .mainInstagramSliderCardTopInnerWrapper {
+        // Внутренний верхний контейнер карточки
+        padding: $staticPcMediumPadding;
+    }
+
+    .mainInstagramSliderCardBottomInnerWrapper {
+        // Внутренний нижний контейнер карточки
+        padding: $staticPcMediumPadding;
+    }
+}
+
+@media screen and (max-width: 569px) {
+    .mainInstagramSliderContainer {
+        // Основной контейнер слайдера
+        margin: $staticMobileBigPadding 8px 0 8px;
+    }
+
+    .mainInstagramSliderTopInnerWrapper {
+        // Внутренний верхний контейнер слайдера
+        padding: $staticMobileMediumPadding calc($responsiveLeftAndRightPadding - 8px);
+    }
+
+    .mainInstagramSliderCardTopInnerWrapper {
+        // Внутренний верхний контейнер карточки
+        padding: $staticMobileMediumPadding;
+    }
+
+    .mainInstagramSliderCardBottomInnerWrapper {
+        // Внутренний нижний контейнер карточки
+        padding: $staticMobileMediumPadding;
+    }
+}

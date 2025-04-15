@@ -1,0 +1,36 @@
+@use '@styles/utilities/variables.scss';
+
+.profile {
+	/* Основной контейнер профиля */
+	display: flex;
+	flex-direction: row;
+	padding: variables.$responsiveTopPadding variables.$responsiveLeftAndRightPadding 0 0;
+	width: 100%;
+	min-height: calc(100dvh - 234px);
+	background: white;
+	color: black;
+	font-family: variables.$default-font;
+}
+
+.profileInfo {
+	/* Контейнер для информации о пользователе */
+	margin: variables.$responsiveMediumPadding 0 variables.$responsiveMediumPadding variables.$responsiveLeftAndRightPadding;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: start;
+}
+
+@media (min-width: 1441px) {
+	.profile {
+		/* Основной контейнер профиля */
+		padding: variables.$staticPcTopPadding variables.$responsiveLeftAndRightPadding 0 0;
+    }
+
+	.profileInfo {
+		/* Контейнер для информации о пользователе */
+		margin: variables.$staticPcMediumPadding 0 variables.$staticPcMediumPadding variables.$responsiveLeftAndRightPadding;
+	}
+}

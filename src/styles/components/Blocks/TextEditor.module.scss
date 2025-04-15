@@ -1,0 +1,124 @@
+@use "@styles/utilities/variables.scss";
+
+.profileAddPostInput {
+  padding: 3px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  font-size: 16px;
+  font-weight: normal;
+  font-family: variables.$default-font;
+  margin: variables.$responsiveSmallPadding 0 0 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  color: black;
+}
+
+.profileAddPostTextarea {
+  /* Стиль для текстовых областей */
+  margin: variables.$responsiveSmallPadding 0 0 0;
+  color: fieldtext;
+  letter-spacing: normal;
+  word-spacing: normal;
+  line-height: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  cursor: text;
+  overflow-wrap: break-word;
+  background-color: field;
+  column-count: initial !important;
+  border: 1px solid #ddd;
+  white-space: pre-wrap;
+  width: 100%;
+  max-width: none;
+  min-height: calc(calc(16px - (4 * ((1440px - 100vw) / (1440 - 375)))) * 3);
+  max-height: calc(calc(16px - (4 * ((1440px - 100vw) / (1440 - 375)))) * 7);
+  height: 100%;
+  padding: 3px;
+  font-size: calc(16px - (4 * ((1440px - 100vw) / (1440 - 375))));
+  font-family: variables.$default-font;
+  resize: none;
+}
+
+.textAreaQuillWrapper {
+  width: 100%;
+  margin: variables.$responsiveSmallPadding 0 0 0;
+}
+
+.remainingChars {
+  /* Стиль для оставшихся символов */
+  margin: variables.$responsiveSmallPadding 5px 0 auto;
+  font-size: calc(14px - (4 * ((1440px - 100vw) / (1440 - 375))));
+  color: variables.$secondary-color;
+}
+
+input[type="file"] {
+  width: 100%;
+  max-width: none;
+  height: 1en;
+  padding: 0;
+  font-size: calc(16px - (4 * ((1440px - 100vw) / (1440 - 375))));
+  font-weight: normal;
+  border: 1px solid #ddd;
+  margin: variables.$responsiveSmallPadding 0 0 0 !important;
+}
+
+.imagePreviews {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: variables.$responsiveSmallPadding 0 0 0;
+
+  .previewImage {
+    width: 300px;
+    object-fit: contain;
+    border-radius: 8px;
+  }
+}
+
+@media (min-width: 1441px) {
+  .remainingChars {
+    /* Стиль для оставшихся символов */
+    margin-top: variables.$staticPcSmallPadding;
+    font-size: 14px;
+  }
+
+  .profileAddPostLabel {
+    font-size: 16px;
+    margin: variables.$staticPcSmallPadding 0 0 0;
+  }
+
+  .profileAddPostTextarea {
+    /* Стиль для текстовых областей */
+    margin: variables.$staticPcSmallPadding 0 0 0;
+    min-height: calc(16px * 3);
+    max-height: calc(16px * 7);
+    font-size: 16px;
+  }
+
+  input[type="file"] {
+    font-size: 16px;
+    margin: variables.$staticPcSmallPadding 0 0 0 !important;
+  }
+
+  .imagePreviews {
+    margin: variables.$staticPcSmallPadding 0 0 0;
+  }
+}
+
+.toggleButton {
+  position: relative;
+  top: -19px;
+  left: 386px;
+  font-size: 12px;
+  color: #000 !important;
+  cursor: pointer;
+  border: none;
+}

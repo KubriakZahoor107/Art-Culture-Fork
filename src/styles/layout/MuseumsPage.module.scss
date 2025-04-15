@@ -1,0 +1,442 @@
+@import "../../../src/styles/utilities/variables.scss";
+
+.MuseumsPageContainer {
+  /* Основной контейнер страницы */
+  display: flex;
+  flex-direction: column;
+  margin: $responsiveTopPadding 0 0 0;
+
+  * {
+    font-family: $default-font;
+  }
+}
+
+.MuseumsPageTitleContainer {
+  /* Контейнер для названия страницы */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: $responsiveBigPadding $responsiveLeftAndRightPadding
+    $responsiveMediumPadding $responsiveLeftAndRightPadding;
+}
+
+// .MuseumsPageTitle {
+//   /* Заголовок страницы */
+//   font-size: calc(28px - (10 * ((1440px - 100vw) / (1440 - 375))));
+//   font-weight: 600;
+//   text-transform: uppercase;
+// }
+
+.ArtistsPageGalleryContainer {
+  // Контейнер для галереи
+  margin: 0 $responsiveLeftAndRightPadding;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.ArtistsPageGalleryTitleWrapper {
+  // Контейнер для названия галереи
+  margin: $responsiveBigPadding $responsiveLeftAndRightPadding 0
+    $responsiveLeftAndRightPadding;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.ArtistsPageGalleryButtonsWrapper {
+  // Контейнер для кнопок
+  margin: $responsiveMediumPadding 0 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ArtistsPageGalleryButton {
+  // Кнопка
+  padding: 0 $staticButtonLeftAndRightPadding;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 !important;
+  cursor: pointer;
+  background: none;
+}
+
+.ArtistsPageGalleryButtonWhithClock {
+  // Кнопка с часами
+  padding: 0 $staticButtonLeftAndRightPadding;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 !important;
+  cursor: pointer;
+  background: none;
+}
+
+.ArtistsPageGalleryButtonClock {
+  // Часы
+  margin: 0 0 0 $responsiveSmallPadding;
+  width: calc(24px - (10 * ((1440px - 100vw) / (1440 - 375))));
+  min-width: 14px;
+  max-width: 24px;
+  height: calc(24px - (10 * ((1440px - 100vw) / (1440 - 375))));
+  min-height: 14px;
+  max-height: 24px;
+}
+
+.ArtistsPageGalleryButtonSeparator {
+  // Разделитель
+  // margin: 0 0 0 calc(15px - (5 * ((1440px - 100vw) / (1440 - 375))));
+  font-size: calc(24px - (10 * ((1440px - 100vw) / (1440 - 375))));
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 500;
+  user-select: none;
+}
+
+.ArtistsPageGalleryCardsWrapper {
+  // Контейнер для карточек
+  margin: $responsiveMediumPadding $responsiveLeftAndRightPadding 0
+    $responsiveLeftAndRightPadding;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.ArtistsPageGalleryInnerWrapper {
+  // Контейнер для карточек
+  display: grid;
+  height: fit-content;
+  grid-template-columns: repeat(4, 1fr); // 4 столбца при ширине 1440px и выше
+  grid-template-rows: repeat(2, auto); // 2 ряда
+  gap: $responsiveMediumPadding; // Расстояние между карточками
+}
+
+.ArtistsPageGalleryCardWrapper {
+  // Контейнер для карточек
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+.ArtistsPageGalleryCardPictureWrapper {
+  // Контейнер для картинки
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ArtistsPageGalleryCardPicture {
+  // Картинка
+  width: 100%;
+  object-fit: cover;
+  aspect-ratio: 1 / 1;
+}
+
+.ArtistsPageGalleryCardDescriptionWrapper {
+  // Контейнер для описания
+  margin: $responsiveSmallPadding 0 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ArtistsPageGalleryCardDescription {
+  // Описание
+  font-size: calc(18px - (2 * ((1440px - 100vw) / (1440 - 375))));
+  font-weight: 500;
+  text-align: center;
+  user-select: none;
+}
+
+.ArtistsPageGalleryAllArtistsButtonWrapper {
+  // Контейнер для кнопки "Все артисты"
+  width: 100%;
+  margin: $responsiveMediumPadding $responsiveLeftAndRightPadding 0
+    $responsiveLeftAndRightPadding;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.ArtistsPageGalleryAllArtistsButton {
+  // Кнопка "Все артисты"
+  display: flex;
+  align-items: center;
+  font-size: calc(18px - (2 * ((1440px - 100vw) / (1440 - 375))));
+  text-align: center;
+  margin: 0 !important;
+  cursor: pointer;
+  background: none;
+}
+
+.ArtistsPageGalleryAllArtistsButtonText {
+  // Текст кнопки "Все артисты"
+  font-size: calc(24px - (10 * ((1440px - 100vw) / (1440 - 375))));
+  text-align: center;
+  font-weight: 400;
+}
+
+.ArtistsPageGalleryAllArtistsButtonArrow {
+  // Стрелка кнопки "Все артисты"
+  margin: 0 0 0 $staticButtonLeftAndRightPadding;
+  text-align: center;
+}
+
+.MuseumsPageMapTitleContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  .MuseumsPageMapTitle {
+    text-transform: none;
+    font-family: $default-font;
+    margin: $responsiveMediumPadding 0 0 0;
+    margin: 0 0 $responsiveMediumPadding 0;
+  }
+}
+
+.ExhibitionsMapWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: $responsiveMediumPadding 0 0 0;
+}
+
+/* ARROWS: absolutely positioned in .timelineWrapper */
+.timelineNavButton {
+  position: absolute;
+  top: 50%; // vertically center
+  transform: translateY(-50%);
+
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 1.2rem;
+  z-index: 2; // above the timeline
+}
+
+.leftArrow {
+  left: -25px; // pinned to left side
+  background-image: url("/public/Img/leftBlackArrow.svg");
+  background-repeat: no-repeat;
+}
+
+.rightArrow {
+  right: -50px; // pinned to right side
+  background-image: url("/public/Img/rightBlackArrow.svg");
+  background-repeat: no-repeat;
+}
+
+.timelineWrapper {
+  width: 95%;
+
+  position: relative;
+  /* Hide scrollbar in Webkit browsers */
+}
+
+.timelineScrollArea {
+  overflow-x: auto;
+  overflow-y: hidden; // no vertical scroll if you like
+  -webkit-overflow-scrolling: touch; // smooth iOS scrolling
+
+  /* Hide scrollbars if you want: */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.timelineContainer {
+  display: flex;
+  /* horizontal layout */
+  align-items: flex-start;
+  margin: $responsiveBigPadding 1rem; /* some spacing above */
+}
+
+/* Each year + tick is a "marker" */
+.timelineMarker {
+  position: relative; /* so the tick can be absolutely positioned */
+  margin: 0 $responsiveMediumPadding; /* space between markers */
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* The text for the year */
+.timelineYear {
+  color: gray;
+  font-weight: normal;
+  /* You can add more spacing, e.g. margin-bottom: 5px */
+}
+
+/* The vertical line */
+.timelineTick {
+  position: absolute;
+  top: 1.3em; /* push the line below the text */
+  left: 50%; /* center under the text */
+  width: 2px;
+  height: 15px; /* vertical length of the tick */
+  background-color: black;
+  transform: translateX(-50%);
+}
+
+/* If the marker is "selected", highlight the year differently */
+.selectedMarker .timelineYear {
+  color: red;
+  font-weight: bold;
+}
+
+@media (min-width: 1441px) {
+  .MuseumsPageContainer {
+    margin: $staticPcTopPadding 0 0 0;
+  }
+
+  .MuseumsPageTitleContainer {
+    /* Контейнер для заголовка страницы новостей */
+    margin: $staticPcBigPadding $responsiveLeftAndRightPadding
+      $staticPcMediumPadding $responsiveLeftAndRightPadding;
+  }
+
+  // .MuseumsPageTitle {
+  //   /* Заголовок страницы новостей */
+  //   font-size: 28px;
+  // }
+  .ArtistsPageGalleryTitleWrapper {
+    // Контейнер для названия галереи
+    margin: $staticPcBigPadding $responsiveLeftAndRightPadding 0
+      $responsiveLeftAndRightPadding;
+  }
+
+  .ArtistsPageGalleryButtonsWrapper {
+    // Контейнер для кнопок
+    margin: $staticPcMediumPadding 0 0 0;
+  }
+
+  .ArtistsPageGalleryButtonClock {
+    // Часы
+    margin: 0 0 0 $staticPcSmallPadding;
+  }
+
+  .ArtistsPageGalleryButtonSeparator {
+    // Разделитель
+    font-size: 24px;
+  }
+
+  .ArtistsPageGalleryCardsWrapper {
+    // Контейнер для карточек
+    margin: $staticPcMediumPadding $responsiveLeftAndRightPadding 0
+      $responsiveLeftAndRightPadding;
+  }
+
+  .ArtistsPageGalleryInnerWrapper {
+    // Контейнер для карточек
+    grid-template-columns: repeat(6, 1fr); // 4 столбца при ширине 1440px и выше
+    grid-template-rows: repeat(2, auto); // 2 ряда
+    gap: $staticPcMediumPadding; // Расстояние между карточками
+  }
+
+  .ArtistsPageGalleryCardDescriptionWrapper {
+    // Контейнер для описания
+    margin: $staticPcSmallPadding 0 0 0;
+  }
+
+  .ArtistsPageGalleryCardDescription {
+    // Описание
+    font-size: 18px;
+  }
+
+  .ArtistsPageGalleryAllArtistsButtonWrapper {
+    // Контейнер для кнопки "Все артисты"
+    margin: $staticPcMediumPadding $responsiveLeftAndRightPadding 0
+      $responsiveLeftAndRightPadding;
+  }
+
+  .ArtistsPageGalleryAllArtistsButton {
+    // Кнопка "Все артисты"
+    font-size: 18px;
+  }
+
+  .ArtistsPageGalleryAllArtistsButtonText {
+    // Текст кнопки "Все артисты"
+    font-size: 24px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .ArtistsPageGalleryInnerWrapper {
+    // Контейнер для карточек
+    grid-template-columns: repeat(8, 1fr); // 4 столбца при ширине 1440px и выше
+    grid-template-rows: repeat(2, auto); // 2 ряда
+    gap: $staticPcMediumPadding; // Расстояние между карточками
+  }
+}
+
+@media (max-width: 569px) {
+  .MuseumsPageContainer {
+    margin: $staticMobileTopPadding 0 0 0;
+  }
+  .ArtistsPageGalleryTitleWrapper {
+    // Контейнер для названия галереи
+    margin: $staticMobileBigPadding $responsiveLeftAndRightPadding 0
+      $responsiveLeftAndRightPadding;
+  }
+
+  .ArtistsPageGalleryButtonsWrapper {
+    // Контейнер для кнопок
+    margin: $staticMobileMediumPadding 0 0 0;
+  }
+
+  .ArtistsPageGalleryButtonClock {
+    // Часы
+    margin: 0 0 0 $staticMobileSmallPadding;
+  }
+
+  .ArtistsPageGalleryButtonSeparator {
+    // Разделитель
+    font-size: 14px;
+  }
+
+  .ArtistsPageGalleryCardsWrapper {
+    // Контейнер для карточек
+    margin: $staticMobileMediumPadding $responsiveLeftAndRightPadding 0
+      $responsiveLeftAndRightPadding;
+  }
+
+  .ArtistsPageGalleryInnerWrapper {
+    // Контейнер для карточек
+    grid-template-columns: repeat(2, 2fr); // 4 столбца при ширине 1440px и выше
+    grid-template-rows: repeat(2, auto); // 2 ряда
+    gap: $staticMobileMediumPadding; // Расстояние между карточками
+  }
+
+  .ArtistsPageGalleryCardDescriptionWrapper {
+    // Контейнер для описания
+    margin: $staticPcSmallPadding 0 0 0;
+  }
+
+  .ArtistsPageGalleryCardDescription {
+    // Описание
+    font-size: 16px;
+  }
+
+  .ArtistsPageGalleryAllArtistsButtonWrapper {
+    // Контейнер для кнопки "Все артисты"
+    margin: $staticMobileMediumPadding $responsiveLeftAndRightPadding 0
+      $responsiveLeftAndRightPadding;
+  }
+
+  .ArtistsPageGalleryAllArtistsButton {
+    // Кнопка "Все артисты"
+    font-size: 16px;
+  }
+
+  .ArtistsPageGalleryAllArtistsButtonText {
+    // Текст кнопки "Все артисты"
+    font-size: 14px;
+  }
+}

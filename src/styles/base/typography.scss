@@ -1,0 +1,61 @@
+@import '/src/styles/utilities/variables.scss';
+
+h1 {
+	font-family: $default-font;
+    font-size: calc(42px - (22 * ((1440px - 100vw) / (1440 - 375))));
+    font-weight: 600;
+	color: black;
+    text-transform: uppercase;
+}
+
+h2 {
+	font-family: $default-font;
+	font-size: calc(32px - (14 * ((1440px - 100vw) / (1440 - 375))));
+	font-weight: 600;
+	color: black;
+	text-transform: uppercase;
+}
+
+h3 {
+	font-family: $default-font;
+	font-size: calc(22px - (6 * ((1440px - 100vw) / (1440 - 375))));
+	font-weight: 600;
+	color: black;
+	text-transform: uppercase;
+}
+
+h4 {
+	font-family: $default-font;
+	font-size: calc(18px - (4 * ((1440px - 100vw) / (1440 - 375))));
+	font-weight: 600;
+	color: black;
+	text-transform: uppercase;
+}
+
+@media (min-width: 1441px) {
+    h1 {
+        font-size: 42px;
+    }
+
+    h2 {
+        font-size: 32px;
+    }
+
+    h3 {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 569px) {
+    h1 {
+        font-size: 20px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    h3 {
+        font-size: 16px;
+    }
+}

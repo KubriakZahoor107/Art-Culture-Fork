@@ -1,0 +1,72 @@
+@use "@styles/utilities/variables.scss";
+
+.AdminDashboardTitle {
+    // Заголовок
+    display: flex;
+}
+
+.AdminDashboardDemandARelookContainer {
+    // Контейнер для кнопки "Вимагати перегляд"
+    margin: variables.$responsiveMediumPadding 0 0 0;
+    display: flex;
+    align-items: center;
+}
+
+.AdminDashboardStatisticsContainer {
+    // Контейнер для статистики
+    margin: variables.$responsiveSmallPadding 0 0 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.AdminDashboardStatisticsItemContainer {
+    // Контейнер для новини
+    margin: variables.$responsiveSmallPadding 0 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.AdminDashboardStatisticsItemTitle {
+    // Заголовок новини
+    display: flex;
+}
+
+.AdminDashboardStatisticsItemValue {
+    width: fit-content;
+    max-width: none;
+    margin: 0 -1px 0 auto;
+    padding: 0 0 0 variables.$staticButtonLeftAndRightPadding;
+    height: calc(51px - (11 * ((1440px - 100vw) / (1440 - 375))));
+    min-height: 40px;
+    max-height: 51px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: calc(34px - (4 * ((1440px - 100vw) / (1440 - 375)))) 0 0 calc(34px - (4 * ((1440px - 100vw) / (1440 - 375))));
+    // font-size: calc(16px - (4 * ((1440px - 100vw) / (1440 - 375))));
+    font-weight: 500;
+    color: white;
+    background-color: variables.$turquoise;
+}
+
+.AdminDashboardDemandARelookButton {
+    // Кнопка "Вимагати перегляд"
+    width: fit-content;
+    max-width: none;
+    margin: 0;
+    padding: 0 variables.$staticButtonLeftAndRightPadding;
+    height: calc(51px - (11 * ((1440px - 100vw) / (1440 - 375))));
+    min-height: 40px;
+    max-height: 51px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 0 calc(34px - (4 * ((1440px - 100vw) / (1440 - 375)))) calc(34px - (4 * ((1440px - 100vw) / (1440 - 375)))) 0;
+    font-size: calc(16px - (4 * ((1440px - 100vw) / (1440 - 375))));
+    font-weight: 500;
+    background-color: variables.$turquoise;
+    cursor: pointer;
+}

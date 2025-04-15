@@ -1,0 +1,188 @@
+@import "/src/styles/utilities/variables.scss";
+
+.AuthorsPageContainer {
+  //* главный контейнер
+  margin: $responsiveTopPadding $responsiveLeftAndRightPadding 0;
+  display: flex;
+  flex-direction: column;
+
+  * {
+    font-family: $default-font;
+  }
+}
+
+.AuthorPhotoNameContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.AuthorPhotoWrapper {
+  //* Контейнер для изображения артиста
+  width: calc(115px - (15 * ((1440px - 100vw) / (1440 - 375))));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1 / 1;
+}
+
+.AuthorPhoto {
+  //* Изображение артиста
+  width: 100%;
+  object-fit: cover;
+  aspect-ratio: 1 / 1;
+}
+
+.AuthorTitleWrapper {
+  //* Контейнер для названия страницы
+  margin: 0 $responsiveSmallPadding 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.AuthorTitle {
+  font-family: $default-font;
+  font-size: calc(28px - (10 * ((1440px - 100vw) / (1440 - 375))));
+  font-weight: 600;
+  color: rgb(0, 0, 0);
+  text-transform: uppercase;
+}
+
+.AuthorNavBarTwoSection {
+  display: flex;
+  justify-content: space-between;
+  padding: $responsiveBigPadding 0 $responsiveBigPadding 0;
+}
+.AuthorNavBarWrapper {
+  display: flex;
+  align-items: center;
+  p {
+    font-family: $default-font;
+    font-size: calc(28px - (10 * ((1440px - 100vw) / (1440 - 375))));
+    font-weight: 600;
+    color: rgb(0, 0, 0);
+    text-transform: uppercase;
+  }
+}
+.PostsNavBarLeft {
+  padding: 0 $responsiveSmallPadding 0 0;
+  cursor: pointer;
+}
+
+.NavBarSeparator {
+}
+
+.AuthorsNavBarRight {
+  padding: 0 0 0 $responsiveSmallPadding;
+  cursor: pointer;
+}
+
+.AuthorPostsListsWrapper {
+  margin: $responsiveMediumPadding 0 0 0;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.AuthorPostsLists {
+  //padding: 0 calc(10 / 1440 * 100vw);
+  // width: 48.46%;
+  display: flex;
+  // flex-direction: column;
+  justify-content: space-between;
+}
+
+.AuthorPostsListsTitleWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.AuthorPostsListsTitle {
+  // Стили для обертки заголовка карточки
+  display: block;
+  font-family: $default-font;
+  font-weight: 500;
+  font-size: calc(22px - (6 * ((1440px - 100vw) / (1440 - 375))));
+  height: calc(
+    calc(22px - (6 * ((1440px - 100vw) / (1440 - 375)))) * 2
+  ); // Делаем ограничение вывода текста построчечно
+  overflow: hidden;
+  text-transform: uppercase;
+}
+
+.AuthorPostsListsContentWrapper {
+  // Стили для обертки описания карточки
+  margin: $responsiveSmallPadding 0 0 0;
+  height: calc(
+    calc(20px - (2 * ((1440px - 100vw) / (1440 - 375)))) * 3
+  ); // Делаем ограничение вывода текста построчечно
+  overflow: hidden;
+}
+
+.AuthorPostsListsContent {
+  // Стили для описания карточки
+  font-family: $default-font;
+  font-weight: 400;
+  line-height: calc(20px - (2 * ((1440px - 100vw) / (1440 - 375))));
+  font-size: calc(16px - (2 * ((1440px - 100vw) / (1440 - 375))));
+}
+
+.AuthorPostsListsInfoWrapper {
+  // Стили для карточки новостей
+  //padding: 0 calc(10 / 1440 * 100vw);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.AuthorPostsListsImageWrapper {
+  // Стили для обертки изображения карточки
+  aspect-ratio: 630 / 330; // например, соотношение сторон 21:11
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.AuthorPostsListsImage {
+  // Стили для изображения карточки
+  aspect-ratio: 630 / 330; // например, соотношение сторон 21:11
+  object-fit: cover;
+  object-position: center;
+  width: 90%;
+  height: 90%;
+}
+
+.cardClockAndDateInner {
+  margin: $responsiveSmallPadding 0 0 0;
+  display: flex;
+  align-items: center;
+}
+
+.cardClockAndDateInner {
+  // Стили для обертки даты и времени карточки
+  display: flex;
+  align-items: center;
+  font-size: calc(16px - (2 * ((1440px - 100vw) / (1440 - 375))));
+}
+
+.cardClockImgWrapper {
+  // Стили для обертки изображения часов
+  display: flex;
+  width: 20px;
+  height: 20px;
+}
+
+.cardDateWrapper {
+  // Стили для обертки даты
+  margin: 0 0 0 $responsiveSmallPadding;
+  display: flex;
+}
+
+.cardTimeWrapper {
+  // Стили для обертки даты
+  margin: 0 0 0 $responsiveSmallPadding;
+  display: flex;
+}

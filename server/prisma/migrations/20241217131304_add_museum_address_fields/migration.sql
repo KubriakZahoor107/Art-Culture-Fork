@@ -1,0 +1,8 @@
+-- AlterTable
+ALTER TABLE `user` ADD COLUMN `country` VARCHAR(191) NULL,
+    ADD COLUMN `house_number` VARCHAR(191) NULL,
+    ADD COLUMN `lat` DOUBLE NULL,
+    ADD COLUMN `lon` DOUBLE NULL,
+    ADD COLUMN `postcode` VARCHAR(191) NULL,
+    ADD COLUMN `state` VARCHAR(191) NULL,
+    ADD COLUMN `street` VARCHAR(191) NULL;

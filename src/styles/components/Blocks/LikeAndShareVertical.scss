@@ -1,0 +1,62 @@
+@import "/src/styles/utilities/variables.scss";
+
+.VerticalSocialLikeAndShareWrapper{
+    position: fixed;
+    top: calc($responsiveTopPadding + $responsiveSmallPadding);
+    right: $responsiveLeftAndRightPadding;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 1000;
+}
+
+.VerticalSocialLikeAndShareInner {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+
+	&__VerticalLikeButton {
+		position: relative;
+		display: flex;
+        opacity: 0.5;
+	}
+
+    &__VerticalLikeButton:hover {
+        opacity: 1;
+        transition: 0.4s;
+    }
+
+    &__VerticalLikeButton:not(:hover) {
+        opacity: 0.5;
+        transition: 0.4s;
+    }
+
+	&__VerticalShareButton {
+		position: relative;
+        margin: calc($staticButtonLeftAndRightPadding / 2) 0 0 0;
+		display: flex;
+        opacity: 0.5;
+	}
+
+    &__VerticalShareButton:hover {
+        opacity: 1;
+        transition: 0.4s;
+    }
+
+    &__VerticalShareButton:not(:hover) {
+        opacity: 0.5;
+        transition: 0.4s;
+    }
+}
+
+@media (min-width: 1441px) {
+    .VerticalSocialLikeAndShareWrapper{
+        top: calc($staticPcTopPadding + $staticPcSmallPadding);
+    }
+}
+
+@media (max-width: 569px) {    
+    .VerticalSocialLikeAndShareWrapper{
+        top: calc($staticMobileTopPadding + $staticMobileSmallPadding);
+    }
+}

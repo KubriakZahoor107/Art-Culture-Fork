@@ -1,0 +1,57 @@
+@import "../utilities/variables.scss";
+
+.exhibitionDetailsContainer {
+  display: flex;
+  flex-direction: column;
+  margin: $responsiveTopPadding 0 0 0;
+
+  * {
+    font-family: $default-font;
+  }
+}
+
+.exhibitionDetailsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.exhibitionHeadTitleWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: calc(51px - (28 * ((1440px - 100vw) / (1440 - 375)))) 0 0 0;
+}
+
+.exhibitionImageWrapper {
+  display: flex;
+
+  gap: 10px;
+}
+
+.exhibitionImage {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.infoText {
+  margin: 5px 0 0 0;
+  font-size: 1rem;
+}
+
+.mapContainer {
+  margin: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 500px;
+  height: 500px;
+}

@@ -1,0 +1,63 @@
+@use '../../../src/styles/utilities/variables.scss';
+
+.card {
+    display: block;
+
+    padding-bottom: variables.$responsiveMediumPadding;
+}
+
+.cardMedia {
+    width: 40%;
+    float: left;
+    background: grey;
+    a {
+        height: 100%;
+    }
+
+    figure {
+        background: white;
+    }
+
+    figure:hover {
+        background: gainsboro;
+    }
+
+    picture {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.cardContent {
+    margin-left: 40%;
+    padding-left: variables.$responsiveMediumPadding;
+}
+
+.cardDescription {
+    margin-bottom: 2rem;
+}
+
+.cardCommands {
+    display: inline-flex;
+}
+
+.cardTitle {
+    padding-bottom: variables.$responsiveSmallPadding;
+    
+    a:first-child {
+        font-size: 1.5rem;
+        padding-right: 0.5rem;
+    }
+
+    a {
+        font-size: 1.25rem;
+    }
+}
+
+@media screen and (max-width: 569px) {
+    .cardMedia {
+        width: 100%;
+    }
+}

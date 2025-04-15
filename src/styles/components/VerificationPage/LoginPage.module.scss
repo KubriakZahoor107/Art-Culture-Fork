@@ -1,0 +1,121 @@
+@import "/src/styles/utilities/variables.scss";
+
+.LoginContainer {
+  padding: $responsiveTopPadding 0 0 0;
+  text-align: center;
+  height: fit-content;
+  min-height: calc(100dvh - 234px);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  background: white;
+
+  button {
+    color: white;
+  }
+}
+
+.LoginWrapper {
+  margin: $responsiveBigPadding $responsiveLeftAndRightPadding;
+  background-color: white;
+  width: 500px;
+  padding: $responsiveMediumPadding;
+  border-radius: 8px;
+  border: 1px solid $secondary-color;
+  box-shadow: 0 4px 20px $turquoise;
+  color: black;
+  .SignUpForm {
+    .roleSelectorWrapper {
+      display: flex;
+      flex-direction: column;
+      & h2 {
+        font-weight: 700;
+        font-size: calc(12px + 6 * (100vw / 1440));
+      }
+      .roleSelectorInput {
+        display: flex;
+        flex-direction: row;
+        margin: $responsiveSmallPadding 0;
+      }
+      .roleSelectorCheck {
+        display: flex;
+        margin: 0 $responsiveSmallPadding;
+      }
+    }
+  }
+}
+
+// Form Styles
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  select {
+    width: fit-content;
+    margin: $responsiveSmallPadding 0 0 0;
+  }
+}
+
+.SignUp {
+  margin: $responsiveSmallPadding 0 0 0;
+  color: $red;
+  font-size: calc(16px - (4 * ((1440px - 100vw) / (1440 - 375))));
+  font-weight: 600;
+  cursor: pointer;
+}
+
+@media (min-width: 1441px) {
+  .LoginContainer {
+    padding: $staticPcTopPadding 0 0 0;
+    min-height: calc(100dvh - 234px);
+  }
+
+  .LoginWrapper {
+    margin: $staticPcBigPadding $responsiveLeftAndRightPadding;
+    background-color: white;
+    width: 700px;
+    padding: $staticPcMediumPadding;
+  }
+
+  form {
+    select {
+      margin: $staticPcSmallPadding 0 0 0;
+    }
+  }
+
+  .SignUp {
+    margin: $staticPcSmallPadding 0 0 0;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 799px) {
+  .LoginContainer {
+    min-height: calc(100dvh - 348px);
+  }
+}
+
+@media (max-width: 569px) {
+  .LoginContainer {
+    padding: $staticMobileTopPadding 0 0 0;
+  }
+
+  .LoginWrapper {
+    margin: $staticMobileBigPadding $responsiveLeftAndRightPadding;
+    width: 100%;
+    padding: $staticMobileMediumPadding;
+  }
+
+  form {
+    select {
+      margin: $staticMobileSmallPadding 0 0 0;
+    }
+  }
+
+  .SignUp {
+    margin: $staticMobileSmallPadding 0 0 0;
+    font-size: 12px;
+  }
+}

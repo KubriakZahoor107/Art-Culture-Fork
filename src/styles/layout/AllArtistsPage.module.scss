@@ -1,0 +1,210 @@
+@use "@styles/layout/ArtistsPage.module.scss";
+@use "@styles/utilities/variables.scss";
+
+.ArtistsContainer {
+  // Контейнер для артистов
+  margin: variables.$responsiveMediumPadding
+    variables.$responsiveLeftAndRightPadding 0
+    variables.$responsiveLeftAndRightPadding;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.ArtistsWrapper {
+  // Контейнер для артистов
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  cursor: pointer;
+}
+
+.LetterWrapper {
+  // Контейнер для буквы
+  margin: variables.$responsiveMediumPadding variables.$responsiveMediumPadding
+    0 0;
+  width: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid variables.$red;
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+}
+
+.Letter {
+  // Буква
+  color: variables.$red;
+}
+
+.ArtistsByLetterWrapper {
+  // Контейнер для артистов по букве
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.ArtistWrapper {
+  // Контейнер для артиста
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.ArtistInformationWrapper {
+  // Контейнер для информации об артисте
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ArtistTitleWrapper {
+  // Контейнер для названия артиста
+  padding: variables.$responsiveSmallPadding variables.$responsiveMediumPadding
+    variables.$responsiveSmallPadding 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.ArtistTitle {
+  // Название артиста
+  font-size: calc(24px - (4 * ((1440px - 100vw) / (1440 - 375))));
+  font-weight: 500;
+  color: black;
+}
+
+.ArtistPhotoWrapper {
+  // Контейнер для изображения артиста
+  width: calc(115px - (15 * ((1440px - 100vw) / (1440 - 375))));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1 / 1;
+}
+
+.ArtistPhoto {
+  // Изображение артиста
+  width: 100%;
+  object-fit: cover;
+  aspect-ratio: 1 / 1;
+}
+
+.SeparatorWrapper {
+  // Контейнер для разделителя
+  margin: variables.$responsiveSmallPadding 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Separator {
+  // Разделитель
+  width: 100%;
+  height: 1px;
+  background-color: black;
+}
+
+@media (min-width: 1441px) {
+  .ArtistsContainer {
+    // Контейнер для артистов
+    margin: variables.$staticPcMediumPadding
+      variables.$responsiveLeftAndRightPadding 0
+      variables.$responsiveLeftAndRightPadding;
+  }
+
+  .LetterWrapper {
+    // Контейнер для буквы
+    margin: variables.$staticPcMediumPadding variables.$staticPcMediumPadding 0
+      0;
+  }
+
+  .ArtistTitleWrapper {
+    // Контейнер для названия артиста
+    padding: variables.$staticPcSmallPadding variables.$staticPcMediumPadding
+      variables.$staticPcSmallPadding 0;
+  }
+
+  .ArtistTitle {
+    // Название артиста
+    font-size: 24px;
+  }
+
+  .ArtistPhotoWrapper {
+    // Контейнер для изображения артиста
+    width: 115px;
+  }
+
+  .SeparatorWrapper {
+    // Контейнер для разделителя
+    margin: variables.$staticPcSmallPadding 0;
+  }
+}
+
+@media screen and (max-width: 569px) {
+  .ArtistsContainer {
+    // Контейнер для артистов
+    margin: variables.$staticMobileMediumPadding
+      variables.$responsiveLeftAndRightPadding 0
+      variables.$responsiveLeftAndRightPadding;
+  }
+
+  .ArtistsWrapper {
+    // Контейнер для артистов
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .LetterWrapper {
+    // Контейнер для буквы
+    margin: 0 auto 0 0;
+  }
+
+  .ArtistsByLetterWrapper {
+    // Контейнер для артистов по букве
+    margin: variables.$staticMobileSmallPadding 0;
+  }
+
+  .ArtistWrapper {
+    // Контейнер для артиста
+    margin: variables.$staticMobileSmallPadding 0 0 0;
+  }
+
+  .ArtistInformationWrapper {
+    // Контейнер для информации об артисте
+    flex-direction: column-reverse;
+  }
+
+  .ArtistTitleWrapper {
+    // Контейнер для названия артиста
+    margin: variables.$staticMobileSmallPadding 0 0 0;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .ArtistTitle {
+    // Название артиста
+    text-align: center;
+    font-size: 20px;
+  }
+
+  .ArtistPhotoWrapper {
+    // Контейнер для изображения артиста
+    width: 100px;
+  }
+
+  .SeparatorWrapper {
+    // Контейнер для разделителя
+    margin: variables.$staticMobileSmallPadding 0;
+  }
+}

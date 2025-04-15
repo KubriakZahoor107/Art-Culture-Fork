@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+@font-face {
+  font-family: "Chiller";
+  src: url("/src/customFonts/CHILLER.TTF") format("truetype");
+}
+
+@font-face {
+  font-family: "CenturyGothic";
+  src: url("/src/customFonts/centurygothic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "CenturyGothicBold";
+  src: url("/src/customFonts/centurygothic_bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "CormorantSCBold";
+  src: url("/src/customFonts/CormorantSC-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "CormorantSCLight";
+  src: url("/src/customFonts/CormorantSC-Light.ttf") format("truetype");
+}
+@font-face {
+  font-family: "CormorantSCMedium";
+  src: url("/src/customFonts/CormorantSC-Medium.ttf") format("truetype");
+}
+@font-face {
+  font-family: "CormorantSCRegular";
+  src: url("/src/customFonts/CormorantSC-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "CormorantSCSemiBold";
+  src: url("/src/customFonts/CormorantSC-SemiBold.ttf") format("truetype");
+}
+
+$main: #ffffff;
+$dark: #000000;
+$secondary-color: #a5a5a5;
+$turquoise: #3a8374;
+$red: #d83934;
+
+$default-font: "Fira Sans", sans-serif;
+
+$mobile: 480px;
+
+$tablet: 1024px;
+
+$hd: 1440px;
+
+$chiller-font: "Chiller", sans-serif;
+
+$CenturyGothic: "CenturyGothic", sans-serif;
+$CenturyGothicBold: "CenturyGothicBold", sans-serif;
+$CormorantSCBold: "CormorantSCBold", sans-serif;
+$CormorantSCLight: "CormorantSCLight", sans-serif;
+$CormorantSCMedium: "CormorantSCMedium", sans-serif;
+$CormorantSCRegular: "CormorantSCRegular", sans-serif;
+$CormorantSCSemiBold: "CormorantSCBold", sans-serif;
+
+// Отступы главного контейнера каждой страницы
+// static mobile
+$staticMobileTopPadding: 70px;
+
+$staticMobileBigPadding: 25px;
+$staticMobileMediumPadding: 12.5px;
+$staticMobileSmallPadding: 5px;
+
+// responsive
+$responsiveTopPadding: calc(177px - (107 * ((1440px - 100vw) / (1440 - 569))));
+$responsiveLeftAndRightPadding: calc(70 / 1440 * 100vw);
+
+$responsiveBigPadding: calc(50px - (25 * ((1440px - 100vw) / (1440 - 569))));
+$responsiveMediumPadding: calc(
+  25px - (12.5 * ((1440px - 100vw) / (1440 - 569)))
+);
+$responsiveSmallPadding: calc(12.5px - (5 * ((1440px - 100vw) / (1440 - 569))));
+
+// static pc
+$staticPcTopPadding: 177px;
+
+$staticPcBigPadding: 50px;
+$staticPcMediumPadding: 25px;
+$staticPcSmallPadding: 12.5px;
+
+// button
+$staticButtonLeftAndRightPadding: 20px;
+$weightfont: 700;

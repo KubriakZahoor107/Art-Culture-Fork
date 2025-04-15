@@ -1,0 +1,364 @@
+@import '/src/styles/utilities/variables.scss';
+
+.PopularSliderContainer {
+    // Контейнер слайдера
+    display: flex;
+    margin: $responsiveBigPadding $responsiveLeftAndRightPadding 0 $responsiveLeftAndRightPadding;
+}
+
+.PopularSliderWrapper {
+    // Обёртка слайдера
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.PopularSliderTopInnerWrapper {
+    // Верхняя часть слайдера
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0 $responsiveMediumPadding 0;
+}
+
+.PopularSliderTitleWrapper {
+    // Обёртка заголовка
+    display: flex;
+    align-items: center;
+}
+
+.PopularSliderTitle {
+    // Заголовок    
+    font-family: $default-font;
+}
+
+.PopularSliderBottomInnerWrapper {
+    // Нижняя часть слайдера
+    display: flex;
+    width: 100%;
+    height: calc(514px - (75 * ((1440px - 100vw) / (1440 - 375))));
+    min-height: 439px;
+    max-height: 514px;
+
+    @at-root {
+        :root {
+            --swiper-navigation-size: calc(42px - (7 * ((1440px - 100vw) / (1440 - 375))));
+        }
+    }
+
+    .swiper-wrapper {
+        position: relative;
+        margin: 0 0 0 calc(-1 * $responsiveSmallPadding);
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        display: flex;
+        transition-property: transform;
+        transition-timing-function: var(--swiper-wrapper-transition-timing-function, initial);
+        box-sizing: content-box;
+    }
+
+    .swiper-slide {
+        flex-shrink: 0;
+        width: auto;
+        height: 100%;
+        position: relative;
+        transition-property: transform;
+        display: block;
+    }
+
+    .swiper-button-prev,
+    .swiper-button-next {
+        position: absolute;
+        top: calc(calc(514px - (75 * ((1440px - 100vw) / (1440 - 375)))) - calc(var(--swiper-navigation-size) / 2));
+        width: var(--swiper-navigation-size);
+        height: var(--swiper-navigation-size);
+        z-index: 11;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #000000;
+        border-radius: 50%;
+        color: white;
+    }
+
+    .swiper-button-prev,
+    .swiper-rtl .swiper-button-next {
+        left: calc(50% - calc(var(--swiper-navigation-size) * 1.14) - calc(34.5px - (5.5 * ((1440px - 100vw) / (1440 - 375)))));
+        right: auto;
+    }
+
+    .swiper-button-next,
+    .swiper-rtl .swiper-button-prev {
+        right: calc(50% - calc(var(--swiper-navigation-size) * 1.14) - calc(34.5px - (5.5 * ((1440px - 100vw) / (1440 - 375)))));
+        left: auto;
+    }
+
+    /* Navigation font start */
+    .swiper-button-prev,
+    .swiper-button-next {
+        &:after {
+            font-family: swiper-icons;
+            font-size: 10px;
+            font-weight: 900;
+            text-transform: none !important;
+            letter-spacing: 0;
+            font-variant: initial;
+            line-height: 1;
+        }
+    }
+
+    .swiper-button-next,
+    .swiper-rtl .swiper-button-prev {
+        right: calc(50% - calc(var(--swiper-navigation-size) * 1.24) - calc(34.5px - (5.5 * ((1440px - 100vw) / (1440 - 375)))));
+        left: auto;
+    }
+
+    /* Common Styles */
+    .swiper-pagination-fraction,
+    .swiper-pagination-custom,
+    .swiper-horizontal>.swiper-pagination-bullets,
+    .swiper-pagination-bullets.swiper-pagination-horizontal {
+        top: calc(calc(514px - (75 * ((1440px - 100vw) / (1440 - 375)))) - calc(var(--swiper-navigation-size) / 1.4));
+        left: 0;
+        width: 100%;
+    }
+
+    /* Fraction */
+    .swiper-pagination-fraction {
+        color: black;
+    }
+}
+
+.PopularSliderCardWrapper {
+    // Обёртка карточки слайдера
+    width: calc(295px - (21 * ((1440px - 100vw) / (1440 - 375))));
+    min-width: 274px;
+    max-width: 295px;
+    height: calc(430px - (50 * ((1440px - 100vw) / (1440 - 375))));
+    min-height: 380px;
+    max-height: 430px;
+    margin: 0 $responsiveSmallPadding;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+}
+
+.PopularSliderCardInnerWrapper {
+    // Внутренняя обёртка карточки
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.PopularSliderCardImg {
+    // Изображение карточки
+    // aspect-ratio: 630 / 330; // например, соотношение сторон 21:11
+    position: absolute;
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 3px;
+}
+
+.PopularSliderCardAbsoluteWrapper {
+    // Абсолютная обёртка карточки
+    position: absolute;
+    padding: $responsiveSmallPadding;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.PopularSliderCardButtonWrapper {
+    // Обёртка кнопки карточки
+    display: flex;
+    justify-content: end;
+    margin: 0 0 auto 0;
+}
+
+.PopularSliderCardButton {
+    // Кнопка карточки 
+    padding: 0 $staticButtonLeftAndRightPadding;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: calc(51 / 1440 * 100vw);
+    min-height: 40px;
+    max-height: 51px;
+    border-radius: 51px;
+    font-family: $default-font;
+    font-size: calc(16px - (2 * ((1440px - 100vw) / (1440 - 375))));
+    font-weight: normal;
+    background: white;
+    cursor: pointer;
+}
+
+.PopularSliderCardTitleWrapper {
+    // Обёртка заголовка карточки
+    display: flex;
+    margin: auto 0 0 0;
+}
+
+.PopularSliderCardTitle {
+    // Заголовок карточки
+    color: #fff;
+}
+
+.PopularSliderCardDescriptionWrapper {
+    // Обёртка описания карточки
+    margin: $responsiveSmallPadding 0 0 0;
+    height: calc(calc(16px - (2 * ((1440px - 100vw) / (1440 - 375)))) * 2); // Делаем ограничение вывода текста построчечно
+    overflow: hidden;
+}
+
+.PopularSliderCardDescription {
+    // Описание карточки
+    color: #fff;
+    font-family: $default-font;
+    font-weight: 300;
+    font-size: calc(16px - (2 * ((1440px - 100vw) / (1440 - 375))));
+}
+
+@media (min-width: 1441px) {
+    .PopularSliderContainer {
+        // Контейнер слайдера
+        margin: $staticPcBigPadding $responsiveLeftAndRightPadding 0 $responsiveLeftAndRightPadding;
+    }
+
+    .PopularSliderTopInnerWrapper {
+        // Верхняя часть слайдера
+        padding: 0 0 $staticPcMediumPadding 0;
+    }
+
+    .PopularSliderBottomInnerWrapper {
+        // Нижняя часть слайдера
+
+        @at-root {
+            :root {
+                --swiper-navigation-size: 42px;
+            }
+        }
+
+        .swiper-wrapper {
+            position: relative;
+            margin: 0 0 0 calc(-1 * $staticPcSmallPadding);
+        }
+
+        .swiper-button-prev,
+        .swiper-button-next {
+            position: absolute;
+            top: calc(514px - calc(var(--swiper-navigation-size) / 2));
+        }
+
+        /* Common Styles */
+        .swiper-pagination-fraction,
+        .swiper-pagination-custom,
+        .swiper-horizontal>.swiper-pagination-bullets,
+        .swiper-pagination-bullets.swiper-pagination-horizontal {
+            top: calc(514px - calc(var(--swiper-navigation-size) / 1.4));
+        }
+    }
+
+    .PopularSliderCardWrapper {
+        // Обёртка карточки слайдера
+        margin: 0 $staticPcSmallPadding;
+    }
+
+    .PopularSliderCardAbsoluteWrapper {
+        // Абсолютная обёртка карточки
+        padding: $staticPcSmallPadding;
+    }
+
+    .PopularSliderCardButton {
+        // Кнопка карточки 
+        font-size: 16px;
+    }
+
+    .PopularSliderCardDescriptionWrapper {
+        // Обёртка описания карточки
+        margin: $staticPcSmallPadding 0 0 0;
+        height: calc(16px * 2); // Делаем ограничение вывода текста построчечно
+    }
+
+    .PopularSliderCardDescription {
+        // Описание карточки
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 569px) {
+    .PopularSliderContainer {
+        // Контейнер слайдера
+        margin: $staticMobileBigPadding $responsiveLeftAndRightPadding 0 $responsiveLeftAndRightPadding;
+    }
+
+    .PopularSliderTopInnerWrapper {
+        // Верхняя часть слайдера
+        padding: 0 0 $staticMobileMediumPadding 0;
+    }
+
+    .PopularSliderBottomInnerWrapper {
+        // Нижняя часть слайдера
+
+        @at-root {
+            :root {
+                --swiper-navigation-size: 32px;
+            }
+        }
+
+        .swiper-wrapper {
+            position: relative;
+            margin: 0 0 0 calc(-1 * $staticMobileSmallPadding);
+        }
+
+        .swiper-button-prev,
+        .swiper-button-next {
+            top: calc(439px - calc(var(--swiper-navigation-size) / 2));
+        }
+
+        /* Common Styles */
+        .swiper-pagination-fraction,
+        .swiper-pagination-custom,
+        .swiper-horizontal>.swiper-pagination-bullets,
+        .swiper-pagination-bullets.swiper-pagination-horizontal {
+            top: calc(439px - calc(var(--swiper-navigation-size) / 1.4));
+        }
+    }
+
+    .PopularSliderCardWrapper {
+        // Обёртка карточки слайдера
+        margin: 0 $staticMobileSmallPadding;
+    }
+
+    .PopularSliderCardAbsoluteWrapper {
+        // Абсолютная обёртка карточки
+        padding: $staticMobileSmallPadding;
+    }
+
+    .PopularSliderCardButton {
+        // Кнопка карточки 
+        font-size: 14px;
+    }
+
+    .PopularSliderCardDescriptionWrapper {
+        // Обёртка описания карточки
+        margin: $staticMobileSmallPadding 0 0 0;
+        height: calc(14px * 2); // Делаем ограничение вывода текста построчечно
+    }
+
+    .PopularSliderCardDescription {
+        // Описание карточки
+        font-size: 14px;
+    }
+}

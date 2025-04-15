@@ -1,0 +1,112 @@
+@use '../base/reset.scss';
+@use '../utilities/variables';
+
+.container {
+    width: 100%;
+    height: 100dvh;
+}
+
+.PageContainer {
+    /* Основной контейнер страницы */
+    display: flex;
+    flex-direction: column;
+    margin: variables.$responsiveTopPadding 0 0 0;
+
+    * {
+        font-family: variables.$default-font;
+    }
+}
+
+.PageTitleWrapper {
+    // Контейнер для названия страницы
+    margin: variables.$responsiveBigPadding variables.$responsiveLeftAndRightPadding variables.$responsiveMediumPadding variables.$responsiveLeftAndRightPadding;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+// .PageTitle {
+//     // Заголовок страницы
+//     font-size: calc(42px - (24 * ((1440px - 100vw) / (1440 - 375))));
+// 	font-weight: 600;
+// 	font-size: calc(28px - (10 * ((1440px - 100vw) / (1440 - 375))));
+// 	font-size: 28px;
+// 	text-transform: uppercase;
+//     user-select: none;
+// 	text-align: center;
+// }
+
+.PageSeparatorWrapper {
+    // Контейнер для разделителя
+    margin: calc(23px - (2 * ((1440px - 100vw) / (1440 - 375)))) variables.$responsiveLeftAndRightPadding 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.PageSeparator {
+    // Разделитель
+    width: calc(60px - (40 * ((1440px - 100vw) / (1440 - 375))));
+    height: 1px;
+    background-color: #000;
+    user-select: none;
+}
+
+.PageSubTitleWrapper {
+    // Контейнер для подзаголовка
+    margin: 38px variables.$responsiveLeftAndRightPadding 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.PageSubTitle {
+    // Подзаголовок
+    font-size: 29px;
+    font-weight: 500;
+    text-transform: uppercase;
+    user-select: none;
+}
+
+
+.DescriptionWrapper {
+    // Контейнер для описания
+    margin: 32px auto 0;
+    width: calc(888px - (588 * ((1440px - 100vw) / (1440 - 375))));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Description {
+    // Первое описание
+    font-size: 16px;
+    font-weight: 400;
+    user-select: none;
+    text-align: left;
+}
+
+@media (min-width: 1441px) {
+    .PageContainer {
+        // главный контейнер
+        margin: variables.$staticPcTopPadding 0 0 0;
+    }
+
+    .PageTitleWrapper {
+        /* Контейнер для заголовка страницы */
+        margin: variables.$staticPcBigPadding variables.$responsiveLeftAndRightPadding variables.$staticPcMediumPadding variables.$responsiveLeftAndRightPadding;
+    }
+}
+
+@media (max-width: 569px) {
+    .PageContainer {
+        // главный контейнер
+        margin: variables.$staticMobileTopPadding 0 0 0;
+    }
+
+    .PageSubTitleWrapper {
+        // Контейнер для подзаголовка
+        display: none;
+    }
+}

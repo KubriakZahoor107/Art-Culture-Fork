@@ -1,0 +1,16 @@
+root = true
+
+[*]
+charset = utf-8
+
+[{*.js,*.jsx}]
+indent_style = tab
+indent_size = 4
+quote_type = single
+trim_trailing_whitespace = true
+prettyprint_semicolons = false
+prettyprint_semi = false
+
+[{*.json,*.md,*.yml}]
+indent_style = space
+indent_size = 4

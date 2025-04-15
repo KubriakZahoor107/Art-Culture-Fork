@@ -1,0 +1,108 @@
+@import '/src/styles/utilities/variables.scss';
+
+.mainPage {
+	display: flex;
+	flex-direction: column;
+	background: white;
+	padding: $responsiveTopPadding 0 0 0;
+	width: 100%;
+}
+
+.mainPageWelcomeTitleWrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	align-items: start;
+	margin: $responsiveBigPadding 0 0 0;
+	padding: 0 $responsiveLeftAndRightPadding;
+	font-family: $default-font;
+}
+
+// .welcomeTitle {
+// 	margin: 0;
+// 	font-size: calc(28px - (10 * ((1440px - 100vw) / (1440 - 375))));
+// 	font-weight: 600;
+// }
+
+.welcomeParagraph {
+	overflow: hidden;
+	position: relative;
+	margin: $responsiveSmallPadding 0 0 0;
+	font-size: calc(18px - (4 * ((1440px - 100vw) / (1440 - 375))));
+	text-overflow: ellipsis;
+}
+
+.mainPageWelcomeTitleParagraphLink {
+	color: $red;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.mainPageDescriptionWrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	align-items: center;
+	overflow: hidden;
+	max-height: Calc(calc(calc(18px - (4 * ((1440px - 100vw) / (1440 - 375)))) * 6) - calc(4px - (-3 * ((1440px - 100vw) / (1440 - 375)))));
+	transition: max-height 0.4s ease-in-out;
+
+	&.expanded {
+		max-height: none;
+	}
+}
+
+.mainPageWelcomeTitleParagraphReadMoreButton {
+	margin: $responsiveSmallPadding 0 0 auto;
+	color: $red;
+	font-size: calc(18px - (4 * ((1440px - 100vw) / (1440 - 375))));
+	font-weight: 500;
+	cursor: pointer;
+	background: white;
+}
+
+@media (min-width: 1441px) {
+	.mainPage {
+		padding: $staticPcTopPadding 0 0 0;
+	}
+
+	.mainPageWelcomeTitleWrapper {
+		margin: $staticPcBigPadding 0 0 0;
+	}
+
+	.welcomeTitle {
+		font-size: 28px;
+	}
+
+	.welcomeParagraph {
+		margin: $staticPcSmallPadding 0 0 0;
+		font-size: 18px;
+	}
+
+	.mainPageDescriptionWrapper {
+		max-height: Calc(calc(18px * 6) - 4px);
+	}
+
+	.mainPageWelcomeTitleParagraphReadMoreButton {
+		margin: $staticPcSmallPadding 0 0 auto;
+		font-size: 18px;
+	}
+}
+
+@media (max-width: 569px) {
+	.mainPage {
+		padding: $staticMobileTopPadding 0 0 0;
+	}
+
+	.mainPageWelcomeTitleWrapper {
+		margin: $staticMobileBigPadding 0 0 0;
+	}
+
+	.welcomeParagraph {
+		margin: $staticMobileSmallPadding 0 0 0;
+	}
+
+	.mainPageWelcomeTitleParagraphReadMoreButton {
+		margin: $staticMobileSmallPadding 0 0 auto;
+	}
+}

@@ -1,0 +1,38 @@
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+
+    th,
+    td {
+        padding: 8px;
+        border: 1px solid #ccc;
+    }
+
+    thead {
+        background-color: #f2f2f2;
+
+        th {
+            text-align: center;
+            vertical-align: middle;
+            white-space: nowrap;
+            cursor: pointer;
+
+            .sortable-header {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 5px;
+            }
+        }
+    }
+
+    tbody {
+        tr:last-child {
+            &:empty,
+            &:has(td:empty) {
+                border: none;
+            }
+        }
+    }
+}

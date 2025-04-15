@@ -1,0 +1,350 @@
+@use '/src/styles/components/UserProfile/userProfile.module.scss';
+@import '/src/styles/utilities/variables.scss';
+
+.userProfilePostsWrapper {
+	/* Контейнер для карточек публикаций */
+	margin: $responsiveMediumPadding 0 0 0;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.userProfilePostsPicAndTextWrapper {
+	/* Обертка для изображения и текста публикации */
+	display: flex;
+}
+
+.userProfilePostsPicWrapper {
+	/* Обертка для изображения публикации */
+	display: inline-block;
+	width: fit-content;
+	height: fit-content;
+	max-width: max-content;
+	max-height: max-content;
+}
+
+.userProfilePostsPic {
+	/* Стили для изображения публикации */
+	display: block;
+	object-fit: contain;
+	object-position: center top;
+	border-radius: 10px;
+	max-width: 300px;
+	max-height: 300px;
+}
+
+.userProfilePostsTextWrapper {
+	/* Обертка для текста публикации */
+	margin: 0 0 0 $responsiveMediumPadding;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.userProfilePostsTitleWrapper {
+	/* Обертка для заголовка публикации */
+	display: flex;
+	justify-content: start;
+}
+
+.userProfilePostsTitle {
+	/* Стили для заголовка публикации */
+	font-weight: 600;
+	font-size: calc(28px - (10 * ((1440px - 100vw) / (1440 - 375))));
+}
+
+.userPageLoadingMessage {
+	/* Стили для сообщения о загрузке */
+	margin: $responsiveMediumPadding 0 0 0;
+	font-size: calc(16px - (4 * ((1440px - 100vw) / (1440 - 375))));
+	font-weight: 400;
+}
+
+.userPageErrorMessage {
+	/* Стили для сообщения об ошибке */
+	margin: $responsiveMediumPadding 0 0 0;
+	font-size: calc(16px - (4 * ((1440px - 100vw) / (1440 - 375))));
+	font-weight: 400;
+}
+
+.userProfilePostsDescriptionWrapper {
+	/* Обертка для описания публикации */
+	margin: $responsiveSmallPadding 0 auto 0;
+	display: flex;
+	justify-content: start;
+	max-height: calc(calc(16px - (4 * ((1440px - 100vw) / (1440 - 375)))) * 11); // Делаем ограничение вывода текста построчечно
+	overflow: hidden;
+}
+
+.userProfilePostsDescription {
+	/* Стили для описания публикации */
+	font-weight: 400;
+	font-size: calc(16px - (4 * ((1440px - 100vw) / (1440 - 375))));
+	max-height: calc(calc(16px - (4 * ((1440px - 100vw) / (1440 - 375)))) * 3); // Делаем ограничение вывода текста построчечно
+	overflow: hidden;
+}
+
+.userProfilePostsClockDateAndButtonWrapper {
+	/* Обертка для часов, даты и кнопки */
+	margin: $responsiveSmallPadding 0 auto 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.userProfilePostsClockAndDateWrapper {
+	/* Обертка для часов и даты */
+	margin: $responsiveMediumPadding 0 0 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.userProfilePostsClock {
+	/* Стили для изображения часов */
+	display: flex;
+	width: 20px;
+	height: 20px;
+}
+
+.userProfilePostsDate {
+	/* Стили для даты публикации */
+	margin: 0 0 0 $responsiveSmallPadding;
+	font-weight: 400;
+	font-size: calc(16px - (4 * ((1440px - 100vw) / (1440 - 375))));
+}
+
+.userProfilePostsButton {
+	/* Стили для кнопки публикации */
+	margin: 0 0 0 auto;
+	font-weight: 400;
+	font-size: calc(16px - (4 * ((1440px - 100vw) / (1440 - 375))));
+	background: none;
+	border: none;
+	cursor: pointer;
+	color: $red;
+}
+
+.userProfileDelEditWrapper {
+	/* Обертка для кнопок редактирования и удаления */
+	margin: $responsiveMediumPadding 0 0 auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.userProfileDeleteButton {
+	/* Стили для кнопки редактирования */
+	margin: 0 0 0 $responsiveMediumPadding;
+	padding: 0 $staticButtonLeftAndRightPadding;
+	height: calc(51px - (11 * ((1440px - 100vw) / (1440 - 375))));
+	min-height: 40px;
+	max-height: 51px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid $red;
+	border-radius: calc(34px - (4 * ((1440px - 100vw) / (1440 - 375))));
+	background-color: #fff;
+	color: $red;
+	cursor: pointer;
+}
+
+.modalTitleAndCloseButtonWrapper {
+	/* Обертка для заголовка и кнопки закрытия модального окна */
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.modalTitle {
+	/* Заголовок модального окна */
+	width: 100%;
+	text-align: start;
+	font-size: calc(28px - (4 * ((1440px - 100vw) / (1440 - 375))));
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+.modalForm {
+	/* Обертка для формы */
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.modalFieldImageUploadWrapper {
+	margin: $responsiveMediumPadding 0 0 0;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	.modalFieldImage {
+		display: flex;
+		width: 100%;
+		flex-wrap: nowrap;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+
+		.modalLabelUploadContainer {
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			font-weight: bold;
+			align-items: start;
+			width: 100%;
+		}
+
+		.modalInputImageField {
+			margin: $responsiveSmallPadding 0 0 0;
+			position: relative;
+			width: 100%;
+			font-weight: normal;
+		}
+	}
+}
+
+.modalButtons {
+	/* Обертка для кнопок */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	.modalSaveButton {
+		/* Стили для кнопки сохранения */
+		width: fit-content;
+		max-width: none;
+		margin: $responsiveMediumPadding 0 0 auto;
+		padding: 0 $staticButtonLeftAndRightPadding;
+		height: calc(51px - (11 * ((1440px - 100vw) / (1440 - 375))));
+		min-height: 40px;
+		max-height: 51px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border: none;
+		border-radius: calc(34px - (4 * ((1440px - 100vw) / (1440 - 375))));
+		font-size: calc(16px - (4 * ((1440px - 100vw) / (1440 - 375))));
+		font-weight: 500;
+		background-color: $turquoise;
+		cursor: pointer;
+	}
+}
+
+.currentImage {
+	/* Обертка для изображения */
+	width: 15%;
+	margin-top: $responsiveSmallPadding;
+	border-radius: 10px;
+}
+
+@media (min-width: 1441px) {
+
+	.userProfilePostsWrapper {
+		/* Контейнер для карточек публикаций */
+		margin: $staticPcMediumPadding 0 0 0;
+	}
+
+	.userProfilePostsTextWrapper {
+		/* Обертка для текста публикации */
+		margin: 0 0 0 $staticPcMediumPadding;
+	}
+
+	.userProfilePostsTitle {
+		/* Стили для заголовка публикации */
+		font-size: 28px;
+	}
+
+	.userPageLoadingMessage {
+		/* Стили для сообщения о загрузке */
+		margin: $staticPcMediumPadding 0 0 0;
+		font-size: 16px;
+	}
+
+	.userPageErrorMessage {
+		/* Стили для сообщения об ошибке */
+		margin: $staticPcMediumPadding 0 0 0;
+		font-size: 16px;
+	}
+
+	.userProfilePostsDescriptionWrapper {
+		/* Обертка для описания публикации */
+		margin: $staticPcSmallPadding 0 auto 0;
+		max-height: calc(16px * 11); // Делаем ограничение вывода текста построчечно
+	}
+
+	.userProfilePostsDescription {
+		/* Стили для описания публикации */
+		font-size: 16px;
+	}
+
+	.userProfilePostsClockDateAndButtonWrapper {
+		/* Обертка для часов, даты и кнопки */
+		margin: $staticPcSmallPadding 0 auto 0;
+	}
+
+	.userProfilePostsClockAndDateWrapper {
+		/* Обертка для часов и даты */
+		margin: $staticPcMediumPadding 0 0 0;
+	}
+
+	.userProfilePostsDate {
+		/* Стили для даты публикации */
+		margin: 0 0 0 $staticPcSmallPadding;
+		font-size: 16px;
+	}
+
+	.userProfilePostsButton {
+		/* Стили для кнопки публикации */
+		font-size: 16px;
+	}
+
+	.userProfileDelEditWrapper {
+		/* Обертка для кнопок редактирования и удаления */
+		margin: $staticPcMediumPadding 0 0 auto;
+	}
+
+	.userProfileDeleteButton {
+		/* Стили для кнопки редактирования */
+		margin: 0 0 0 $staticPcMediumPadding;
+		padding: 0 $staticButtonLeftAndRightPadding;
+		border-radius: 34px;
+	}
+
+	.modalTitle {
+		/* Заголовок модального окна */
+		font-size: 28px;
+	}
+
+	.modalFieldImageUploadWrapper {
+		margin: $staticPcMediumPadding 0 0 0;
+
+		.modalInputImageField {
+			margin: $staticPcSmallPadding 0 0 0;
+		}
+	}
+
+	.modalButtons {
+		/* Обертка для кнопок */
+
+		.modalSaveButton {
+			/* Стили для кнопки сохранения */
+			margin: $staticPcMediumPadding 0 0 auto;
+			padding: 0 $staticButtonLeftAndRightPadding;
+			border-radius: 34px;
+			font-size: 16px;
+		}
+	}
+
+	.currentImage {
+		/* Обертка для изображения */
+		margin-top: $staticPcSmallPadding;
+	}
+}
