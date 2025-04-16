@@ -10,5 +10,10 @@ export default defineConfig({
       input: './index.html',
     },
   },
+  html: { // <--- Тепер html на одному рівні з build та іншими опціями
+    parserOptions: {
+      scriptingEnabled: true,
+    },
+  },
   plugins: [react()],
 });
