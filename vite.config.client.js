@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+// import react from '@vitejs/plugin-react'; // Закоментуйте цей рядок
 
 export default defineConfig({
   root: './',
@@ -9,11 +9,11 @@ export default defineConfig({
     rollupOptions: {
       input: './index.html',
     },
-  },
-  html: { // <--- Тепер html на одному рівні з build та іншими опціями
-    parserOptions: {
-      scriptingEnabled: true,
+    html: {
+      parserOptions: {
+        scriptingEnabled: true,
+      },
     },
   },
-  plugins: [react()],
+  plugins: [/* react() */], // Закоментуйте цей рядок або залиште порожнім масив
 });
