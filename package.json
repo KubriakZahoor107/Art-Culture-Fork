@@ -5,8 +5,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "vite --config vite.config.js",
+    "build": "vite build --config vite.config.client.js && vite build --config vite.config.server.js",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "auto-build": "vite build --watch",
     "preview": "vite preview",
