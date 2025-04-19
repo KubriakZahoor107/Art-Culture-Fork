@@ -5,12 +5,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --config vite.config.js",
+    "dev": "vite --config vite.config.client.js",
     "build": "vite build --config vite.config.client.js && vite build --config vite.config.server.js",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "auto-build": "vite build --watch",
-    "preview": "vite preview",
-    "start": "babel-node server/index.js"
+    "preview": "node server/app.js",
+    "start": "node server/app.js",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0"
   },
   "engines": {
     "node": ">=14.0.0"
