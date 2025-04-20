@@ -153,4 +153,11 @@ app.use("*", async (req, res, next) => {
 // Error Handling Middleware
 app.use(errorHandler)
 
+// Запуск SSR‑сервера
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`SSR server listening on http://localhost:${PORT}`);
+});
+
+
 export default app
