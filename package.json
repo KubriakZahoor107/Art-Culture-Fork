@@ -32,6 +32,7 @@
     "leaflet": "^1.9.4",
     "lodash.debounce": "^4.0.8",
     "lodash.isequal": "^4.5.0",
+    "morgan": "^1.10.0",
     "path": "^0.12.7",
     "quill": "^2.0.2",
     "react": "^18.3.1",
