@@ -4,6 +4,8 @@ import express from "express"
 import rateLimit from "express-rate-limit"
 // Оголошення лімітеру запитів
 const limiter = rateLimit({
+  trustProxy: true,
+  trustProxy: true,
   windowMs: 15 * 60 * 1000, // 15 хвилин
   max: 100, // максимум 100 запитів
   standardHeaders: true, // віддає rate limit info в заголовках
@@ -25,7 +27,7 @@ import productRoutes from "./src/routes/productRoutes.js"
 import searchRoutes from "./src/routes/searchRoutes.js"
 import userRoutes from "./src/routes/userRoutes.js"
 import fs from "fs"
-import { load } from "cheerio";
+import * as cheerio from 'cheerio';
 
 dotenv.config()
 
@@ -37,7 +39,6 @@ const __dirname = dirname(__filename)
 const isProd = process.env.NODE_ENV === "production"
 let vite
 
-app.set("trust proxy", true)
 
 app.use(express.json())
 
@@ -120,7 +121,7 @@ app.use("*", async (req, res, next) => {
       render = (await import("../dist/server/entry-server.js")).render
     }
 
-    const { html } = await render()
+    const { html } = await render(req.originalUrl);
 
     const $ = cheerio.load(template)
     $("#root").html(html)
