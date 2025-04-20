@@ -25,7 +25,7 @@ import productRoutes from "./src/routes/productRoutes.js"
 import searchRoutes from "./src/routes/searchRoutes.js"
 import userRoutes from "./src/routes/userRoutes.js"
 import fs from "fs"
-import cheerio from "cheerio"
+import { load } from "cheerio";
 
 dotenv.config()
 
@@ -147,8 +147,8 @@ app.use("*", async (req, res, next) => {
 })
 
 // Route debugging
-console.log("Environment", process.env.NODE_ENV)
-console.log("Client URL", process.env.CLIENT_URL)
+// console.log("Environment", process.env.NODE_ENV)
+// console.log("Client URL", process.env.CLIENT_URL)
 
 // Error Handling Middleware
 app.use(errorHandler)
