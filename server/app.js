@@ -30,6 +30,7 @@ import cheerio from "cheerio"
 dotenv.config()
 
 const app = express()
+app.use(cors());
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
