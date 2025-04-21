@@ -93,6 +93,10 @@ export const getArtTermById = async (req, res, next) => {
         }
 
         id = parseInt(id);
+        if (isNaN(id)) {
+            return res.status(400).json({ error: 'invalid id' });
+        }
+
         const artTerm = await prisma.artTerm.findFirstOrThrow({
             where: {
                 id: id
@@ -119,9 +123,12 @@ export const getPagesArtTerms = async (req, res, next) => {
         let page = req.params.page ?? 1;
         let pageSize = req.params.pageSize ?? 20;
         let search = req.params.search;
-
+        if (isNaN(page) || isNaN(pageSize)) {
+            return res.status(400).json({ error: 'invalid page or pageSize' });
+        }
         page = parseInt(page);
         pageSize = parseInt(pageSize);
+
         if (pageSize > 20) pageSize = 20;
         if (page < 1) page = 1;
         const artTerms = await prisma.artTerm.findMany({
@@ -132,8 +139,8 @@ export const getPagesArtTerms = async (req, res, next) => {
                 description_uk: true,
                 description_en: true,
             },
-            //skip: (page - 1) * pageSize,
-            //take: pageSize,
+            skip: (page - 1) * pageSize,
+            take: pageSize,
         });
 
         res.json({ artTerms })

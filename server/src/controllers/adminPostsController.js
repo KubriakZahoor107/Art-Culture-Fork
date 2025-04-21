@@ -16,7 +16,7 @@ export const getAllAdminPosts = async (req, res, next) => {
         let pageSize = req.params.pageSize ?? 20;
         let orderBy = req.params.orderBy ?? "createdAt";
         let validColumns = [
-            ["createdAt", "desc"], 
+            ["createdAt", "desc"],
             ["title", "asc"],
             ["status", "asc"],
         ];
@@ -30,8 +30,15 @@ export const getAllAdminPosts = async (req, res, next) => {
         if (pageSize > 20) pageSize = 20;
         if (page < 1) page = 1;
         const { authorId, status } = req.query
-        const filter = authorId ? { authorId: parseInt(authorId) } : {}
-
+        const filter = {}
+        if (authorId) {
+            const parsedAuthorId = parseInt(authorId);
+            if (!isNaN(parsedAuthorId)) {
+                filter.authorId = parsedAuthorId;
+            } else {
+                return res.status(400).json({ error: "Invalid authorId" });
+            }
+        }
         const mainQuery = {
             where: { status, ...filter },
             include: {

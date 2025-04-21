@@ -5,7 +5,6 @@ import rateLimit from "express-rate-limit"
 // Оголошення лімітеру запитів
 const limiter = rateLimit({
   trustProxy: true,
-  trustProxy: true,
   windowMs: 15 * 60 * 1000, // 15 хвилин
   max: 100, // максимум 100 запитів
   standardHeaders: true, // віддає rate limit info в заголовках
