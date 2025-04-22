@@ -1,9 +1,8 @@
-import { PrismaClient } from "@prisma/client"
+import prisma from "../../prismaClient"; // Переконайтеся, що шлях правильний
 import fs from "fs"
 import path, { dirname } from "path"
 import { fileURLToPath } from "url"
 import logger from "../utils/logging.js"
-const prisma = new PrismaClient()
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)

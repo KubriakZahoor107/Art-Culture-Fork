@@ -1,9 +1,8 @@
-import { PrismaClient } from "@prisma/client"
+import prisma from "../../prismaClient";
 
-const prisma = new PrismaClient()
 export const searchAuthors = async (req, res, next) => {
   try {
-    const query = req.query.q || ""
+    const query = req.query.q || "";
 
     const authors = await prisma.user.findMany({
       where: {
@@ -21,20 +20,20 @@ export const searchAuthors = async (req, res, next) => {
         images: true,
       },
       take: 10, //Limit request
-    })
-    res.json({ authors })
+    });
+    res.json({ authors });
   } catch (error) {
-    console.error("Error searching for authors:", error)
-    next(error)
+    console.error("Error searching for authors:", error);
+    next(error);
   }
-}
+};
 
 export const searchPainting = async (req, res, next) => {
   try {
-    const query = req.query.q || ""
+    const query = req.query.q || "";
     const authorId = req.params.authorId
       ? parseInt(req.params.authorId, 10)
-      : null
+      : null;
 
     const paintings = await prisma.product.findMany({
       where: {
@@ -63,18 +62,18 @@ export const searchPainting = async (req, res, next) => {
         },
       },
       take: 10, //Limit request
-    })
+    });
 
-    res.json({ paintings })
+    res.json({ paintings });
   } catch (error) {
-    console.error("Error searching for paintings:", error)
-    next(error)
+    console.error("Error searching for paintings:", error);
+    next(error);
   }
-}
+};
 
 export const searchMuseum = async (req, res, next) => {
   try {
-    const query = req.query.q || ""
+    const query = req.query.q || "";
 
     const museums = await prisma.user.findMany({
       where: {
@@ -101,18 +100,18 @@ export const searchMuseum = async (req, res, next) => {
         city: true,
       },
       take: 10, //Limit request
-    })
-    res.json({ museums })
+    });
+    res.json({ museums });
   } catch (error) {
-    console.error("Error searching for museums:", error)
-    next(error)
+    console.error("Error searching for museums:", error);
+    next(error);
   }
-}
+};
 
 // controllers/searchController.js
 export const searchAll = async (req, res, next) => {
   try {
-    const query = req.query.q || ""
+    const query = req.query.q || "";
 
     // Search for authors (fixing the typo: "contains" instead of "contain")
     const searchAllAuthors = await prisma.user.findMany({
@@ -132,7 +131,7 @@ export const searchAll = async (req, res, next) => {
         role: true,
       },
       take: 10,
-    })
+    });
 
     // Search for products (remove reference to undefined museumId)
     const searchAllProduct = await prisma.product.findMany({
@@ -162,7 +161,7 @@ export const searchAll = async (req, res, next) => {
         },
       },
       take: 10,
-    })
+    });
 
     const searchAllPosts = await prisma.post.findMany({
       where: {
@@ -180,7 +179,7 @@ export const searchAll = async (req, res, next) => {
         images: true,
       },
       take: 10,
-    })
+    });
 
     const searchAllExhibitions = await prisma.exhibition.findMany({
       include: {
@@ -206,16 +205,16 @@ export const searchAll = async (req, res, next) => {
       orderBy: {
         createdAt: "desc",
       },
-    })
+    });
 
     res.json({
       searchAllAuthors,
       searchAllProduct,
       searchAllPosts,
       searchAllExhibitions,
-    })
+    });
   } catch (error) {
-    console.error("error in searchAll", error)
-    next(error)
+    console.error("error in searchAll", error);
+    next(error);
   }
 }

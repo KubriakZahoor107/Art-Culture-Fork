@@ -1,7 +1,5 @@
-import { PrismaClient } from "@prisma/client"
+import prisma from "../../prismaClient"; // Переконайтеся, що шлях правильний
 import { validationResult } from "express-validator"
-
-const prisma = new PrismaClient()
 
 export const getAllUsers = async (req, res, next) => {
   try {

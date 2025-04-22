@@ -1,7 +1,16 @@
 import { PrismaClient } from "@prisma/client"
 import jwt from "jsonwebtoken"
 
-const prisma = new PrismaClient()
+let prisma;
+
+if (process.env.NODE_ENV === 'production') {
+  prisma = new PrismaClient();
+} else {
+  if (!global.prisma) {
+    global.prisma = new PrismaClient();
+  }
+  prisma = global.prisma;
+}
 
 const authenticateToken = async (req, res, next) => {
   const authHeader = req.headers["authorization"]
