@@ -4,10 +4,16 @@
 	"main": "index.js",
 	"license": "MIT",
 	"type": "module",
+	"prisma": {
+		"schema": "prisma/schema.prisma"
+	},
 	"scripts": {
 		"start": "node index.js",
 		"dev": "nodemon index.js",
-		"prisma": "prisma"
+		"prisma": "prisma",
+		"generate": "prisma generate",
+		"migrate": "prisma migrate dev",
+		"studio": "prisma studio"
 	},
 	"dependencies": {
 		"@prisma/client": "^5.19.1",
@@ -31,5 +37,8 @@
 		"http-proxy-middleware": "^3.0.0",
 		"morgan": "^1.10.0",
 		"nodemon": "^3.1.4"
+	},
+	"engines": {
+		"node": ">=18.0.0"
 	}
 }

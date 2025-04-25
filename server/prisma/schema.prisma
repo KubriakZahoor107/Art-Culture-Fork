@@ -1,3 +1,4 @@
+// schema.prisma
 generator client {
   provider = "prisma-client-js"
 }
@@ -8,32 +9,54 @@ datasource db {
   shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
+enum Role {
+  USER
+  ADMIN
+  MUSEUM
+  CREATOR
+  EDITOR
+  AUTHOR
+  EXHIBITION
+}
+
+enum PostStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum ProductStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
 model User {
   id                 Int                 @id @default(autoincrement())
   email              String              @unique
   password           String
-  role               Role                @default(USER)
-  images             String?
-  title              String?
-  bio                String?
-  createdAt          DateTime            @default(now())
-  updatedAt          DateTime            @updatedAt
-  country            String?
-  house_number       String?
-  lat                Float?
-  lon                Float?
-  postcode           String?
-  state              String?
-  street             String?
-  city               String?
+  userRole           Role                @default(USER) @map("role")
+  images             String?             @db.VarChar(255)
+  title              String?             @db.VarChar(255)
+  bio                String?             @db.Text
+  createdAt          DateTime            @default(now()) @map("created_at")
+  updatedAt          DateTime            @updatedAt @map("updated_at")
+  country            String?             @db.VarChar(100)
+  houseNumber        String?             @map("house_number") @db.VarChar(50)
+  lat                Float?              @db.Float
+  lon                Float?              @db.Float
+  postcode           String?             @db.VarChar(20)
+  state              String?             @db.VarChar(100)
+  street             String?             @db.VarChar(255)
+  city               String?             @db.VarChar(100)
   artTerms           ArtTerm[]
   createdExhibitions Exhibition[]        @relation("UserCreatedExhibitions")
   exhibitionArtists  ExhibitionArtist[]
   posts              Post[]
   products           Product[]
-  museum_logo_image  museum_logo_images? @relation("UserMuseumLogo")
+  museumLogoImage    museum_logo_images? @relation("UserMuseumLogo")
   museumExhibition   Exhibition[]        @relation("MuseumExhibition")
-  museumProducts     Product[]           @relation("MuseumProducts") // New relation
+  museumProducts     Product[]           @relation("MuseumProducts")
   likesReceived      Like[]              @relation("LikesReceived")
   likesGiven         Like[]              @relation("LikesGiven")
 
@@ -42,15 +65,15 @@ model User {
 
 model Post {
   id           Int        @id @default(autoincrement())
-  title_en     String     @db.VarChar(250)
-  title_uk     String     @db.VarChar(250)
-  content_en   String     @db.VarChar(5000)
-  content_uk   String     @db.VarChar(5000)
+  titleEn      String     @map("title_en") @db.VarChar(250)
+  titleUk      String     @map("title_uk") @db.VarChar(250)
+  contentEn    String     @map("content_en") @db.VarChar(5000)
+  contentUk    String     @map("content_uk") @db.VarChar(5000)
   authorId     Int        @map("author_id")
   creatorId    Int?       @map("creator_id")
   museumId     Int?       @map("museum_id")
   exhibitionId Int?       @map("exhibition_id")
-  images       String?
+  images       String?    @db.VarChar(255)
   createdAt    DateTime   @default(now()) @map("created_at")
   updatedAt    DateTime   @updatedAt @map("updated_at")
   author       User       @relation(fields: [authorId], references: [id])
@@ -60,28 +83,22 @@ model Post {
   @@index([authorId], map: "Post_author_id_fkey")
 }
 
-enum PostStatus {
-  PENDING
-  APPROVED
-  REJECTED
-}
-
 model Product {
   id             Int                 @id @default(autoincrement())
-  title_en       String              @db.VarChar(100)
-  title_uk       String              @db.VarChar(100)
-  description_en String              @db.VarChar(1000)
-  description_uk String              @db.VarChar(1000)
-  specs_en       String?             @db.VarChar(500)
-  specs_uk       String?             @db.VarChar(500)
+  titleEn        String              @map("title_en") @db.VarChar(100)
+  titleUk        String              @map("title_uk") @db.VarChar(100)
+  descriptionEn  String              @map("description_en") @db.VarChar(1000)
+  descriptionUk  String              @map("description_uk") @db.VarChar(1000)
+  specsEn        String?             @map("specs_en") @db.VarChar(500)
+  specsUk        String?             @map("specs_uk") @db.VarChar(500)
   size           String?             @db.VarChar(100)
-  style_en       String?             @db.VarChar(100)
-  style_uk       String?             @db.VarChar(100)
-  technique_en   String?             @db.VarChar(100)
-  technique_uk   String?             @db.VarChar(100)
+  styleEn        String?             @map("style_en") @db.VarChar(100)
+  styleUk        String?             @map("style_uk") @db.VarChar(100)
+  techniqueEn    String?             @map("technique_en") @db.VarChar(100)
+  techniqueUk    String?             @map("technique_uk") @db.VarChar(100)
   dateofcreation String?             @db.VarChar(100)
-  createdAt      DateTime            @default(now())
-  updatedAt      DateTime            @updatedAt
+  createdAt      DateTime            @default(now()) @map("created_at")
+  updatedAt      DateTime            @updatedAt @map("updated_at")
   authorId       Int
   museumId       Int?
   artTerms       ArtTerm[]
@@ -96,15 +113,9 @@ model Product {
   @@index([authorId], map: "Product_authorId_fkey")
 }
 
-enum ProductStatus {
-  PENDING
-  APPROVED
-  REJECTED
-}
-
 model ProductImage {
   id        Int     @id @default(autoincrement())
-  imageUrl  String
+  imageUrl  String  @db.VarChar(255)
   productId Int
   product   Product @relation("ProductImages", fields: [productId], references: [id])
 
@@ -113,34 +124,33 @@ model ProductImage {
 
 model Exhibition {
   id             Int      @id @default(autoincrement())
-  startDate      DateTime
-  endDate        DateTime
-  time           String?  @db.VarChar(200)
-  createdById    Int
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-  description_en String?  @db.VarChar(500)
-  description_uk String?  @db.VarChar(500)
-  location_en    String?  @db.VarChar(500)
-  location_uk    String?  @db.VarChar(500)
-  title_en       String?  @db.VarChar(150)
-  title_uk       String?  @db.VarChar(150)
-  address        String?
-  role           String?
-  email          String?
-  title          String?
-  bio            String?
-
-  latitude          Float?
-  longitude         Float?
-  endTime           String?             @db.VarChar(200)
-  createdBy         User                @relation("UserCreatedExhibitions", fields: [createdById], references: [id])
+  startDate      DateTime @map("start_date")
+  endDate        DateTime @map("end_date")
+  time           String?  @map("time") @db.VarChar(200)
+  createdById    Int      @map("created_by_id")
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+  descriptionEn  String?  @map("description_en") @db.VarChar(500)
+  descriptionUk  String?  @map("description_uk") @db.VarChar(500)
+  locationEn     String?  @map("location_en") @db.VarChar(500)
+  locationUk     String?  @map("location_uk") @db.VarChar(500)
+  titleEn        String?  @map("title_en") @db.VarChar(150)
+  titleUk        String?  @map("title_uk") @db.VarChar(150)
+  address        String?  @db.VarChar(255)
+  role           String?  @db.VarChar(100)
+  email          String?  @db.VarChar(255)
+  title          String?  @db.VarChar(255)
+  bio            String?  @db.Text
+  latitude       Float?   @db.Float
+  longitude      Float?   @db.Float
+  endTime        String?  @map("end_time") @db.VarChar(200)
+  createdBy      User     @relation("UserCreatedExhibitions", fields: [createdById], references: [id])
   exhibitionArtists ExhibitionArtist[]
-  images            ExhibitionImage[]   @relation("ExhibitionsImages")
-  museumId          Int?
-  museum            User?               @relation("MuseumExhibition", fields: [museumId], references: [id])
-  products          ExhibitionProduct[]
-  likes             Like[]
+  images         ExhibitionImage[] @relation("ExhibitionsImages")
+  museumId       Int?
+  museum         User?    @relation("MuseumExhibition", fields: [museumId], references: [id])
+  products       ExhibitionProduct[]
+  likes          Like[]
 
   @@index([createdById], map: "Exhibition_createdById_fkey")
   @@index([museumId], map: "Exhibition_museumId_fkey")
@@ -158,7 +168,7 @@ model ExhibitionProduct {
 
 model ExhibitionImage {
   id           Int        @id @default(autoincrement())
-  imageUrl     String
+  imageUrl     String     @db.VarChar(255)
   exhibitionId Int
   exhibition   Exhibition @relation("ExhibitionsImages", fields: [exhibitionId], references: [id], onDelete: Cascade)
 
@@ -177,12 +187,12 @@ model ExhibitionArtist {
 
 model ArtTerm {
   id                   Int      @id @default(autoincrement())
-  title_en             String   @db.VarChar(100)
-  title_uk             String   @db.VarChar(100)
-  description_en       String   @db.VarChar(350)
-  description_uk       String   @db.VarChar(350)
-  content_en           String   @db.Text
-  content_uk           String   @db.Text
+  titleEn             String   @map("title_en") @db.VarChar(100)
+  titleUk             String   @map("title_uk") @db.VarChar(100)
+  descriptionEn       String   @map("description_en") @db.VarChar(350)
+  descriptionUk       String   @map("description_uk") @db.VarChar(350)
+  contentEn           String   @map("content_en") @db.Text
+  contentUk           String   @map("content_uk") @db.Text
   authorId             Int      @map("author_id")
   highlightedProductId Int      @map("highlighted_product_id")
   createdAt            DateTime @default(now()) @map("created_at")
@@ -196,7 +206,7 @@ model ArtTerm {
 
 model museum_logo_images {
   id       Int    @id @default(autoincrement())
-  imageUrl String
+  imageUrl String @db.VarChar(255)
   userId   Int    @unique
   user     User   @relation("UserMuseumLogo", fields: [userId], references: [id])
 
@@ -210,7 +220,7 @@ model Like {
   productId    Int?
   exhibitionId Int?
   likedUserId  Int?
-  createdAt    DateTime @default(now())
+  createdAt    DateTime @default(now()) @map("created_at")
 
   user       User        @relation("LikesGiven", fields: [userId], references: [id])
   post       Post?       @relation(fields: [postId], references: [id])
@@ -225,12 +235,3 @@ model Like {
   @@index([likedUserId])
 }
 
-enum Role {
-  USER
-  ADMIN
-  MUSEUM
-  CREATOR
-  EDITOR
-  AUTHOR
-  EXHIBITION
-}
