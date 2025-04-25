@@ -1,4 +1,4 @@
-import prisma from "../../server/prismaClient";
+import prisma from "../../prismaClient.js";
 import { body, validationResult } from "express-validator"
 import authenticateToken from "../middleware/authMiddleware.js"
 import authorize from "../middleware/roleMIddleware.js"
