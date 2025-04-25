@@ -1,4 +1,4 @@
-import prisma from "../../prismaClient"
+import prisma from "../../prismaClient.js"
 
 const userSchema = new prisma.Schema(
   {

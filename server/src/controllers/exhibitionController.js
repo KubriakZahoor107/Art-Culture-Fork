@@ -1,4 +1,4 @@
-import prisma from "../../prismaClient"; // Переконайтеся, що шлях правильний
+import prisma from "../../prismaClient.js"; // Переконайтеся, що шлях правильний
 import fs from "fs"
 import path, { dirname } from "path"
 import { fileURLToPath } from "url"

@@ -1,4 +1,4 @@
-import prisma from "../../prismaClient";
+import prisma from "../../prismaClient.js";
 import { validationResult } from "express-validator";
 import fs from "fs";
 import path, { dirname } from "path";
