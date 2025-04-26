@@ -1,180 +1,182 @@
-import cors from "cors"
-import dotenv from "dotenv"
-import express from "express"
-import rateLimit from "express-rate-limit"
-// Оголошення лімітеру запитів
-const limiter = rateLimit({
-  trustProxy: true,
-  windowMs: 15 * 60 * 1000, // 15 хвилин
-  max: 100, // максимум 100 запитів
-  standardHeaders: true, // віддає rate limit info в заголовках
-  legacyHeaders: false, // вимикає X-RateLimit-* заголовки
-})
-import helmet from "helmet"
-import morgan from "morgan"
-import path, { dirname } from "path"
-import { fileURLToPath } from "url"
-import errorHandler from "./src/middleware/errorHandler.js"
-import adminRoutes from "./src/routes/adminRoutes.js"
-import artTermsRoutes from "./src/routes/artTermsRoutes.js"
-import authRoutes from "./src/routes/authRoutes.js"
-import exhibitionRoutes from "./src/routes/exhibitionRoutes.js"
-import geoRoutes from "./src/routes/geoRoutes.js"
-import likeRoutes from "./src/routes/likeRoutes.js"
-import postRoutes from "./src/routes/postRoutes.js"
-import productRoutes from "./src/routes/productRoutes.js"
-import searchRoutes from "./src/routes/searchRoutes.js"
-import userRoutes from "./src/routes/userRoutes.js"
-import fs from "fs"
-import * as cheerio from 'cheerio';
+import crypto from "crypto";
+import cors from "cors";
+import dotenv from "dotenv";
+import express from "express";
+import rateLimit from "express-rate-limit";
+import helmet from "helmet";
+import morgan from "morgan";
+import path, { dirname } from "path";
+import { fileURLToPath } from "url";
+import fs from "fs";
+import * as cheerio from "cheerio";
 
-dotenv.config()
+import errorHandler from "./src/middleware/errorHandler.js";
+import adminRoutes from "./src/routes/adminRoutes.js";
+import artTermsRoutes from "./src/routes/artTermsRoutes.js";
+import authRoutes from "./src/routes/authRoutes.js";
+import exhibitionRoutes from "./src/routes/exhibitionRoutes.js";
+import geoRoutes from "./src/routes/geoRoutes.js";
+import likeRoutes from "./src/routes/likeRoutes.js";
+import postRoutes from "./src/routes/postRoutes.js";
+import productRoutes from "./src/routes/productRoutes.js";
+import searchRoutes from "./src/routes/searchRoutes.js";
+import userRoutes from "./src/routes/userRoutes.js";
 
-const app = express()
+dotenv.config();
+
+const app = express();
+
+// CORS для всіх маршрутів
 app.use(cors());
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
-const isProd = process.env.NODE_ENV === "production"
-let vite
+// Лімітер запитів (100 запитів на 15 хвилин)
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+app.use(limiter);
 
+// Логування запитів
+app.use(morgan("combined"));
 
-app.use(express.json())
+// Розбір JSON-тіла
+app.use(express.json());
 
-// Безпека HTTP-заголовків з CSP
-app.use(
+// Створення __dirname для ESM
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Прапор продакшн
+const isProd = process.env.NODE_ENV === "production";
+
+// Кожен запит отримує свій nonce
+app.use((req, res, next) => {
+  res.locals.cspNonce = crypto.randomBytes(16).toString("base64");
+  next();
+});
+
+// Безпека HTTP-заголовків через Helmet: CSP + HSTS + інші
+app.use((req, res, next) => {
   helmet({
-    // Увімкнути Content Security Policy
+    // HSTS: примусовий HTTPS на 1 рік і включно з піддоменами
+    hsts: {
+      maxAge: 31536000,
+      includeSubDomains: true,
+      preload: true,
+    },
     contentSecurityPolicy: {
       useDefaults: true,
       directives: {
         defaultSrc: ["'self'"],
-        scriptSrc: ["'self'", "https://cdn.jsdelivr.net"],
-        styleSrc: ["'self'", "'unsafe-inline'"],
+        scriptSrc: [
+          "'self'",
+          (req, res) => `'nonce-${res.locals.cspNonce}'`
+        ],
+        styleSrc: [
+          "'self'",
+          (req, res) => `'nonce-${res.locals.cspNonce}'`
+        ],
         imgSrc: ["'self'", "data:"],
-        connectSrc: ["'self'", "https://api.playukraine.com"],
+        connectSrc: ["'self'", "https://api.playukraine.com", "ws://localhost:*"],
+        // додайте інші директиви за потребою
       },
     },
-    // Заборонити вставку в <iframe>
-    frameguard: { action: 'deny' },
-    // Налаштування Referrer-Policy
-    referrerPolicy: { policy: 'no-referrer' },
-    // (За бажанням) HSTS:
-    // hsts: { maxAge: 31536000, includeSubDomains: true },
-  })
-)
+    frameguard: { action: "deny" },
+    referrerPolicy: { policy: "no-referrer" },
+  })(req, res, next);
+});
 
-app.use(
-  cors({
-    /* ... */
-  }),
-)
-app.use(limiter)
-app.use(morgan("combined"))
-app.use(express.json())
-if (process.env.NODE_ENV === "production") {
-  app.use((req, res, next) => {
-    /* ... */
-  })
-}
-app.use("/uploads", express.static(path.join(__dirname, "uploads")))
+// Статика для завантажених файлів
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(
   "/uploads/profileImages",
-  express.static(path.join(__dirname, "uploads/profileImages")),
-)
+  express.static(path.join(__dirname, "uploads/profileImages"))
+);
 
-// API Routes
-app.use("/api/auth", authRoutes)
-app.use("/api/posts", postRoutes)
-app.use("/api/admin", adminRoutes)
-app.use("/api/products", productRoutes)
-app.use("/api/users", userRoutes)
-app.use("/api/posts/postId", postRoutes)
-app.use("/api/exhibitions", exhibitionRoutes)
-app.use("/api/art-terms", artTermsRoutes)
-app.use("/api/search", searchRoutes)
-app.use("/api/geo", geoRoutes)
-app.use("/api/like", likeRoutes)
+// API-маршрути
+app.use("/api/auth", authRoutes);
+app.use("/api/posts", postRoutes);
+app.use("/api/admin", adminRoutes);
+app.use("/api/products", productRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/exhibitions", exhibitionRoutes);
+app.use("/api/art-terms", artTermsRoutes);
+app.use("/api/search", searchRoutes);
+app.use("/api/geo", geoRoutes);
+app.use("/api/like", likeRoutes);
 
-// SSR Logic
+// SSR-логіка
+let vite;
 if (!isProd) {
-  const { createServer } = await import("vite")
+  const { createServer } = await import("vite");
   vite = await createServer({
-    server: { middlewareMode: true },
+    server: { middlewareMode: "ssr" },
     appType: "custom",
-  })
-  app.use(vite.middlewares)
+  });
+  app.use(vite.middlewares);
 } else {
   app.use(
     express.static(path.resolve(__dirname, "../dist/client"), {
       index: false,
-    }),
-  )
+    })
+  );
 }
 
 app.use("*", async (req, res, next) => {
-  const url = req.originalUrl
-
-  if (url.startsWith("/api/")) {
-    return next() // Пропускаємо API-запити для обробки SSR
-  }
+  const url = req.originalUrl;
+  if (url.startsWith("/api/")) return next();
 
   try {
-    let template, render
-
+    let template, render;
     if (!isProd) {
-      template = fs.readFileSync(
-        path.resolve(__dirname, "../index.html"),
-        "utf-8",
-      )
-      template = await vite.transformIndexHtml(url, template)
-      render = (await vite.ssrLoadModule("/src/entry-server.jsx")).render
+      template = fs.readFileSync(path.resolve(__dirname, "../index.html"), "utf-8");
+      template = await vite.transformIndexHtml(url, template);
+      render = (await vite.ssrLoadModule("/src/entry-server.jsx")).render;
     } else {
       template = fs.readFileSync(
         path.resolve(__dirname, "../dist/client/index.html"),
-        "utf-8",
-      )
-      render = (await import("../dist/server/entry-server.js")).render
+        "utf-8"
+      );
+      render = (await import("../dist/server/entry-server.js")).render;
     }
 
     const { html } = await render(req.originalUrl);
+    const $ = cheerio.load(template);
 
-    const $ = cheerio.load(template)
-    $("#root").html(html)
+    // Вставити SSR-вміст
+    $("#root").html(html);
 
+    // Додати клієнтський скрипт із nonce
     if (isProd) {
       const manifest = JSON.parse(
         fs.readFileSync(
           path.resolve(__dirname, "../dist/client/manifest.json"),
-          "utf-8",
-        ),
-      )
-      const clientEntry = Object.values(manifest).find((entry) => entry.isEntry)
-      const clientScript = clientEntry.file
-      $("body").append(`<script type="module" src="/${clientScript}"></script>`)
+          "utf-8"
+        )
+      );
+      const clientEntry = Object.values(manifest).find((e) => e.isEntry).file;
+      $("body").append(
+        `<script nonce="${res.locals.cspNonce}" type="module" src="/${clientEntry}"></script>`
+      );
     }
 
-    const finalHtml = $.html()
-    res.status(200).set({ "Content-Type": "text/html" }).end(finalHtml)
+    res.status(200).set({ "Content-Type": "text/html" }).end($.html());
   } catch (e) {
-    vite?.ssrFixStacktrace(e)
-    console.error(e)
-    res.status(500).end(e.message)
+    vite?.ssrFixStacktrace?.(e);
+    console.error(e);
+    res.status(500).end(e.message);
   }
-})
+});
 
-// Route debugging
-// console.log("Environment", process.env.NODE_ENV)
-// console.log("Client URL", process.env.CLIENT_URL)
+// Обробник помилок
+app.use(errorHandler);
 
-// Error Handling Middleware
-app.use(errorHandler)
-
-// Запуск SSR‑сервера
+// Запуск сервера
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`SSR server listening on http://localhost:${PORT}`);
 });
 
-
-export default app
+export default app;
