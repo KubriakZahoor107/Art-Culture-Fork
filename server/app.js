@@ -41,12 +41,29 @@ let vite
 
 app.use(express.json())
 
-// Security HTTP headers
+// Безпека HTTP-заголовків з CSP
 app.use(
   helmet({
-    /* ... */
-  }),
+    // Увімкнути Content Security Policy
+    contentSecurityPolicy: {
+      useDefaults: true,
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "https://cdn.jsdelivr.net"],
+        styleSrc: ["'self'", "'unsafe-inline'"],
+        imgSrc: ["'self'", "data:"],
+        connectSrc: ["'self'", "https://api.playukraine.com"],
+      },
+    },
+    // Заборонити вставку в <iframe>
+    frameguard: { action: 'deny' },
+    // Налаштування Referrer-Policy
+    referrerPolicy: { policy: 'no-referrer' },
+    // (За бажанням) HSTS:
+    // hsts: { maxAge: 31536000, includeSubDomains: true },
+  })
 )
+
 app.use(
   cors({
     /* ... */
