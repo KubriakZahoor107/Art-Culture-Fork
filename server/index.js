@@ -5,6 +5,9 @@ const { render } = await import('../dist/server/entry-server.js')
 export default async function handler(req, res) {
   try {
     const url = req.url || '/'
+
+    // ⬇️ SSR-рендер імпортується динамічно всередині функції
+    const { render } = await import('../dist/server/entry-server.js')
     const { html } = await render(url)
 
     res.statusCode = 200
