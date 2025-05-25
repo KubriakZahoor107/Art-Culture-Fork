@@ -2,10 +2,6 @@ import { createRequire } from 'module'
 const require = createRequire(import.meta.url)
 const { render } = await import('../dist/server/entry-server.js')
 
-export const config = {
-  runtime: 'nodejs'
-}
-
 export default async function handler(req, res) {
   try {
     const url = req.url || '/'
