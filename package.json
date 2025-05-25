@@ -35,6 +35,8 @@
     "nodemailer": "^6.10.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-router": "^7.6.0",
+    "react-router-dom": "^7.6.0",
     "sharp": "^0.34.1",
     "vite": "^4.4.9",
     "winston": "^3.17.0"

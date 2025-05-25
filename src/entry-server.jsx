@@ -1,18 +1,27 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server'
+import { createRequire } from 'module'
+const require = createRequire(import.meta.url)
+const { StaticRouter } = require('react-router/server')
+
 import App from './App'
 import Head from './components/Head'
 import { metaData } from './meta/index.js'
 
 export async function render(url) {
-	const route = url === '/' ? 'home' : url.replace('/', '')
-	const meta = metaData[route] || metaData['home']
+  const route = url === '/' ? 'home' : url.replace('/', '')
+  const meta = metaData[route] || metaData['home']
 
-	const appHtml = renderToString(<App />)
-	const headTags = Head(meta)
+  const appHtml = renderToString(
+    <StaticRouter location={url}>
+      <App />
+    </StaticRouter>
+  )
 
-	return {
-		html: `
+  const headTags = Head(meta)
+
+  return {
+    html: `
       <!DOCTYPE html>
       <html lang="uk">
         <head>
@@ -25,5 +34,5 @@ export async function render(url) {
         </body>
       </html>
     `,
-	}
+  }
 }
