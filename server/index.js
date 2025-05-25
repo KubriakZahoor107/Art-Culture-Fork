@@ -24,8 +24,9 @@ export default async function handler(req, res) {
     res.end(html)
   } catch (err) {
     console.error('❌ SSR handler failed:', err)
+
     res.statusCode = 500
     res.setHeader('Content-Type', 'text/plain')
-    res.end('Internal Server Error')
+    res.end(`Internal Server Error:\n${err.message}\n${err.stack}`)
   }
 }
