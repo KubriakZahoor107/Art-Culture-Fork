@@ -11,5 +11,6 @@
       "src": "/(.*)",
       "dest": "server/index.js"
     }
-  ]
+  ],
+  "outputDirectory": "dist/server"
 }
