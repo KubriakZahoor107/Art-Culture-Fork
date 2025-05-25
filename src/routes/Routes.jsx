@@ -53,6 +53,8 @@ const AppRouter = () => {
 				<Login />
 				<SignUp />
 			</Routes>
+			<Route path="/main-page" element={<MainPage />} />
+
 			<Footer />
 		</BrowserRouter>
 	)
