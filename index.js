@@ -1,4 +1,3 @@
-
 import { PrismaClient } from "@prisma/client"
 import dotenv from "dotenv"
 import express from "express"
@@ -13,7 +12,7 @@ dotenv.config()
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 3000
 const prisma = new PrismaClient()
 const isProd = process.env.NODE_ENV === "production"
 
@@ -34,9 +33,6 @@ async function setupSSR(app) {
 
         const { render } = await vite.ssrLoadModule("/src/entry-server.jsx")
         const { html } = await render(url)
-
-        // SSR already returns full HTML
-        // const html = template.replace(`<!--ssr-outlet-->`, appHtml)
         res.status(200).set({ "Content-Type": "text/html" }).end(html)
       } catch (e) {
         vite.ssrFixStacktrace(e)
@@ -56,8 +52,6 @@ async function setupSSR(app) {
       try {
         const url = req.originalUrl
         const { html } = await render(url)
-        // SSR already returns full HTML
-        // const html = template.replace(`<!--ssr-outlet-->`, appHtml)
         res.status(200).set({ "Content-Type": "text/html" }).end(html)
       } catch (e) {
         console.error("SSR error:", e)
@@ -69,15 +63,19 @@ async function setupSSR(app) {
 
 async function startServer() {
   try {
-    await prisma.$connect()
-    console.log("✅ Connected to the database")
+    if (process.env.DATABASE_URL) {
+      await prisma.$connect()
+      console.log("✅ Connected to the database")
+    } else {
+      console.log("⚠️ DATABASE_URL not found — skipping DB connection")
+    }
 
     await setupSSR(app)
 
     app.use("/uploads", express.static(path.join(__dirname, "./uploads")))
 
     app.listen(PORT, () => {
-      console.log(`🚀 Server running in ${process.env.NODE_ENV || "development"} mode on http://localhost:${PORT}`)
+      console.log(`🚀 SSR server listening on http://localhost:${PORT}`)
     })
   } catch (error) {
     console.error("❌ Error starting server:", error)
