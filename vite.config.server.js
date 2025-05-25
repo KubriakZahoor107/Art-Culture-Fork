@@ -1,15 +1,23 @@
+import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import path from 'path'
 
-export default {
-  plugins: [react()],
+export default defineConfig({
   build: {
-    ssr: 'src/entry-server.jsx',
+    ssr: true,
     outDir: 'dist/server',
     rollupOptions: {
-      external: ['react-router', 'react-router-dom'],
+      input: './src/entry-server.jsx',
       output: {
-        entryFileNames: 'entry-server.js'
+        entryFileNames: 'entry-server.js' // <--- ось це додає .js замість .mjs
       }
+    },
+    emptyOutDir: false
+  },
+  plugins: [react()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src')
     }
   }
-}
+})

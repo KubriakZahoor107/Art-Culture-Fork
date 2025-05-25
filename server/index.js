@@ -9,6 +9,7 @@ export default async function handler(req, res) {
 
     const { render } = await import('../dist/server/entry-server.js')
 
+
     if (!render || typeof render !== 'function') {
       throw new Error('❌ "render" is not a function or missing from entry-server.js')
     }

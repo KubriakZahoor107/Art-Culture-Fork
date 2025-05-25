@@ -6,7 +6,10 @@
       "use": "@vercel/node",
       "config": {
         "includeFiles": [
-          "dist/server/**"
+          "dist/server/**",
+          "dist/client/**",
+          "node_modules/@prisma/client/**",
+          "index.html"
         ]
       }
     }
