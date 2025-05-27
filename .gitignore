@@ -1,27 +1,37 @@
+# ────────────────────────────────────────────────────────────
+# macOS Finder
 .DS_Store
+
+# ────────────────────────────────────────────────────────────
 # Logs
-logs
+logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
-yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# ────────────────────────────────────────────────────────────
+# Dependency directories
+node_modules/
+
+# ────────────────────────────────────────────────────────────
+# Build outputs
+dist/
+dist-ssr/
+
+# ────────────────────────────────────────────────────────────
+# Local env files
 *.local
 
-
-
-# Editor directories and files
-.vscode/*
+# ────────────────────────────────────────────────────────────
+# IDEs and editors
+.vscode/
 !.vscode/extensions.json
-.idea
-.DS_Store
+.idea/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
