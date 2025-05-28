@@ -1,21 +1,25 @@
 {
+  "name": "art-culture-next-ssr",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "vike dev",
-    "build": "vike build",
-    "preview": "vike preview"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "preview": "next preview"
   },
   "dependencies": {
-    "@vitejs/plugin-react": "^4.5.0",
+    "next": "^15.3.2",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "vike-react": "^0.6.3"
+    "react-dom": "^19.1.0"
   },
   "devDependencies": {
     "@types/react": "^19.1.5",
     "@types/react-dom": "^19.1.5",
     "typescript": "^5.8.3",
-    "vike": "^0.4.230",
-    "vite": "^6.3.5"
-  },
-  "type": "module"
+    "eslint": "^8.0.0",
+    "eslint-config-next": "latest"
+  }
 }

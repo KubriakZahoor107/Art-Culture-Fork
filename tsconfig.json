@@ -1,28 +1,49 @@
 {
   "compilerOptions": {
-    "strict": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "sourceMap": true,
-    "module": "ESNext",
-    "noEmit": true,
-    "moduleResolution": "Bundler",
     "target": "ES2022",
     "lib": [
       "DOM",
       "DOM.Iterable",
       "ESNext"
     ],
-    "types": [
-      "vite/client",
-      "vike-react"
-    ],
-    "jsx": "react-jsx",
-    "jsxImportSource": "react"
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "moduleResolution": "Bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "incremental": true,
+    "jsx": "preserve",
+    "baseUrl": "src",
+    "paths": {
+      "@/*": [
+        "*"
+      ],
+      "@data/*": [
+        "data/*"
+      ]
+    },
+    "module": "esnext",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/**/*",
+    ".next/types/**/*.ts"
+  ],
   "exclude": [
-    "dist"
+    "node_modules",
+    "dist",
+    ".next",
+    "out"
   ]
 }
