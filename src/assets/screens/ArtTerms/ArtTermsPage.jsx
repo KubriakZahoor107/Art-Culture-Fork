@@ -3,9 +3,11 @@ import { useTranslation } from 'react-i18next'
 import PopularArtsSlider from '@components/Sliders/ArtistsPageSliders/PopularArtsSlider.jsx'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import Letters from '@components/Blocks/Letters'
+import AllArtistsPageSearchSlider from '@components/Sliders/AllArtistsPageLettersSortSlider/AllArtistsPageSearchSlider'
+import { englishLetters, ukrainianLetters } from '../../../utils/constants'
 import Loading from '@components/Blocks/Loading'
 import Painting from '@components/Blocks/Painting'
+import ArtTermSlider from './ArtTermSlider'
 import LoadingError from '@components/Blocks/LoadingError'
 import layoutStyles from '@styles/layout/Layout.module.scss'
 import styles from '@styles/layout/ArtTermsPage.module.scss'
@@ -56,15 +58,18 @@ function ArtTermsPage() {
 				</p>
 			</div>
 
+			<ArtTermSlider />
+
 			<div className={`${layoutStyles.DescriptionWrapper}`}>
-				<Letters onLetterSelected={(letter) => navigate(`/art-terms/letters/${letter.toLowerCase()}`)} />
+				<AllArtistsPageSearchSlider letters={i18n.language === 'uk' ? ukrainianLetters : englishLetters}
+					onLetterSelected={(letter) => navigate(`/art-terms/letters/${letter.toLowerCase()}`)} />
 			</div>
 
 			<div className={`${layoutStyles.DescriptionWrapper}`}>
 				{loading ? <Loading /> : error ? <LoadingError />
 						: artTerms.length === 0 ? (
 						<div>
-							{t('Немає митців для відображення.')}
+							{t('Немає арт-термінів для відображення.')}
 						</div>
 					) : artTerms.map(artTerm => {
 						return (
@@ -84,7 +89,7 @@ function ArtTermsPage() {
 										<a href={"/art-terms/" + artTerm.id}>{artTerm.description}</a>
 									</div>
 									<div className={styles.cardCommands}>
-										<a href={"/art-terms/" + artTerm.id} className="button button-default">{t('Подивитися усі терміни')}</a>
+										<a href={"/art-terms/letters/" + artTerm.letter.toLowerCase()} className="button button-default">{t('Подивитися усі терміни')}</a>
 									</div>
 								</div>
 							</div>

@@ -1,4 +1,4 @@
-// File: /Users/konstantinkubriak/Desktop/Next-SSR-Project/art-culture-next-ssr/Art-Culture/src/app/news/page.tsx
+// File: /Users/konstantinkubriak/Desktop/Next-SSR-Project/art-culture-next-ssr/Art-Culture/Art-Culture-Fork/src/app/news/page.tsx
 import * as entry from '../../../../src/app/news/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

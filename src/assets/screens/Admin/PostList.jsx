@@ -27,7 +27,7 @@ const AdminPostList = () => {
 
 	const columns = [
 		columnHelper.accessor("id", {
-			cell: (info) => <a href={`/admin/posts/${info.row.getValue("id")}`}>{info.renderValue()}</a>,
+			cell: (info) => <a href={`/admin/posts/${info.row.getValue("id")}/review`}>{info.renderValue()}</a>,
 			header: () => <span>{t("Код")}</span>,
 		}),
 		columnHelper.accessor("createdAt", {
@@ -39,21 +39,17 @@ const AdminPostList = () => {
 			cell: (info) => info.renderValue(),
 		}),
 		columnHelper.accessor("title_uk", {
-			cell: (info) => <a href={`/admin/posts/${info.row.getValue("id")}`}>{info.renderValue()}</a>,
+			cell: (info) => <a href={`/admin/posts/${info.row.getValue("id")}/review`}>{info.renderValue()}</a>,
 			header: () => <span>{t("Назва українською")}</span>,
 		}),
 		columnHelper.accessor("title_en", {
 			header: () => <span>{t("Назва англійською")}</span>,
-			cell: (info) => <a href={`/admin/posts/${info.row.getValue("id")}`}>{info.renderValue()}</a>,
+			cell: (info) => <a href={`/admin/posts/${info.row.getValue("id")}/review`}>{info.renderValue()}</a>,
 		}),
 		columnHelper.accessor("status", {
 			header: () => <span>{t("Статус")}</span>,
 			cell: (info) =>
-				info.getValue() === "PENDING" ? (
-					<a href={`/admin/posts/${info.row.getValue("id")}/review`}>{t("Статус поста " + info.getValue())}</a>
-				) : (
-					t("Статус поста " + info.getValue())
-				),
+				<a href={`/admin/posts/${info.row.getValue("id")}/review`}>{t("Статус поста " + info.getValue())}</a>,
 		}),
 	];
 
@@ -110,14 +106,26 @@ const AdminPostList = () => {
 							))}
 						</thead>
 						<tbody>
-							{table.getRowModel().rows.map((row) => (
-								<tr key={row.id}>
-									{row.getVisibleCells().map((cell) => (
-										<td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
-									))}
-								</tr>
-							))}
+							{table.getRowModel().rows.map((row) => {
+								const status = row.original.status; // нормализуем к нижнему регистру
+								let rowClass = "";
+
+								if (status === "APPROVED") rowClass = "status-approved";
+								else if (status === "REJECTED") rowClass = "status-rejected";
+
+								return (
+									<tr key={row.id} className={rowClass}>
+										{row.getVisibleCells().map((cell) => (
+											<td key={cell.id}>
+												{flexRender(cell.column.columnDef.cell, cell.getContext())}
+											</td>
+										))}
+									</tr>
+								);
+							})}
 						</tbody>
+
+
 					</table>
 					<Pagination table={table} />
 				</>

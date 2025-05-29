@@ -3,7 +3,6 @@ import ArtistPageMasonryGallery from '@components/Sliders/ArtistPageSliders/Arti
 import ArtistPageNewsArtistsSlider from '@components/Sliders/ArtistPageSliders/ArtistPageNewsArtistsSlider.jsx'
 import PopularOfThisArtistSlider from '@components/Sliders/ArtistPageSliders/PopularOfThisArtistSlider.jsx'
 import MainPopularArtsSlider from '@components/Sliders/MainPopularArtsSlider/MainPopularArtsSlider.jsx'
-import sliderStyles from '@styles/components/Blocks/Slider.module.scss'
 import styles from '@styles/layout/ArtistPage.module.scss'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
@@ -129,8 +128,8 @@ function ArtistPage() {
 					</div>
 				</div>
 
-				<div className={`${styles.artistPageArtisNameWrapper}`}>
-					<p className={`${styles.artistPageArtisName}`}>{title}</p>
+				<div className={`${styles.artistPageArtistNameWrapper}`}>
+					<h2 className={`${styles.artistPageArtistName}`}>{title}</h2>
 				</div>
 
 				<div className={`${styles.artistPageArtisSeparatorWrapper}`}>
@@ -167,8 +166,8 @@ function ArtistPage() {
 					</button>
 				</div>
 				<LikeAndShare
-					className={sliderStyles.LikeAndShareFixed}
-					countClassName={sliderStyles.likeCountWrapper}
+					// className={sliderStyles.LikeAndShareFixed}
+					// countClassName={sliderStyles.likeCountWrapper}
 					entityId={creator.id}
 					entityType={'user'}
 				/>

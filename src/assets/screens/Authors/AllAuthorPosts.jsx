@@ -1,5 +1,4 @@
 import LikeAndShare from '@components/Blocks/LikeAndShare'
-import sliderStyles from '@styles/components/Blocks/Slider.module.scss'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -11,6 +10,7 @@ import {
 	getImageUrl,
 } from '../../../utils/helper'
 import TranslatedContent from '../../components/Blocks/TranslatedContent'
+import { max } from 'lodash'
 
 function AuthorPostsLists() {
 	const { t } = useTranslation()
@@ -192,22 +192,25 @@ function AuthorPostsLists() {
 					/>
 				</div>
 				<div className={styles.AuthorTitleWrapper}>
-					<p className={styles.AuthorTitle}>{author.title}</p>
+					<h2 className={styles.AuthorTitle}>{author.title}</h2>
+					<a className={styles.AuthorLink}>{t('Про автора')}</a>
 				</div>
 			</div>
 
 			<div className={styles.AuthorNavBarTwoSection}>
 				<div className={styles.AuthorNavBarWrapper}>
-					<p className={styles.PostsNavBarLeft}>{t('Статті')}</p>
-					<p className={styles.NavBarSeparator}>{'|'}</p>
-					<p
+					<h3 className={styles.PostsNavBarLeft}>{t('Статті')}</h3>
+					<div className={styles.NavBarSeparator}></div>
+					<h3
 						className={styles.AuthorsNavBarRight}
 						onClick={handleAllArtistsPageClick}
 					>
 						{t('Усі Автори')}
-					</p>
+					</h3>
 				</div>
-				<LikeAndShare className={sliderStyles.LikeAndShareFixed} />
+				<div className={styles.LikeAndShareWrapper}>
+					<LikeAndShare />
+				</div>
 			</div>
 
 			<div className={styles.AuthorPostsListsWrapper}>

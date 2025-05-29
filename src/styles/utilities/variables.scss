@@ -74,9 +74,7 @@ $responsiveTopPadding: calc(177px - (107 * ((1440px - 100vw) / (1440 - 569))));
 $responsiveLeftAndRightPadding: calc(70 / 1440 * 100vw);
 
 $responsiveBigPadding: calc(50px - (25 * ((1440px - 100vw) / (1440 - 569))));
-$responsiveMediumPadding: calc(
-  25px - (12.5 * ((1440px - 100vw) / (1440 - 569)))
-);
+$responsiveMediumPadding: calc(25px - (12.5 * ((1440px - 100vw) / (1440 - 569))));
 $responsiveSmallPadding: calc(12.5px - (5 * ((1440px - 100vw) / (1440 - 569))));
 
 // static pc

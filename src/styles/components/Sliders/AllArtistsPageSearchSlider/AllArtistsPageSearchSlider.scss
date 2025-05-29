@@ -19,6 +19,10 @@
     cursor: pointer;
   }
 
+  .Letter.selected {
+    color: variables.$red;
+  }
+
   // @at-root {
   //   :root {
   //     --swiper-navigation-size: 63px;

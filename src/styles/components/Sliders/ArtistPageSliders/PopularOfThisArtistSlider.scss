@@ -29,8 +29,8 @@
 .popularOfThisArtistSliderTitle {
     // Заголовок    
     font-family: $default-font;
-    font-size: calc(28px - (10 * ((1440px - 100vw) / (1440 - 375))));
-    font-weight: 600;
+    // font-size: calc(28px - (10 * ((1440px - 100vw) / (1440 - 375))));
+    // font-weight: 600;
     color: rgb(0, 0, 0);
     text-transform: uppercase;
 }

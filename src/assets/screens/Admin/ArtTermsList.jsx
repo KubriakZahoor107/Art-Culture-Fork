@@ -20,6 +20,7 @@ const columnHelper = createColumnHelper();
 
 const AdminArtTermsList = () => {
 	const { t } = useTranslation();
+	const [artTermsFilter, setArtTermsFilter] = useState("");
 	const [artTerms, setArtTerms] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState("");
@@ -48,9 +49,9 @@ const AdminArtTermsList = () => {
 	];
 
 	useEffect(() => {
-		const fetchArtTerms = async () => {
+		const fetchArtTerms = async (filter) => {
 			try {
-				const response = await API.get("/art-terms");
+				const response = await API.get(`art-terms?search=${filter}`);
 				setArtTerms(Array.isArray(response.data?.artTerms) ? response.data.artTerms : []);
 			} catch (err) {
 				setError(t("Помилка завантаження"));
@@ -59,8 +60,8 @@ const AdminArtTermsList = () => {
 			}
 		};
 
-		fetchArtTerms();
-	}, []);
+		fetchArtTerms(artTermsFilter);
+	}, [t, artTermsFilter]);
 
 	const table = useReactTable({
 		data: artTerms,
@@ -75,9 +76,23 @@ const AdminArtTermsList = () => {
 		<ProfilePageContainer>
 			<h2>{t("Список термінів")}</h2>
 			{loading ? <Loading /> : error ? <LoadingError /> : artTerms.length === 0 ? (
-				<p>{t("Термінів немає")}</p>
+				<>
+					<div className="form-group">
+						<label className="field-label">
+							<span>{t("Фільтр")}:</span>
+							<input type="text" value={artTermsFilter} onChange={(e) => setArtTermsFilter(e.target.value) } />
+						</label>
+					</div>
+					<p>{t("Термінів немає")}</p>
+				</>
 			) : (
 				<>
+					<div className="form-group">
+						<label className="field-label">
+							<span>{t("Фільтр")}:</span>
+							<input type="text" value={artTermsFilter} onChange={(e) => setArtTermsFilter(e.target.value) } />
+						</label>
+					</div>
 					<table className="admin-table">
 						<thead>
 							{table.getHeaderGroups().map((headerGroup) => (

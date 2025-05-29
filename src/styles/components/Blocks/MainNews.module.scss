@@ -166,6 +166,7 @@
   margin: $responsiveSmallPadding 0 0 0;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .cardClockAndDateInner {
@@ -206,7 +207,6 @@
   // Стили для ссылки "Читати далi"
   cursor: pointer;
   color: #d83934;
-  font-weight: 500;
 }
 
 @media (min-width: 1920px) {
@@ -410,11 +410,11 @@
     margin: $staticMobileSmallPadding 0 0 0;
   }
 
-  .cardClockAndDateWrapper {
-    // Стили для обертки даты и времени
-    margin: $staticMobileSmallPadding 0 0 0;
-    flex-direction: column;
-  }
+  // .cardClockAndDateWrapper {
+  //   // Стили для обертки даты и времени
+  //   margin: $staticMobileSmallPadding 0 0 0;
+  //   flex-direction: column;
+  // }
 
   .cardExhibDurTimeWrapper {
     // Стили для обертки описания карточки

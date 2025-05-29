@@ -1,5 +1,12 @@
 {
     "": "Dashboard",
+    "product": {
+        "authorTitle": "Artist",
+        "OriginalTitle": "Original title",
+        "Size": "Size",
+        "Style": "Style",
+        "Tech": "Technique"
+    },
     "Автори": "Authors",
     "Авторські права": "Copyrights",
     "Адміністрація": "Administration",
@@ -26,6 +33,7 @@
     "Дата початку": "Start date",
     "Дата проведення": "Date of the event",
     "Дата реєстрації": "Date of registration",
+    "Детальніше": "Detailed",
     "До публікації": "Go to publication",
     "Додати виставку": "Add an exhibition",
     "Додати експонат": "Add exhibit",
@@ -34,7 +42,6 @@
     "Додати картину": "Add a picture",
     "Додати нову публікацію": "Add a new publication",
     "Додати публікацію": "Add post",
-    "Детальніше": "Detailed",
     "Експонати цього музею": "Exhibits of this museum",
     "з": "of",
     "Завантаження...": "Loading...",
@@ -76,14 +83,16 @@
     "Назва українською": "Title in Ukrainian",
     "Назва цього музею": "The name of this museum",
     "Немає митців": "No artists",
+    "Фільтр": "Фільтр",
     "Неможливо завантажити дані": "Cannot load data",
     "Неможливо створити публікацію": "Failed to add post. Please try again",
     "Новини": "News",
     "Новини.": "News.",
+    "Новини цього митця": "News of this artist",
     "Нові користувачі": "New users",
     "Огляд": "Review",
-    "Онлайн перекладач": "Online translator",
     "Онлайн WEBP конвертер": "Online WEBP converter",
+    "Онлайн перекладач": "Online translator",
     "Оновити профіль": "Update profile",
     "Опис англійською": "Description in English",
     "Опис виставки": "Description of the exhibition",
@@ -117,6 +126,7 @@
     "Постів немає": "No posts",
     "Потребують перегляду": "Demand a relook",
     "Пошук": "Search",
+    "Про автора": "About the author",
     "Про картину": "About the painting",
     "Про себе": "About",
     "Просто шукайте поля для підписки": "Just look for the",
@@ -179,12 +189,5 @@
     "Час початку": "Start time",
     "Читати далі": "Read more",
     "Що поруч": "What's nearby",
-    "Юридична інформація": "Legal Notice",
-    "product": {
-        "authorTitle": "Artist",
-        "OriginalTitle": "Original title",
-        "Size": "Size",
-        "Style": "Style",
-        "Tech": "Technique"
-    }
+    "Юридична інформація": "Legal Notice"
 }

@@ -68,7 +68,6 @@
     user-select: none;
 }
 
-
 .DescriptionWrapper {
     // Контейнер для описания
     margin: 32px auto 0;
@@ -85,6 +84,107 @@
     font-weight: 400;
     user-select: none;
     text-align: left;
+}
+
+.PaginationContainer {
+    // Контейнер для пагинации
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 16px;
+}
+
+.PaginationTopWrapper {
+    // Контейнер для пагинации сверху
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.PaginationPageInfo {
+    // Информация о текущей странице
+    margin: 0 auto;
+    width: fit-content;
+    display: flex;
+    // flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.PaginationCurrentPage {
+    // Текущая страница    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.PaginationGoToPage {
+    // Переход на страницу
+    margin: 0 variables.$staticButtonLeftAndRightPadding;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.PaginationGoToPageInput {
+    // Переход на страницу
+    margin: 0 variables.$staticButtonLeftAndRightPadding;
+    padding: 0 variables.$responsiveSmallPadding;
+    width: 75px;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 4px;
+}
+
+.PaginationFirstPageButton, .PaginationPreviousPageButton, .PaginationNextPageButton, .PaginationLastPageButton {
+    // Кнопка первой страницы
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    color: variables.$red;
+}
+
+.PaginationPreviousPageButton, .PaginationNextPageButton {
+    // Кнопка предыдущей страницы
+    margin: 0 variables.$staticButtonLeftAndRightPadding;
+}
+
+.PaginationBottomWrapper {
+    // Контейнер для пагинации снизу
+    margin: variables.$responsiveSmallPadding auto 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.PaginationShowingRows {
+    // Показываемые строки
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.PaginationShowingRowsSelect {
+    // Выбор количества строк
+    margin: 0 variables.$staticButtonLeftAndRightPadding;
+    padding: 0 variables.$responsiveSmallPadding;
+    width: fit-content;
+    text-align: center;
+
+    select {
+        width: auto;
+        height: 100%;
+        border: 1px solid black;
+        border-radius: 4px;
+    }
 }
 
 @media (min-width: 1441px) {

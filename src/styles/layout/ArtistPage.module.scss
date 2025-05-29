@@ -13,8 +13,7 @@
 
 .artistPageNavigation {
   // навигационный блок
-  margin: calc(51px - (15 * ((1440px - 100vw) / (1440 - 375))))
-    $responsiveLeftAndRightPadding 0 $responsiveLeftAndRightPadding;
+  margin: $responsiveBigPadding $responsiveLeftAndRightPadding 0 $responsiveLeftAndRightPadding;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -39,7 +38,7 @@
 
 .artistPageNavigationItemSeparator {
   // разделитель между элементами списка навигации
-  margin: 0 18px;
+  margin: 0 $responsiveMediumPadding;
   font-size: calc(18px - (4 * ((1440px - 100vw) / (1440 - 375))));
   font-weight: 500;
   color: $red;
@@ -48,8 +47,7 @@
 
 .artistPageAboutArtistContainer {
   // блок с описанием митця
-  margin: calc(69px - (41 * ((1440px - 100vw) / (1440 - 375))))
-    $responsiveLeftAndRightPadding 0 $responsiveLeftAndRightPadding;
+  margin: $responsiveBigPadding $responsiveLeftAndRightPadding 0 $responsiveLeftAndRightPadding;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -85,25 +83,25 @@
   max-height: calc(415px - (228 * ((1440px - 100vw) / (1440 - 375))));
 }
 
-.artistPageArtisNameWrapper {
+.artistPageArtistNameWrapper {
   // обертка для названия митця
-  margin: calc(52px - (27 * ((1440px - 100vw) / (1440 - 375)))) 0 0 0;
+  margin: $responsiveMediumPadding 0 0 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.artistPageArtisName {
+.artistPageArtistName {
   // название митця
-  font-size: calc(30px - (12 * ((1440px - 100vw) / (1440 - 375))));
+  // font-size: calc(30px - (12 * ((1440px - 100vw) / (1440 - 375))));
   font-weight: 600;
   text-transform: uppercase;
 }
 
 .artistPageArtisSeparatorWrapper {
   // обертка для разделителя митця
-  margin: calc(24px - (3 * ((1440px - 100vw) / (1440 - 375)))) 0 0 0;
+  margin: $responsiveMediumPadding 0 0 0;
 }
 
 .artistPageArtisSeparator {
@@ -117,7 +115,7 @@
 
 .artistPageArtisDescriptionWrapper {
   // обертка для описания митця
-  margin: calc(22px - (-3 * ((1440px - 100vw) / (1440 - 375)))) 0 0 0;
+  margin: $responsiveMediumPadding 0 0 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -128,12 +126,11 @@
   // описание митця
   font-size: calc(16px - (2 * ((1440px - 100vw) / (1440 - 375))));
   font-weight: 400;
-  text-align: center;
 }
 
 .artistPageArtisReadMoreButtonWrapper {
   // обертка для кнопки "читать больше"
-  margin: 25px 0 0 0;
+  margin: $responsiveMediumPadding 0 0 0;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -197,8 +194,8 @@
 
 .artistPageFollowContainer {
   // обертка для слайдера "арты митца"
-  margin: calc(67px - (12 * ((1440px - 100vw) / (1440 - 375))))
-    $responsiveLeftAndRightPadding 0 $responsiveLeftAndRightPadding;
+  margin: calc(67px - (12 * ((1440px - 100vw) / (1440 - 375)))) $responsiveLeftAndRightPadding 0
+    $responsiveLeftAndRightPadding;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -214,7 +211,6 @@
 
 .artistPageFollowEmailWrapper {
   // обертка для ввода почты
-  margin: calc(48px - (12 * ((1440px - 100vw) / (1440 - 375)))) 0 0 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -223,16 +219,14 @@
 
 .artistPageFollowEmail {
   // ввод почты
-  margin: 0 0 0 0 !important;
-  padding: 0 20px !important;
-  width: calc(302px - (106 * ((1440px - 100vw) / (1440 - 375))));
-  min-width: 196px;
-  max-width: 302px;
-  height: 40px;
+  display: flex;
+  margin: $responsiveMediumPadding 0 0 0 !important;
+  padding: $responsiveSmallPadding !important;
+  border-radius: 34px !important;
+  border: 1px solid #000 !important;
+  text-align: center;
   font-size: calc(16px - (2 * ((1440px - 100vw) / (1440 - 375))));
-  font-weight: 400;
-  border: none;
-  border-radius: 20px !important;
+  max-width: 300px;
 }
 
 .artistPageFollowButton {
@@ -281,7 +275,7 @@
 
   .artistPageArtisNameWrapper {
     // обертка для названия митця
-    margin: 52px 0 0 0;
+    margin: $staticPcMediumPadding 0 0 0;
   }
 
   .artistPageArtisName {
@@ -291,12 +285,12 @@
 
   .artistPageArtisSeparatorWrapper {
     // обертка для разделителя митця
-    margin: 24px 0 0 0;
+    margin: $staticPcMediumPadding 0 0 0;
   }
 
   .artistPageArtisDescriptionWrapper {
     // обертка для описания митця
-    margin: 22px 0 0 0;
+    margin: $staticPcMediumPadding 0 0 0;
   }
 
   .artistPageArtisDescription {
@@ -342,11 +336,6 @@
   .artistPageFollowTitle {
     // заголовок слайдера "арты митца"
     font-size: 22px;
-  }
-
-  .artistPageFollowEmailWrapper {
-    // обертка для ввода почты
-    margin: 48px 0 0 0;
   }
 
   .artistPageFollowEmail {

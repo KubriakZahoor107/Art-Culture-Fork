@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { toast, ToastContainer } from 'react-toastify'
+import styles from '@styles/layout/Header.module.scss'
+import '@styles/layout/Header.module.scss'
 
 function LikeAndShare({ className, entityId, entityType, countClassName }) {
 	const { t } = useTranslation()
@@ -141,39 +143,55 @@ function LikeAndShare({ className, entityId, entityType, countClassName }) {
 
 	return (
 		<div
-			className={`${className ? className : ''} socialLikeAndShareInner`}
+			className={`${className ? className : ''} ${styles.socialLikeAndShareInner}`}
 		>
-			{countClassName ? (
-				<div className={countClassName}>{likeStatus.likeCount}</div>
-			) : (
-				<div style={{ display: 'none' }}>{likeStatus.likeCount}</div>
-			)}
+
 			<button
-				className={`socialLikeAndShareInner__likeButton circleButton ${likeStatus.liked ? 'liked' : ''}`}
+				className={`${styles.socialLikeAndShareInnerLikeButton} ${likeStatus.liked ? 'liked' : ''}`}
 				onClick={handleLikeToggle}
 				disabled={isLoading}
 			>
-				<img
-					className="likeButtonImg"
-					src="/Img/likeHeart.svg"
-					alt={t('Світлина вподобайки')}
-					onError={(e) => {
-						e.target.onerror = null
-						e.target.src = '/Img/likeHeart.svg'
-					}}
-				/>
+				<div className={`${styles.likeButtonIMGWrapper} ${styles.circleButton}`}>
+					<img
+						className={`${styles.likeButtonImg} ${styles.circleButton}`}
+						src="/Img/likeHeart.png"
+						alt={t('Світлина вподобайки')}
+						onError={(e) => {
+							e.target.onerror = null
+							e.target.src = '/Img/likeHeart.png'
+						}}
+					/>
+					<div className={`${styles.likeButtonBottomCounter}`}>1234567890</div>
+				</div>
+				<div className={`${styles.likeButtonTextWrapper}`}>
+					<p className={`${styles.likeButtonTitle}`}>Like</p>
+					{/* {countClassName ? (
+						<div className={countClassName}>{likeStatus.likeCount}</div>
+					) : (
+						<div style={{ display: 'none' }}>{likeStatus.likeCount}</div>
+					)} */}
+					<p className={`${styles.likeButtonCount}`}>1234567890</p>
+				</div>
 			</button>
 			<ToastContainer />
-			<button className="socialLikeAndShareInner__shareButton circleButton">
-				<img
-					className="shareButtonImg"
-					src="/Img/shareArrow.svg"
-					alt={t('Світлина вподобайки')}
-					onError={(e) => {
-						e.target.onerror = null
-						e.target.src = '/Img/likeHeart.svg'
-					}}
-				/>
+			<div className={`${styles.socialLikeAndShareSeparator}`}></div>
+			<button className={`${styles.socialLikeAndShareInnerShareButton}`}>
+				<div className={`${styles.shareButtonTextWrapper}`}>
+					<p className={`${styles.shareButtonTitle}`}>Share</p>
+					<p className={`${styles.shareButtonCount}`}>1234567890</p>
+				</div>
+				<div className={`${styles.shareButtonIMGWrapper} ${styles.circleButton}`}>
+					<img
+						className={`${styles.shareButtonImg} ${styles.circleButton}`}
+						src="/Img/shareArrow.png"
+						alt={t('Світлина вподобайки')}
+						onError={(e) => {
+							e.target.onerror = null
+							e.target.src = '/Img/likeHeart.png'
+						}}
+					/>
+					<div className={`${styles.shareButtonBottomCounter}`}>1234567890</div>
+				</div>
 			</button>
 		</div>
 	)

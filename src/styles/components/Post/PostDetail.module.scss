@@ -2,8 +2,7 @@
 
 .postDetailContainer {
   // главный контейнер
-  margin: variables.$responsiveTopPadding variables.$responsiveLeftAndRightPadding 0
-    variables.$responsiveLeftAndRightPadding;
+  margin: variables.$responsiveTopPadding 0 0 0;
   display: flex;
   flex-direction: column;
 
@@ -14,8 +13,9 @@
 
 .postPageNavigationContainer {
   // контейнер для навигации
+  margin: 0 variables.$responsiveLeftAndRightPadding;
   display: flex;
-  width: 100%;
+  // width: 100%;
 }
 
 .postPageNavigation {
@@ -88,7 +88,7 @@
 
 .postPageNewsTitleWrapper {
   // обертка для названия Title
-  margin: calc(52px - (27 * ((1440px - 100vw) / (1440 - 375)))) 0 0 0;
+  margin: variables.$responsiveMediumPadding 0 0 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -103,7 +103,7 @@
 
 .postPageNewsSeparatorWrapper {
   // обертка для разделителя Post
-  margin: calc(24px - (3 * ((1440px - 100vw) / (1440 - 375)))) 0 0 0;
+  margin: variables.$responsiveMediumPadding 0 0 0;
 }
 .postPageNewsSeparator {
   // разделитель Post
@@ -116,7 +116,7 @@
 
 .postPageNewsDescriptionWrapper {
   // обертка для описания митця
-  margin: calc(22px - (-3 * ((1440px - 100vw) / (1440 - 375)))) 0 0 0;
+  margin: variables.$responsiveMediumPadding 0 0 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -126,7 +126,7 @@
   // описание митця
   font-size: calc(16px - (2 * ((1440px - 100vw) / (1440 - 375))));
   font-weight: 400;
-  text-align: center;
+  // text-align: center;
 }
 .postPageNewsAuthorNameWrapper {
   margin: calc(22px - (-3 * ((1440px - 100vw) / (1440 - 375)))) 0 0 0;
@@ -207,8 +207,7 @@
 @media (min-width: 1441px) {
   .postDetailContainer {
     // главный контейнер
-    margin: variables.$staticPcTopPadding variables.$responsiveLeftAndRightPadding 0
-      variables.$responsiveLeftAndRightPadding;
+    margin: variables.$staticPcTopPadding 0 0 0;
   }
 
   .postPageNavigation {
@@ -240,7 +239,7 @@
 
   .postPageNewsTitleWrapper {
     // обертка для названия Title
-    margin: 52px 0 0 0;
+    margin: variables.$staticPcMediumPadding 0 0 0;
   }
 
   .postPageNewsTitle {
@@ -250,12 +249,12 @@
 
   .postPageNewsSeparatorWrapper {
     // обертка для разделителя Post
-    margin: 24px 0 0 0;
+    margin: variables.$staticPcMediumPadding 0 0 0;
   }
 
   .postPageNewsDescriptionWrapper {
     // обертка для описания Post
-    margin: 22px 0 0 0;
+    margin: variables.$staticPcMediumPadding 0 0 0;
   }
 
   .postPageNewsDescription {
@@ -307,8 +306,7 @@
 @media (max-width: 569px) {
   .postDetailContainer {
     // главный контейнер
-    margin: variables.$staticMobileTopPadding variables.$responsiveLeftAndRightPadding 0
-      variables.$responsiveLeftAndRightPadding;
+    margin: variables.$staticMobileTopPadding 0 0 0;
   }
 
   .postPageAboutNewsContainer {

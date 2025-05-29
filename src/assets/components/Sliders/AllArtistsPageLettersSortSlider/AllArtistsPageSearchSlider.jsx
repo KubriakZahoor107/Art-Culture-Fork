@@ -1,6 +1,7 @@
 // import Swiper core and required modules
 import { Navigation } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import PropTypes from 'prop-types';
 
 // Import Swiper styles
 import '@styles/components/Sliders/AllArtistsPageSearchSlider/AllArtistsPageSearchSlider.scss'
@@ -29,7 +30,7 @@ function AllArtistsPageSearchSlider({
 							<h3
 								className={
 									'Letter' +
-									(selectedLetter === letter
+									(selectedLetter?.toLowerCase() === letter.toLowerCase()
 										? ' selected'
 										: '')
 								}
@@ -43,5 +44,11 @@ function AllArtistsPageSearchSlider({
 		</div>
 	)
 }
+
+AllArtistsPageSearchSlider.propTypes = {
+	onLetterSelected: PropTypes.func,
+	selectedLetter: PropTypes.string,
+	letters: PropTypes.arrayOf(PropTypes.string),
+};
 
 export default AllArtistsPageSearchSlider

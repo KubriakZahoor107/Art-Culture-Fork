@@ -1,5 +1,4 @@
 import LikeAndShare from '@components/Blocks/LikeAndShare'
-import sliderStyles from '@styles/components/Blocks/Slider.module.scss'
 import styles from '@styles/components/ProductItemCard/ItemDetail.module.scss'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
@@ -216,8 +215,8 @@ function ItemDetail({ index }) {
 						</p>
 					</div>
 					<LikeAndShare
-						className={`${sliderStyles.LikeAndShareFixed} ${styles.ItemDetailLikeAndShare}`}
-						countClassName={sliderStyles.likeCountWrapper}
+						// className={`${sliderStyles.LikeAndShareFixed} ${styles.ItemDetailLikeAndShare}`}
+						// countClassName={sliderStyles.likeCountWrapper}
 						entityId={product.id}
 						entityType="product"
 					/>

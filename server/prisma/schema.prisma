@@ -179,8 +179,8 @@ model ArtTerm {
   id                   Int      @id @default(autoincrement())
   title_en             String   @db.VarChar(100)
   title_uk             String   @db.VarChar(100)
-  description_en       String   @db.VarChar(350)
-  description_uk       String   @db.VarChar(350)
+  description_en       String   @db.Text
+  description_uk       String   @db.Text
   content_en           String   @db.Text
   content_uk           String   @db.Text
   authorId             Int      @map("author_id")

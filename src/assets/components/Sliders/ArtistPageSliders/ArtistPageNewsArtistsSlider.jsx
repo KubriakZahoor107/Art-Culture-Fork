@@ -96,7 +96,7 @@ const ArtistPageNewsArtistsSlider = ({ authorId }) => {
 				<div className="NewsSliderTopInnerWrapper">
 					<div className="NewsSliderTitleWrapper">
 						<h2 className="NewsSliderTitle">
-							{t('Новини.')} &#8243;{t('Митці')}&#8243;
+							{t('Новини цього митця')}
 						</h2>
 					</div>
 					{/* <LikeAndShare className={sliderStyles.LikeAndShareFixed} /> */}

@@ -27,7 +27,7 @@ const AdminPostReviewList = () => {
 	const columns = [
 		columnHelper.accessor('id', {
 			cell: (info) => (
-				<a href={`/admin/posts/${info.row.getValue('id')}`}>
+				<a href={`/admin/posts/${info.row.getValue('id')}/review`}>
 					{info.renderValue()}
 				</a>
 			),
@@ -48,7 +48,7 @@ const AdminPostReviewList = () => {
 		}),
 		columnHelper.accessor('title_uk', {
 			cell: (info) => (
-				<a href={`/admin/posts/${info.row.getValue('id')}`}>
+				<a href={`/admin/posts/${info.row.getValue('id')}/review`}>
 					{info.renderValue()}
 				</a>
 			),
@@ -57,7 +57,7 @@ const AdminPostReviewList = () => {
 		columnHelper.accessor('title_en', {
 			header: () => <span>{t('Назва англійською')}</span>,
 			cell: (info) => (
-				<a href={`/admin/posts/${info.row.getValue('id')}`}>
+				<a href={`/admin/posts/${info.row.getValue('id')}/review`}>
 					{info.renderValue()}
 				</a>
 			),
@@ -65,13 +65,9 @@ const AdminPostReviewList = () => {
 		columnHelper.accessor('status', {
 			header: () => <span>{t('Статус')}</span>,
 			cell: (info) =>
-				info.renderValue() == 'PENDING' ? (
-					<a href={`/admin/posts/${info.row.getValue('id')}/review`}>
-						{t('Статус поста ' + info.renderValue())}
-					</a>
-				) : (
-					t('Статус поста ' + info.renderValue())
-				),
+				<a href={`/admin/posts/${info.row.getValue('id')}/review`}>
+					{t('Статус поста ' + info.renderValue())}
+				</a>,
 		}),
 	]
 

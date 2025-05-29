@@ -1,4 +1,4 @@
-import LikeAndShareVertical from '@components/Blocks/LikeAndShareVertical'
+// import LikeAndShareVertical from '@components/Blocks/LikeAndShareVertical'
 import TranslatedContent from '@components/Blocks/TranslatedContent.jsx'
 import NewsPageAuthorsSlider from '@components/Sliders/NewsPageAuthorsSlider/NewsPageAuthorsSlider.jsx'
 import styles from '@styles/layout/newsPage.module.scss'
@@ -9,6 +9,131 @@ import { useNavigate } from 'react-router-dom'
 import searchStyle from '../../../styles/layout/newsPage.module.scss'
 import { getFormattedDate, getImageUrl } from '../../../utils/helper.js'
 import Search from '../../screens/Search/Search'
+
+function PostCard({ post }) {
+	const { t } = useTranslation()
+	const navigate = useNavigate()
+	// Construct image URL similar to MainNews component
+	const featuredMediaUrl = getImageUrl(
+		post.images,
+		'/Img/halfNewsCard.jpg',
+	)
+
+	// Format date and time
+	const formattedDate = getFormattedDate(
+		post.createdAt,
+	)
+
+	return (
+		<div
+			key={post.id}
+			className={`${styles.newsPageCardContainer}`}
+		>
+			<div
+				className={`${styles.newsPageCardWrapper}`}
+			>
+				{/* Image */}
+				<a href={`/posts/${post.id}`}>
+					<div
+						className={`${styles.newsPageCardImageWrapper}`}
+						onClick={() =>
+							handlePostPageClick(post.id)
+						}
+					>
+						<img
+							className={`${styles.newsPageCardImage}`}
+							src={featuredMediaUrl}
+							alt={t('Зображення')}
+							onError={(e) => {
+								e.target.onerror = null
+								e.target.src =
+									'/Img/newsCardERROR.jpg' // Fallback image
+							}}
+						/>
+					</div>
+				</a>
+
+				{/* Title */}
+				<a href={`/posts/${post.id}`}>
+					<div
+						className={`${styles.newsPageCardTitleWrapper}`}
+					>
+						<h3
+							className={`${styles.newsPageCardTitle}`}
+						>
+							<TranslatedContent
+								en={post.title_en}
+								uk={post.title_uk}
+								maxLength={100}
+							/>
+						</h3>
+					</div>
+				</a>
+
+				{/* Description */}
+				<div
+					className={`${styles.newsPageCardDescriptionWrapper}`}
+				>
+					<p
+						className={`${styles.newsPageCardDescription}`}
+					>
+						<TranslatedContent
+							en={post.content_en}
+							uk={post.content_uk}
+							maxLength={150}
+							html
+						/>
+					</p>
+				</div>
+
+				{/* Clock, Date, and Read More Button */}
+				<div
+					className={`${styles.newsPageCardClockDateAndReadMoreButtonWrapper}`}
+				>
+					<div
+						className={`${styles.newsPageCardClockWrapper}`}
+					>
+						<img
+							className={`${styles.newsPageCardClockImg}`}
+							src={'/Img/clock.svg'}
+							alt={t('Час')}
+							onError={(e) => {
+								e.target.onerror =
+									null
+								e.target.src =
+									'/Img/clock.svg' // Fallback image
+							}}
+						/>
+					</div>
+					<div
+						className={`${styles.newsPageCardDateWrapper}`}
+					>
+						<p
+							className={`${styles.newsPageCardDate}`}
+						>
+							{formattedDate}
+						</p>
+					</div>
+					<div
+						className={`${styles.newsPageCardReadMoreButtonWrapper}`}
+					>
+						<button
+							onClick={() =>
+								navigate(
+									`/posts/${post.id}`,
+								)
+							}
+							className={`${styles.newsPageCardReadMoreButton}`}
+						>
+							{t('Читати далі')}
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	)
+}
+
 
 function NewsPage() {
 	const { t, i18n } = useTranslation()
@@ -28,24 +153,20 @@ function NewsPage() {
 	const [visiblePostsCount, setVisiblePostsCount] = useState(
 		getPostsCount(window.innerWidth),
 	)
+	const [maxPostsCount, setMaxPostsCount] = useState(0)
 
-	// Function to determine number of posts to display based on window width
 	function getPostsCount(width) {
 		if (width === null || width === undefined) {
 			throw new Error('Width must be a number')
 		}
-		if (width > 1920) {
-			return 4
+		if (width >= 1920) {
+			return 8
 		}
-		if (width >= 1600 && width <= 1920) {
-			return 3
+		if (width >= 1600) {
+			return 6
 		}
-		if (width > 1440 && width < 1600) {
-			return 2
-		}
-		if (width <= 1440) {
-			return 2
-		}
+
+		return 4
 	}
 
 	// Handle window resize to adjust visible posts count
@@ -54,9 +175,6 @@ function NewsPage() {
 			const newPostCount = getPostsCount(window.innerWidth)
 			if (newPostCount !== visiblePostsCount) {
 				setVisiblePostsCount(newPostCount)
-				console.log(
-					`Window width: ${window.innerWidth}, Visible posts count: ${newPostCount}`,
-				)
 			}
 		}
 
@@ -68,7 +186,17 @@ function NewsPage() {
 		return () => {
 			window.removeEventListener('resize', handleResize)
 		}
-	}, [visiblePostsCount])
+	}, [visiblePostsCount, posts])
+	useEffect(() => {
+		const handleResize = () => {
+			const newMaxPostsCount = Math.min(posts.length, Math.max(maxPostsCount, visiblePostsCount * 2))
+			setMaxPostsCount(newMaxPostsCount)
+			console.log('Max posts count updated:', newMaxPostsCount)
+		}
+
+		// Initial check
+		handleResize()
+	}, [visiblePostsCount, posts])
 
 	// Fetch all posts from the server
 	useEffect(() => {
@@ -96,11 +224,11 @@ function NewsPage() {
 	})
 
 	const handleNewsPageClick = () => {
-		navigate('/news-page')
+		setMaxPostsCount(maxPostsCount + visiblePostsCount)
 	}
 
 	const handleSignUpClick = () => {
-		navigate('/signup')
+		navigate('/SignUp')
 	}
 
 	const handlePostPageClick = (id) => {
@@ -109,7 +237,7 @@ function NewsPage() {
 
 	return (
 		<div className={`${styles.newsPageContainer}`}>
-			<LikeAndShareVertical />
+			{/* <LikeAndShareVertical /> */}
 			{/* Title Section */}
 			<div className={`${styles.newsPageTitleContainer}`}>
 				<h1 className={`${styles.newsPageTitle}`}>{t('Новини')}</h1>
@@ -126,16 +254,6 @@ function NewsPage() {
 					}}
 				/>
 			</div>
-			{/* Search Input */}
-			{/* <div className={`${styles.newsPageSearchContainer}`}>
-				<input
-					className={`${styles.newsPageSearchInput}`}
-					type="text"
-					placeholder={t('Пошук авторів')}
-					value={searchTerm}
-					onChange={(e) => setSearchTerm(e.target.value)}
-				/>
-			</div> */}
 			<Search
 				className={searchStyle.newsPageSearchContainer}
 				searchInput={searchStyle.newsPageSearchInput}
@@ -158,126 +276,7 @@ function NewsPage() {
 					) : (
 						filteredPosts
 							.slice(0, visiblePostsCount)
-							.map((post, index) => {
-								// Construct image URL similar to MainNews component
-								const featuredMediaUrl = getImageUrl(
-									post.images,
-									'/Img/halfNewsCard.jpg',
-								)
-
-								// Format date and time
-								const formattedDate = getFormattedDate(
-									post.createdAt,
-								)
-
-								// Determine the card number for styling (1 to 12)
-								const cardNumber = index + 6 // Adjust if you have separate top and bottom sections
-
-								return (
-									<div
-										key={post.id}
-										className={`${styles.newsPageCardContainer} ${styles[`newsPageCard${cardNumber}`]}`}
-									>
-										<div
-											className={`${styles.newsPageCardWrapper}`}
-										>
-											{/* Image */}
-											<div
-												className={`${styles.newsPageCardImageWrapper}`}
-												onClick={() =>
-													handlePostPageClick(post.id)
-												}
-											>
-												<img
-													className={`${styles.newsPageCardImage}`}
-													src={featuredMediaUrl}
-													alt={t('Зображення')}
-													onError={(e) => {
-														e.target.onerror = null
-														e.target.src =
-															'/Img/newsCardERROR.jpg' // Fallback image
-													}}
-												/>
-											</div>
-
-											{/* Title */}
-											<div
-												className={`${styles.newsPageCardTitleWrapper}`}
-											>
-												<p
-													className={`${styles.newsPageCardTitle}`}
-												>
-													<TranslatedContent
-														en={post.title_en}
-														uk={post.title_uk}
-														maxLength={100}
-													/>
-												</p>
-											</div>
-
-											{/* Description */}
-											<div
-												className={`${styles.newsPageCardDescriptionWrapper}`}
-											>
-												<p
-													className={`${styles.newsPageCardDescription}`}
-												>
-													<TranslatedContent
-														en={post.content_en}
-														uk={post.content_uk}
-														maxLength={150}
-														html
-													/>
-												</p>
-											</div>
-
-											{/* Clock, Date, and Read More Button */}
-											<div
-												className={`${styles.newsPageCardClockDateAndReadMoreButtonWrapper}`}
-											>
-												<div
-													className={`${styles.newsPageCardClockWrapper}`}
-												>
-													<img
-														className={`${styles.newsPageCardClockImg}`}
-														src={'/Img/clock.svg'}
-														alt={t('Час')}
-														onError={(e) => {
-															e.target.onerror =
-																null
-															e.target.src =
-																'/Img/clock.svg' // Fallback image
-														}}
-													/>
-												</div>
-												<div
-													className={`${styles.newsPageCardDateWrapper}`}
-												>
-													<p
-														className={`${styles.newsPageCardDate}`}
-													>
-														{formattedDate}
-													</p>
-												</div>
-												<div
-													className={`${styles.newsPageCardReadMoreButtonWrapper}`}
-												>
-													<button
-														onClick={() =>
-															navigate(
-																`/posts/${post.id}`,
-															)
-														}
-														className={`${styles.newsPageCardReadMoreButton}`}
-													>
-														{t('Читати далі')}
-													</button>
-												</div>
-											</div>
-										</div>
-									</div>
-								)
-							})
+							.map((post) => <PostCard key={post.id} post={post} />)
 					)}
 				</div>
 			</div>
@@ -292,131 +291,11 @@ function NewsPage() {
 						<p>{t(error)}</p>
 					) : filteredPosts.length === 0 ? (
 						<p>
-							{t('Немає новин, що відповідають вашому запиту.')}
 						</p>
 					) : (
 						filteredPosts
-							.slice(visiblePostsCount, 10)
-							.map((post, index) => {
-								// Calculate the card number starting from 5
-								const cardNumber = visiblePostsCount + index + 3
-
-								// Construct image URL similar to MainNews component
-								const featuredMediaUrl = getImageUrl(
-									post.images,
-									'/Img/halfNewsCard.jpg',
-								)
-
-								// Format date and time
-								const formattedDate = getFormattedDate(
-									post.createdAt,
-								)
-
-								return (
-									<div
-										key={post.id}
-										className={`${styles.newsPageCardContainer} ${styles[`newsPageCard${cardNumber}`]}`}
-									>
-										<div
-											className={`${styles.newsPageCardWrapper}`}
-										>
-											{/* Image */}
-											<div
-												className={`${styles.newsPageCardImageWrapper}`}
-												onClick={() =>
-													handlePostPageClick(post.id)
-												}
-											>
-												<img
-													className={`${styles.newsPageCardImage}`}
-													src={featuredMediaUrl}
-													alt={t('Зображення')}
-													onError={(e) => {
-														e.target.onerror = null
-														e.target.src =
-															'/Img/newsCardERROR.jpg' // Fallback image
-													}}
-												/>
-											</div>
-
-											{/* Title */}
-											<div
-												className={`${styles.newsPageCardTitleWrapper}`}
-											>
-												<p
-													className={`${styles.newsPageCardTitle}`}
-												>
-													<TranslatedContent
-														en={post.title_en}
-														uk={post.title_uk}
-														maxLength={100}
-													/>
-												</p>
-											</div>
-
-											{/* Description */}
-											<div
-												className={`${styles.newsPageCardDescriptionWrapper}`}
-											>
-												<p
-													className={`${styles.newsPageCardDescription}`}
-												>
-													<TranslatedContent
-														en={post.content_en}
-														uk={post.content_uk}
-														maxLength={150}
-														html
-													/>
-												</p>
-											</div>
-
-											{/* Clock, Date, and Read More Button */}
-											<div
-												className={`${styles.newsPageCardClockDateAndReadMoreButtonWrapper}`}
-											>
-												<div
-													className={`${styles.newsPageCardClockWrapper}`}
-												>
-													<img
-														className={`${styles.newsPageCardClockImg}`}
-														src={'/Img/clock.svg'}
-														alt={t('Час')}
-														onError={(e) => {
-															e.target.onerror =
-																null
-															e.target.src =
-																'/Img/clock.svg' // Fallback image
-														}}
-													/>
-												</div>
-												<div
-													className={`${styles.newsPageCardDateWrapper}`}
-												>
-													<p
-														className={`${styles.newsPageCardDate}`}
-													>
-														{formattedDate}
-													</p>
-												</div>
-												<div
-													className={`${styles.newsPageCardReadMoreButtonWrapper}`}
-												>
-													<button
-														className={`${styles.newsPageCardReadMoreButton}`}
-														onClick={() =>
-															navigate(
-																`/posts/${post.id}`,
-															)
-														} // Pass the post ID as a prop
-													>
-														{t('Читати далі')}
-													</button>
-												</div>
-											</div>
-										</div>
-									</div>
-								)
-							})
+							.slice(visiblePostsCount, maxPostsCount)
+							.map((post) => <PostCard key={post.id} post={post} />)
 					)}
 				</div>
 			</div>
@@ -425,23 +304,24 @@ function NewsPage() {
 				className={`${styles.newsPageMoreNewsButtonAndLikeAndShareWrapper}`}
 			>
 				<div className={`${styles.newsPageMoreNewsButtonWrapper}`}>
-					<button
-						className={`${styles.newsPageMoreNewsButton}`}
-						onClick={handleNewsPageClick}
-					>
-						<p className={`${styles.newsPageNewsButtonTitle}`}>
-							{t('Більше новин')}
-						</p>
-						<img
-							className={`${styles.newsPageNewsButtonImg}`}
-							src={'/Img/buttonArrow.svg'}
-							alt={t('Стрілка')}
-							onError={(e) => {
-								e.target.onerror = null
-								e.target.src = '/mainNewImg/buttonArrow.svg' // Fallback image
-							}}
-						/>
-					</button>
+					{maxPostsCount < posts.length ?
+						(<button
+							className={`${styles.newsPageMoreNewsButton}`}
+							onClick={handleNewsPageClick}
+						>
+							<p className={`${styles.newsPageNewsButtonTitle}`}>
+								{t('Більше новин')}
+							</p>
+							<img
+								className={`${styles.newsPageNewsButtonImg}`}
+								src={'/Img/buttonArrow.svg'}
+								alt={t('Стрілка')}
+								onError={(e) => {
+									e.target.onerror = null
+									e.target.src = '/mainNewImg/buttonArrow.svg' // Fallback image
+								}}
+							/>
+						</button>) : null}
 				</div>
 
 				{/* <LikeAndShare className={sliderStyles.LikeAndShareFixed} /> */}
@@ -455,7 +335,7 @@ function NewsPage() {
 					className={`${styles.newsPageInputMail}`}
 					type="email"
 					placeholder={t('Введіть ваш email')}
-					// You can add value and onChange handlers if needed
+				// You can add value and onChange handlers if needed
 				/>
 			</div>
 			<div className={`${styles.newsPageSignUpButtonContainer}`}>

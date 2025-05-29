@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import Letters from '@components/Blocks/Letters'
+import AllArtistsPageSearchSlider from '@components/Sliders/AllArtistsPageLettersSortSlider/AllArtistsPageSearchSlider'
+import { englishLetters, ukrainianLetters } from '../../../utils/constants'
 import Loading from '@components/Blocks/Loading'
 import LoadingError from '@components/Blocks/LoadingError'
 import Painting from '@components/Blocks/Painting'
@@ -26,8 +27,8 @@ function ArtTermsFilteredPage() {
 					return {
 						id: term.id,
 						highlightedProduct: term.highlightedProduct,
-						title: i18n.language != "uk" ? term.title_en : term.title_uk,
-						description: i18n.language != "uk" ? term.description_en : term.description_uk
+						title: i18n.language == "en" ? term.title_en : term.title_uk,
+						description: i18n.language == "en" ? term.description_en : term.description_uk
 					}
 				}))
 				setLoading(false)
@@ -52,7 +53,9 @@ function ArtTermsFilteredPage() {
 			</div>
 
 			<div className={`${layoutStyles.DescriptionWrapper}`}>
-				<Letters selected={letter} onLetterSelected={(letter) => navigate(`/art-terms/letters/${letter.toLowerCase()}`)} />
+				<AllArtistsPageSearchSlider letters={i18n.language === 'uk' ? ukrainianLetters : englishLetters}
+					selectedLetter={letter}
+					onLetterSelected={(letter) => navigate(`/art-terms/letters/${letter.toLowerCase()}`)} />
 			</div>
 
 			<div className={`${layoutStyles.DescriptionWrapper}`}>
@@ -77,7 +80,7 @@ function ArtTermsFilteredPage() {
 										<a href={"/art-terms/" + artTerm.id}>{artTerm.description}</a>
 									</div>
 									<div className={styles.cardCommands}>
-										<a href={"/art-terms/letters/" + artTerm.title[0].toLowerCase()}
+										<a href={"/art-terms/" + artTerm.id}
 											className="button button-default">{t('Читати далі')}</a>
 									</div>
 								</div>

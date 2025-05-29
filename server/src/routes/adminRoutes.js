@@ -1,23 +1,20 @@
 import express from "express"
-import { body } from "express-validator"
 import {
   approveProduct,
-  deleteUser,
-  getAllUsers,
   getPendingCounts,
   getPendingProducts,
   rejectProduct,
-  updateUserRole,
 } from "../controllers/adminController.js"
 import {
   registerAdminPostRoutes,
 } from "../controllers/adminPostsController.js"
+import {
+  registerAdminUserRoutes,
+} from "../controllers/adminUsersController.js"
 import authenticateToken from "../middleware/authMiddleware.js"
 import authorize from "../middleware/roleMIddleware.js"
 
 const router = express.Router()
-
-router.get("/users", authenticateToken, authorize("ADMIN"), getAllUsers)
 
 router.get(
   "/pending-counts",
@@ -34,6 +31,7 @@ router.get(
 )
 
 registerAdminPostRoutes(router);
+registerAdminUserRoutes(router);
 
 router.patch(
   "/products/:id/approve",
@@ -47,19 +45,5 @@ router.patch(
   authorize("ADMIN"),
   rejectProduct,
 )
-
-router.put(
-  "/users/:id/role",
-  authenticateToken,
-  authorize("ADMIN"),
-  [
-    body("role")
-      .isIn(["ADMIN", "USER", "MUSEUM", "CREATOR", "EDITOR"])
-      .withMessage("Invalid role"),
-  ],
-  updateUserRole,
-)
-
-router.delete("/users/:id", authenticateToken, authorize("ADMIN"), deleteUser)
 
 export default router

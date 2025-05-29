@@ -56,17 +56,47 @@ const CurrentPostReview = () => {
 		}
 	}
 
+	let pendingCommands = (<div className={`${styles.ButtonsContainer}`}>
+		<button
+			className={`${styles.Button} ${styles.AcceptButton}`}
+			onClick={acceptPost}
+		>
+			{t('Прийняти')}
+		</button>
+		<button
+			className={`${styles.Button} ${styles.RejectButton}`}
+			onClick={rejectPost}
+		>
+			{t('Відхилити')}
+		</button>
+	</div>)
+
+let approvedCommands = (<div className={`${styles.ButtonsContainer}`}>
+	<button
+		className={`${styles.Button} ${styles.RejectButton}`}
+		onClick={rejectPost}
+	>
+		{t('Відхилити')}
+	</button>
+</div>)
+
+let rejectedCommands = (<div className={`${styles.ButtonsContainer}`}>
+	<button
+		className={`${styles.Button} ${styles.AcceptButton}`}
+		onClick={acceptPost}
+	>
+		{t('Прийняти')}
+	</button>
+</div>)
     return (
         <ProfilePageContainer>
             <h2>
-                {t('На розгляді')}
+                {data.status === 'PENDING' ? t('На розгляді') : t('На розгляді')}
             </h2>
             {loading ? (
                 <Loading />
             ) : error ? (
                 <LoadingError />
-            ) : data.length === 0 ? (
-                <p>{t("Постів немає")}</p>
             ) : (
                 <>
                     <div className={`${styles.PostContainer}`}>
@@ -110,20 +140,9 @@ const CurrentPostReview = () => {
                                     </p>
                                 </div>
                             </div>
-                            <div className={`${styles.ButtonsContainer}`}>
-                                <button
-                                    className={`${styles.Button} ${styles.AcceptButton}`}
-                                    onClick={acceptPost}
-                                >
-                                    {t('Прийняти')}
-                                </button>
-                                <button
-                                    className={`${styles.Button} ${styles.RejectButton}`}
-                                    onClick={rejectPost}
-                                >
-                                    {t('Відхилити')}
-                                </button>
-                            </div>
+                            {data.status === "PENDING" ? pendingCommands : null}
+                            {data.status === "APPROVED" ? approvedCommands : null}
+                            {data.status === "REJECTED" ? rejectedCommands : null}
                         </div>
                     </div>
                 </>

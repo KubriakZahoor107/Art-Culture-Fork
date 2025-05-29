@@ -1,5 +1,6 @@
 Generated with [vike.dev/new](https://vike.dev/new) ([version 435](https://www.npmjs.com/package/create-vike/v/0.0.435)) using this command:
 
+<<<<<<< HEAD
 ```sh
 npm create vike@latest --- --react
 ```
@@ -50,4 +51,30 @@ SSR is enabled by default. You can [disable it](https://vike.dev/ssr) for all yo
 ### HTML Streaming
 
 You can enable/disable [HTML streaming](https://vike.dev/stream) for all your pages, or only for some pages while still using it for others.
+=======
+## How to setup project
+
+
+```
+npm ci
+cd server
+npm ci
+```
+
+In the root folder, copy `.env.sample` to `.env`. In the `server` folder, copy `.env.sample` to `.env` and adjust values according to your local setup.
+
+## How to run project
+
+In one terminal run server
+```
+npm start
+```
+
+In the other terminal start automatic reload using vite.
+```
+npm run auto-build
+```
+
+## deployment
+>>>>>>> artculture/next-ssr-seo
 

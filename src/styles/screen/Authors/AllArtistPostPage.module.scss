@@ -2,7 +2,7 @@
 
 .AuthorsPageContainer {
   //* главный контейнер
-  margin: $responsiveTopPadding $responsiveLeftAndRightPadding 0;
+  margin: $responsiveTopPadding 0 0 0;
   display: flex;
   flex-direction: column;
 
@@ -12,6 +12,8 @@
 }
 
 .AuthorPhotoNameContainer {
+  //* Контейнер для изображения и названия артиста
+  margin: $responsiveBigPadding $responsiveLeftAndRightPadding 0 $responsiveLeftAndRightPadding;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -36,24 +38,39 @@
 .AuthorTitleWrapper {
   //* Контейнер для названия страницы
   margin: 0 $responsiveSmallPadding 0;
+  width: 100%;
+  height: calc(115px - (15 * ((1440px - 100vw) / (1440 - 375))));
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: start;
 }
 
-.AuthorTitle {
+.AuthorLink {
+  //* Ссылка на страницу артиста
   font-family: $default-font;
-  font-size: calc(28px - (10 * ((1440px - 100vw) / (1440 - 375))));
-  font-weight: 600;
-  color: rgb(0, 0, 0);
+  font-size: calc(16px - (2 * ((1440px - 100vw) / (1440 - 375))));
+  font-weight: 400;
+  color: $red;
   text-transform: uppercase;
 }
 
+.LikeAndShareWrapper {
+  //* Контейнер для кнопок "Нравится" и "Поделиться"
+  margin: 0 0 0 auto;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .AuthorNavBarTwoSection {
+  margin: $responsiveMediumPadding $responsiveLeftAndRightPadding 0 $responsiveLeftAndRightPadding;
   display: flex;
   justify-content: space-between;
-  padding: $responsiveBigPadding 0 $responsiveBigPadding 0;
+  align-items: center;
 }
+
 .AuthorNavBarWrapper {
   display: flex;
   align-items: center;
@@ -66,20 +83,27 @@
   }
 }
 .PostsNavBarLeft {
-  padding: 0 $responsiveSmallPadding 0 0;
+  margin: 0 $responsiveSmallPadding 0 0;
   cursor: pointer;
 }
 
 .NavBarSeparator {
+  //* Разделитель между кнопками навигации
+  width: 1px;
+  height: calc(28px - (10 * ((1440px - 100vw) / (1440 - 375))));
+  background-color: black;
 }
 
 .AuthorsNavBarRight {
-  padding: 0 0 0 $responsiveSmallPadding;
+  margin: 0 0 0 $responsiveSmallPadding;
+  width: 100%;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
 .AuthorPostsListsWrapper {
-  margin: $responsiveMediumPadding 0 0 0;
+  margin: $responsiveMediumPadding $responsiveLeftAndRightPadding 0 $responsiveLeftAndRightPadding;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -91,6 +115,7 @@
   display: flex;
   // flex-direction: column;
   justify-content: space-between;
+  cursor: pointer;
 }
 
 .AuthorPostsListsTitleWrapper {
@@ -185,4 +210,207 @@
   // Стили для обертки даты
   margin: 0 0 0 $responsiveSmallPadding;
   display: flex;
+}
+
+@media (min-width: 1441px) {
+  .AuthorsPageContainer {
+    //* главный контейнер
+    margin: $staticPcTopPadding 0 0 0;
+  }
+
+  .AuthorPhotoNameContainer {
+    //* Контейнер для изображения и названия артиста
+    margin: $staticPcBigPadding $responsiveLeftAndRightPadding 0 $responsiveLeftAndRightPadding;
+  }
+
+  .AuthorPhotoWrapper {
+    //* Контейнер для изображения артиста
+    width: 115px;
+  }
+
+  .AuthorTitleWrapper {
+    //* Контейнер для названия страницы
+    margin: 0 $staticPcSmallPadding 0;
+    height: 115px;
+  }
+
+  .AuthorLink {
+    //* Ссылка на страницу артиста
+    font-size: 16px;
+  }
+
+  .AuthorNavBarTwoSection {
+    margin: $staticPcMediumPadding $responsiveLeftAndRightPadding 0 $responsiveLeftAndRightPadding;
+  }
+
+  .AuthorNavBarWrapper {
+    p {
+      font-size:28px;
+    }
+  }
+  .PostsNavBarLeft {
+    margin: 0 $staticPcSmallPadding 0 0;
+  }
+
+  .NavBarSeparator {
+    //* Разделитель между кнопками навигации
+    height: 28px;
+  }
+
+  .AuthorsNavBarRight {
+    margin: 0 0 0 $staticPcSmallPadding;
+  }
+
+  .AuthorPostsListsWrapper {
+    margin: $staticPcMediumPadding $responsiveLeftAndRightPadding 0 $responsiveLeftAndRightPadding;
+  }
+
+  .AuthorPostsListsTitle {
+    // Стили для обертки заголовка карточки
+    font-size: 22px;
+    height: calc(22px * 2);
+  }
+
+  .AuthorPostsListsContentWrapper {
+    // Стили для обертки описания карточки
+    margin: $staticPcSmallPadding 0 0 0;
+    height: calc(20px * 3);
+  }
+
+  .AuthorPostsListsContent {
+    // Стили для описания карточки
+    line-height: 20px;
+    font-size: 16px;
+  }
+
+  .cardClockAndDateInner {
+    margin: $staticPcSmallPadding 0 0 0;
+  }
+
+  .cardClockAndDateInner {
+    // Стили для обертки даты и времени карточки
+    font-size: 16px;
+  }
+
+  .cardDateWrapper {
+    // Стили для обертки даты
+    margin: 0 0 0 $staticPcSmallPadding;
+  }
+
+  .cardTimeWrapper {
+    // Стили для обертки даты
+    margin: 0 0 0 $staticPcSmallPadding;
+  }
+}
+
+@media (max-width: 569px) {
+  .AuthorsPageContainer {
+    //* главный контейнер
+    margin: $staticMobileTopPadding 0 0 0;
+  }
+
+  .AuthorPhotoNameContainer {
+    //* Контейнер для изображения и названия артиста
+    margin: $staticMobileBigPadding $responsiveLeftAndRightPadding 0 $responsiveLeftAndRightPadding;
+  }
+
+  .AuthorPhotoWrapper {
+    //* Контейнер для изображения артиста
+    width: 100px;
+  }
+
+  .AuthorTitleWrapper {
+    //* Контейнер для названия страницы
+    margin: 0 $staticMobileSmallPadding 0;
+    height: 100px;
+  }
+
+  .AuthorLink {
+    //* Ссылка на страницу артиста
+    font-size: 14px;
+  }
+
+  .AuthorNavBarTwoSection {
+    margin: $staticMobileMediumPadding $responsiveLeftAndRightPadding 0 $responsiveLeftAndRightPadding;
+  }
+
+  .AuthorNavBarWrapper {
+    p {
+      font-size: 18px;
+    }
+  }
+  .PostsNavBarLeft {
+    margin: 0 $staticMobileSmallPadding 0 0;
+  }
+
+  .NavBarSeparator {
+    //* Разделитель между кнопками навигации
+    height: 18px;
+  }
+
+  .AuthorsNavBarRight {
+    margin: 0 0 0 $staticMobileSmallPadding;
+  }
+
+  .AuthorPostsListsWrapper {
+    margin: $staticMobileMediumPadding $responsiveLeftAndRightPadding 0 $responsiveLeftAndRightPadding;
+  }
+
+  .AuthorPostsLists {
+    margin: 0 0 $staticMobileMediumPadding 0;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+  }
+
+  .AuthorPostsListsImage {
+    margin: 0 auto;
+  }
+
+  .AuthorPostsListsImage {
+    // Стили для изображения карточки
+    aspect-ratio: 630 / 330; // например, соотношение сторон 21:11
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .AuthorPostsListsTitle {
+    // Стили для обертки заголовка карточки
+    margin: $staticMobileSmallPadding 0 0 0;
+    font-size: 16px;
+    height: calc(16px * 2);
+  }
+
+  .AuthorPostsListsContentWrapper {
+    // Стили для обертки описания карточки
+    margin: $staticMobileSmallPadding 0 0 0;
+    height: calc(18px * 3);
+  }
+
+  .AuthorPostsListsContent {
+    // Стили для описания карточки
+    line-height: 18px;
+    font-size: 14px;
+  }
+
+  .cardClockAndDateInner {
+    margin: $staticMobileSmallPadding 0 0 0;
+  }
+
+  .cardClockAndDateInner {
+    // Стили для обертки даты и времени карточки
+    font-size: 14px;
+  }
+
+  .cardDateWrapper {
+    // Стили для обертки даты
+    margin: 0 0 0 $staticMobileSmallPadding;
+  }
+
+  .cardTimeWrapper {
+    // Стили для обертки даты
+    margin: 0 0 0 $staticMobileSmallPadding;
+  }
 }

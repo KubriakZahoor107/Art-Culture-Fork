@@ -11,7 +11,6 @@ function Painting({ painting, metadata }) {
 						src={painting.images[0].imageUrl}
 						loading="lazy"
 						width="340"
-						height="481"
 					/>
 				</picture>
 			) : null}

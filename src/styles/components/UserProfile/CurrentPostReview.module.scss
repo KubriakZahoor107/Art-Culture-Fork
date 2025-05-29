@@ -85,7 +85,7 @@
 }
 
 .RejectButton {
-    margin: 0 0 0 variables.$responsiveMediumPadding;
+    margin: 0;
     background-color: variables.$red;
 }
 
@@ -124,9 +124,5 @@
 
     .Button {
         border-radius: 34px;
-    }
-
-    .RejectButton {
-        margin: 0 0 0 variables.$staticPcMediumPadding;
     }
 }

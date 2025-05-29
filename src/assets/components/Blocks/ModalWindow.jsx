@@ -1,5 +1,4 @@
 import style from '@styles/components/Blocks/ModalWindow.module.scss'
-import sliderStyles from '@styles/components/Blocks/Slider.module.scss'
 import PropTypes from 'prop-types'
 import { useCallback, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -231,8 +230,8 @@ const GalleryModal = ({
 						</div>
 					</div>
 					<LikeAndShare
-						className={sliderStyles.LikeAndShareFixed}
-						countClassName={sliderStyles.likeCountWrapper}
+						// className={sliderStyles.LikeAndShareFixed}
+						// countClassName={sliderStyles.likeCountWrapper}
 						entityId={selectedProduct.id}
 						entityType={'product'}
 					/>

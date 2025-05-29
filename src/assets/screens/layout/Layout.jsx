@@ -12,6 +12,7 @@ import AdminDashboard from '../Admin/AdminDashboard'
 import AdminArtTermsEdit from '../Admin/ArtTermsEdit'
 import AdminArtTermsList from '../Admin/ArtTermsList'
 import AdminPostList from '../Admin/PostList'
+import AdminUserList from '../Admin/UserList'
 import AdminPostReviewList from '../Admin/PostReviewList'
 import CurrentPostReview from '../Admin/CurrentPostReview'
 import AllArtistsPage from '../AllArtistsPage/AllArtistsPage'
@@ -163,6 +164,12 @@ const Layout = ({ heading = '' }) => {
 								<CurrentPostReview />
 							</ProtectedRoute>
 						}
+					/>
+
+					<Route path="/admin/users"
+						element={<ProtectedRoute roles={['ADMIN']}>
+								<AdminUserList />
+							</ProtectedRoute>}
 					/>
 					<Route
 						path="/profile/posts/create"

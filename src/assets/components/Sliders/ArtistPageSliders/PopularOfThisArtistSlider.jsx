@@ -9,7 +9,6 @@ import 'swiper/css/pagination'
 import { getBaseUrl } from '../../../../utils/helper'
 // Import Swiper modules
 // import LikeAndShare from '@components/Blocks/LikeAndShare'
-import sliderStyles from '@styles/components/Blocks/Slider.module.scss'
 import PropTypes from 'prop-types'
 import { useNavigate } from 'react-router-dom'
 import { Navigation, Pagination } from 'swiper/modules'
@@ -82,9 +81,9 @@ const PopularOfThisArtistSlider = ({ products, baseUrl }) => {
 			<div className="popularOfThisArtistSliderWrapper">
 				<div className="popularOfThisArtistSliderTopInnerWrapper">
 					<div className="popularOfThisArtistSliderTitleWrapper">
-						<p className="popularOfThisArtistSliderTitle">
+						<h2 className="popularOfThisArtistSliderTitle">
 							{t('Популярне цього митця')}
-						</p>
+						</h2>
 					</div>
 					{/* <LikeAndShare className={sliderStyles.LikeAndShareFixed} /> */}
 				</div>
